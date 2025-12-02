@@ -1,0 +1,116 @@
+# first character will always be version number, Base64.toInt(1st char)
+# creates a bitvector of length urlTag*6 bits long
+# then creates a bitvector cursor for the vector at position 0
+advance 6 for decodeHeader
+advance 10 for VERSION_ID
+decodeEquipment
+decodeTomes
+decodeSp
+decodeLevel
+decodeAspects
+consumes the rest of the bits in the string, this is used for decoding the tree
+
+decodeAtree !!!
+
+
+decodeEquipment:
+    loops 9 times for EQUIPMENT_NUM
+        advances 2 for EQUIPMENT_KIND
+        if EQUIPMENT_KIND.NORMAL:
+            advance 13
+        if EQUIPMENT_KIND.CRAFTED:
+            decodeCrafted
+        advances a total of 5 bits for EQUIPMENT_POWDERS_FLAG
+        if EQUIPMENT_POWDERS_FLAG && equipment has powders:
+            decodePowders
+
+    # never happens
+    # if custom, advances by custom_str_length_bitlen(12) to get string length, then skips that many bits
+decodeCrafted:
+    # saves current cursor idx as hash start idx
+    advance 1 for legacy bit (asssumes no legacy)
+    advance 7 for version
+    loops 6 times for NUM_INGS:
+        advance 12
+    # total advances 72 guarante
+    advance 12 for recipe
+    loops 2 times for NUM_MATS:
+        advance 3
+    # total advances 6
+
+    advance 4 for atk spd
+    then skip padding (6 - (current idx - start idx) % 6) 
+    # intuitively, 6 - the length mod 6, so it guarantees the string is length 0 mod 6
+decodePowders:
+    advances 5 bits for powder ingrdients
+    while true:
+    advances a bit for powder repeat operator(?)
+    if POWDER_REPEAT_OP.REPEAT, breaks out of switch and goes to next powder
+    if POWDER_REPEAT_OP.NO_REPEAT: 
+        advances a bit for POWDER_REPEAT_TIER_OP
+        if POWDER_REPEAT_TIER_OP.REPEAT_TIER, advances 2
+        if POWDER_REPEAT_TIER_OP.CHANGE_POWDER, advances by 1
+            if POWDER_CHANGE_OP.NEW_POWDER, advances by 5 
+            if POWDER_CHANGE_OP is a new item, breaks outer while loop
+decodeTomes:
+    advances 1 for TOMES_FLAG
+    if TOMES_FLAG
+        loops 14 times for TOMES_FLAG
+            advances 1 for TOME_SLOT_FLAG
+            if TOME_SLOT_FLAG:
+                advance 8
+decodeSp:
+    advances 1 for SP_FLAG
+    if SP_FLAG.AUTOMATIC: skip
+    if SP_FLAG.ASSIGNED:
+        loop 5 times for SP_TYPES
+            advance 1 for ELEMENT_FLAG
+            if SP_ELEMENT_FLAG.ELEMENT_ASSIGNED:
+                advance 12
+            else: skip
+decodeLevel:
+    advance 1 for LEVEL_FLAG
+    if LEVEL_FLAG.MAX: skip
+    if LEVEL_FLAG.OTHER:
+        advance 7
+
+
+decodeAspects:
+    advances 1 for ASPECTS_FLAG
+    if ASPECTS_FLAG.NO_ASPECTS: skip
+    if ASPECTS_FLAG.HAS_ASPECTS:
+        loop 5 times for NUM_ASPECTS
+            advance by 1 for ASPECT_SLOT_FLAG
+            if ASPECT_SLOT_FLAG.UNUSED: skip
+            if ASPECT_SLOT_FLAG.USED:
+                advance 5 for ASPECT_ID_BITLEN
+                advance 2 for ASPECT_TIER_BITLEN
+
+
+decodeAtree:
+    i = 0
+    out = []
+    push first ability into out
+    enters traverse function with root node, new hashmap, and the output array
+
+traverse:
+    given head node, visited nodes, return
+    for child in head.children:
+        if visited[child.id] is True: continue
+        else:
+            visited[child.id] = True
+        if bitstring[i+idx] == '1': # previous idx
+            i += 1
+            out.push(child)
+            traverse(child, visited, out)
+        else
+            i += 1
+
+# w3t4 powder example
+# startidx = 32
+# initial decode -> 37
+# repeat powder loop -> 38
+# no repeat case -> 39
+# change powder -> 40
+# changing powder -> 45
+# breaks repeat switch case
