@@ -1,0 +1,3493 @@
+[
+    {
+        "display_name": "Totem",
+        "desc": "Click Combo: RIGHT-LEFT-RIGHT </br> Summon a Totem that damages enemies around it every 0.4s. </br> Mana Cost: 30 </br><span class='mc-white'>Total Damage</span>: 12% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 6%)   </br>&emsp;(<span class='aDam'>Air</span>: 6%) </br>Duration: 30s </br>Area of Effect: 8 Blocks (Circle-Shaped)",
+        "parents": [],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 0,
+            "col": 4,
+            "icon": "node_shaman"
+        },
+        "properties": {
+            "duration": 30,
+            "rate": 0.4,
+            "aoe": 8,
+            "totem_mul": 2.5,
+            "num_totems": 1
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Totem",
+                "cost": 30,
+                "base_spell": 1,
+                "display": "Tick DPS",
+                "parts": [
+                    {
+                        "name": "Tick Damage",
+                        "multipliers": [
+                            6,
+                            0,
+                            0,
+                            0,
+                            0,
+                            6
+                        ]
+                    },
+                    {
+                        "name": "Tick DPS (Per Totem)",
+                        "hits": {
+                            "Tick Damage": "0.totem_mul"
+                        }
+                    },
+                    {
+                        "name": "Heal Rate (Per Totem)",
+                        "hits": {
+                            "Heal Tick": "0.totem_mul"
+                        }
+                    },
+                    {
+                        "name": "Tick DPS",
+                        "hits": {
+                            "Tick DPS (Per Totem)": "0.num_totems"
+                        }
+                    },
+                    {
+                        "name": "Heal Rate",
+                        "hits": {
+                            "Heal Rate (Per Totem)": "0.num_totems"
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 0,
+        "children": [
+            1
+        ]
+    },
+    {
+        "display_name": "Relik Proficiency 1",
+        "desc": "Double your Main Attack's beam speed and increase your damage when using a relik.",
+        "base_abil": 999,
+        "parents": [
+            0,
+            2
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 2,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Relik Melee",
+                "base_spell": 0,
+                "scaling": "melee",
+                "use_atkspd": false,
+                "display": "Total",
+                "parts": [
+                    {
+                        "name": "Single Beam",
+                        "multipliers": [
+                            35,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Total",
+                        "hits": {
+                            "Single Beam": 3
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 1,
+        "children": [
+            2,
+            3
+        ]
+    },
+    {
+        "display_name": "Cheaper Totem I",
+        "desc": "Reduce the Mana cost of Totem by 10.",
+        "base_abil": 0,
+        "parents": [
+            1
+        ],
+        "dependencies": [
+            0
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 2,
+            "col": 6,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "cost": -10
+            }
+        ],
+        "id": 2,
+        "children": [
+            1
+        ]
+    },
+    {
+        "display_name": "Totemic Smash",
+        "desc": "Your Totem will deal damage where it lands. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 120%)   </br>&emsp;(<span class='fDam'>Fire</span>: 30%) </br>Area of Effect: 3.5 Blocks (Circle-Shaped)",
+        "base_abil": 0,
+        "parents": [
+            1
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 4,
+            "col": 4,
+            "icon": "node_1"
+        },
+        "properties": {
+            "aoe": 3.5
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Smash Damage",
+                "multipliers": [
+                    120,
+                    0,
+                    0,
+                    0,
+                    30,
+                    0
+                ]
+            }
+        ],
+        "id": 3,
+        "children": [
+            5
+        ]
+    },
+    {
+        "display_name": "Distant Grasp",
+        "desc": "Reduce your Main Attack's spread, and increase its beam speed by +33%.",
+        "base_abil": 999,
+        "archetype": "Summoner",
+        "parents": [
+            5
+        ],
+        "dependencies": [],
+        "blockers": [
+            6
+        ],
+        "cost": 1,
+        "display": {
+            "row": 6,
+            "col": 2,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 4,
+        "children": [
+            5,
+            7
+        ]
+    },
+    {
+        "display_name": "Haul",
+        "desc": "Click Combo: RIGHT-RIGHT-RIGHT </br> Leap towards your Totem. </br> Mana Cost: 15",
+        "parents": [
+            3,
+            4,
+            6
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 6,
+            "col": 4,
+            "icon": "node_shaman"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Haul",
+                "cost": 15,
+                "base_spell": 2,
+                "display": "",
+                "parts": []
+            }
+        ],
+        "id": 5,
+        "children": [
+            4,
+            6
+        ]
+    },
+    {
+        "display_name": "Hand of the Shaman",
+        "desc": "Your Main Attack will emit +2 extra beams. (Increases your overall damage by +65%)",
+        "base_abil": 999,
+        "archetype": "Acolyte",
+        "parents": [
+            5
+        ],
+        "dependencies": [],
+        "blockers": [
+            4
+        ],
+        "cost": 1,
+        "display": {
+            "row": 6,
+            "col": 6,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Relik Melee",
+                "base_spell": 0,
+                "scaling": "melee",
+                "use_atkspd": false,
+                "display": "Total",
+                "parts": [
+                    {
+                        "name": "Single Beam",
+                        "multipliers": [
+                            34,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Total",
+                        "hits": {
+                            "Single Beam": 5
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 6,
+        "children": [
+            5,
+            9
+        ]
+    },
+    {
+        "display_name": "Uproot",
+        "desc": "Click Combo: RIGHT-RIGHT-LEFT </br> Emits a rapid projectile that will explode and knock enemies away. (Hold shift to pull instead) </br> Mana Cost: 30 </br><span class='mc-white'>Total Damage</span>: 130% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 80%)   </br>&emsp;(<span class='eDam'>Earth</span>: 30%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 20%) </br>Range: 18 Blocks </br>Area of Effect: 5 Blocks (Circle-Shaped)",
+        "parents": [
+            4,
+            8
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 8,
+            "col": 2,
+            "icon": "node_shaman"
+        },
+        "properties": {
+            "range": 18,
+            "aoe": 5
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Uproot",
+                "cost": 30,
+                "base_spell": 4,
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Single Hit",
+                        "multipliers": [
+                            80,
+                            30,
+                            20,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Total Damage",
+                        "hits": {
+                            "Single Hit": 1
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 7,
+        "children": [
+            8,
+            10,
+            11,
+            12
+        ]
+    },
+    {
+        "display_name": "Cheaper Haul I",
+        "desc": "Reduce the Mana cost of Haul by 5.",
+        "base_abil": 5,
+        "parents": [
+            7,
+            9
+        ],
+        "dependencies": [
+            5
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 8,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "cost": -5
+            }
+        ],
+        "id": 8,
+        "children": [
+            7,
+            9,
+            12,
+            13,
+            14
+        ]
+    },
+    {
+        "display_name": "Aura",
+        "desc": "Click Combo: RIGHT-LEFT-LEFT </br> Radiates an aura from your Totem that damages enemies. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 180% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 150%)   </br>&emsp;(<span class='wDam'>Water</span>: 30%) </br>Range: 16 Blocks",
+        "parents": [
+            6,
+            8
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 8,
+            "col": 6,
+            "icon": "node_shaman"
+        },
+        "properties": {
+            "range": 16,
+            "num_totems": 1
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Aura",
+                "cost": 40,
+                "base_spell": 3,
+                "display": "First Wave",
+                "parts": [
+                    {
+                        "name": "Single Wave",
+                        "multipliers": [
+                            150,
+                            0,
+                            0,
+                            30,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "First Wave",
+                        "hits": {
+                            "Single Wave": "9.num_totems"
+                        }
+                    },
+                    {
+                        "name": "First Wave Heal",
+                        "hits": {
+                            "Heal Amount": "9.num_totems"
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 9,
+        "children": [
+            8,
+            14,
+            15
+        ]
+    },
+    {
+        "display_name": "Totem Shove",
+        "desc": "Casting Totem while looking at an existing Totem will instead shove it forwards, dealing damage to any enemy it crashes into. (Sneak to reverse its direction) </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 90%)   </br>&emsp;(<span class='aDam'>Air</span>: 30%) </br>Range: ~12 Blocks </br>Area of Effect: 3.5 Blocks (Circle-Shaped)",
+        "base_abil": 0,
+        "parents": [
+            7
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 9,
+            "col": 1,
+            "icon": "node_1"
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Shove Damage",
+                "multipliers": [
+                    90,
+                    0,
+                    0,
+                    0,
+                    0,
+                    30
+                ]
+            }
+        ],
+        "id": 10,
+        "children": []
+    },
+    {
+        "display_name": "Earth Mastery",
+        "base_abil": 998,
+        "desc": "Increase your base damage from all Earth attacks. </br> </br>Earth Damage: +2-4 </br>Earth Damage: +20%",
+        "archetype": "Summoner",
+        "parents": [
+            12,
+            7
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 10,
+            "col": 0,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "eDamPct",
+                        "value": 20
+                    },
+                    {
+                        "type": "stat",
+                        "name": "eDamAddMin",
+                        "value": 2
+                    },
+                    {
+                        "type": "stat",
+                        "name": "eDamAddMax",
+                        "value": 4
+                    }
+                ]
+            }
+        ],
+        "id": 11,
+        "children": [
+            12,
+            16
+        ]
+    },
+    {
+        "display_name": "Air Mastery",
+        "base_abil": 998,
+        "desc": "Increase your base damage from all Air attacks. </br> </br>Air Damage: +3-4 </br>Air Damage: +15%",
+        "archetype": "Summoner",
+        "parents": [
+            11,
+            7,
+            8,
+            14
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 10,
+            "col": 2,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "aDamPct",
+                        "value": 15
+                    },
+                    {
+                        "type": "stat",
+                        "name": "aDamAddMin",
+                        "value": 3
+                    },
+                    {
+                        "type": "stat",
+                        "name": "aDamAddMax",
+                        "value": 4
+                    }
+                ]
+            }
+        ],
+        "id": 12,
+        "children": [
+            11,
+            13,
+            14,
+            17
+        ]
+    },
+    {
+        "display_name": "Water Mastery",
+        "base_abil": 998,
+        "desc": "Increase your damage from all Water attacks. </br> </br>Water Damage: +2-4 </br>Water Damage: +15%",
+        "archetype": "Ritualist",
+        "parents": [
+            8,
+            12,
+            14
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 11,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "wDamPct",
+                        "value": 15
+                    },
+                    {
+                        "type": "stat",
+                        "name": "wDamAddMin",
+                        "value": 2
+                    },
+                    {
+                        "type": "stat",
+                        "name": "wDamAddMax",
+                        "value": 4
+                    }
+                ]
+            }
+        ],
+        "id": 13,
+        "children": [
+            18
+        ]
+    },
+    {
+        "display_name": "Thunder Mastery",
+        "base_abil": 998,
+        "desc": "Increase your base damage from all Thunder attacks. </br> </br>Thunder Damage: +1-8 </br>Thunder Damage: +10%",
+        "archetype": "Acolyte",
+        "parents": [
+            12,
+            8,
+            9
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 10,
+            "col": 6,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "tDamPct",
+                        "value": 10
+                    },
+                    {
+                        "type": "stat",
+                        "name": "tDamAddMin",
+                        "value": 1
+                    },
+                    {
+                        "type": "stat",
+                        "name": "tDamAddMax",
+                        "value": 8
+                    }
+                ]
+            }
+        ],
+        "id": 14,
+        "children": [
+            12,
+            13,
+            19
+        ]
+    },
+    {
+        "display_name": "Fire Mastery",
+        "base_abil": 998,
+        "desc": "Increase your base damage from all Fire attacks. </br> </br>Fire Damage: +3-5 </br>Fire Damage: +15%",
+        "archetype": "Acolyte",
+        "parents": [
+            9
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 10,
+            "col": 8,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "fDamPct",
+                        "value": 15
+                    },
+                    {
+                        "type": "stat",
+                        "name": "fDamAddMin",
+                        "value": 3
+                    },
+                    {
+                        "type": "stat",
+                        "name": "fDamAddMax",
+                        "value": 5
+                    }
+                ]
+            }
+        ],
+        "id": 15,
+        "children": [
+            20
+        ]
+    },
+    {
+        "display_name": "Nature's Jolt",
+        "desc": "Hitting the ground after using Haul will deal damage around you. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 110%)   </br>&emsp;(<span class='eDam'>Earth</span>: 40%) </br>Area of Effect: 4.5 Blocks (Circle-Shaped)",
+        "base_abil": 5,
+        "parents": [
+            11,
+            17
+        ],
+        "dependencies": [
+            5
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 13,
+            "col": 0,
+            "icon": "node_2"
+        },
+        "properties": {
+            "aoe": 3.5
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "target_part": "Nature's Jolt",
+                "base_spell": 2,
+                "multipliers": [
+                    110,
+                    40,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "target_part": "Total Damage",
+                "base_spell": 2,
+                "display": "Total Damage",
+                "hits": {
+                    "Nature's Jolt": 1
+                }
+            }
+        ],
+        "id": 16,
+        "children": [
+            17,
+            21
+        ]
+    },
+    {
+        "display_name": "Overseer",
+        "desc": "Increases Uproot and Haunting Memory's range. Hitting Totem with either will reset its duration. </br> </br>Range: +6 Blocks",
+        "base_abil": 7,
+        "archetype": "Summoner",
+        "parents": [
+            12,
+            16
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 13,
+            "col": 2,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 7,
+                        "name": "range",
+                        "value": 6
+                    }
+                ]
+            }
+        ],
+        "id": 17,
+        "children": [
+            16,
+            21
+        ]
+    },
+    {
+        "display_name": "Rain Dance",
+        "desc": "While mid-air, your Totem will leave a streak of rain that damages enemies under it every 0.4s. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='wDam'>Water</span>: 30%) </br>Duration: 6s </br>Area of Effect: 3.5 Blocks (Line-Shaped)",
+        "archetype": "Ritualist",
+        "base_abil": 0,
+        "parents": [
+            13,
+            19
+        ],
+        "dependencies": [
+            0
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 13,
+            "col": 4,
+            "icon": "node_2"
+        },
+        "properties": {
+            "aoe": 2,
+            "duration": 6,
+            "rate": 0.4
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Rain Dance",
+                "multipliers": [
+                    30,
+                    0,
+                    0,
+                    30,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 18,
+        "children": [
+            19,
+            22
+        ]
+    },
+    {
+        "display_name": "Shocking Aura",
+        "desc": "Aura will travel much faster and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='tDam'>Thunder</span>: +20%)",
+        "base_abil": 9,
+        "archetype": "Acolyte",
+        "parents": [
+            14,
+            20,
+            18
+        ],
+        "dependencies": [
+            9
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 13,
+            "col": 6,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Single Wave",
+                "multipliers": [
+                    0,
+                    0,
+                    20,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 19,
+        "children": [
+            18,
+            20
+        ]
+    },
+    {
+        "display_name": "Flaming Tongue",
+        "desc": "Uproot becomes lashing flames, which hit 3 times but will not explode or knockback enemies. </br> Haunting Memory will no longer attach Masks to enemies. </br> </br><span class='mc-white'>Total Damage</span>: -50% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: -15%)   </br>&emsp;(<span class='eDam'>Earth</span>: -30%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -15%)   </br>&emsp;(<span class='fDam'>Fire</span>: +10%)",
+        "base_abil": 7,
+        "archetype": "Acolyte",
+        "parents": [
+            15,
+            19
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 13,
+            "col": 8,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Single Hit",
+                "multipliers": [
+                    -15,
+                    -30,
+                    -15,
+                    0,
+                    10,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Single Hit": 2
+                }
+            }
+        ],
+        "id": 20,
+        "children": [
+            19,
+            23
+        ]
+    },
+    {
+        "display_name": "Puppet Master",
+        "desc": "Your Totem will summon 1 Puppet every 3s. (Max 3) They throw knives at nearby enemies every 0.5s. </br> </br><span class='mc-white'>Total Damage</span>: 20% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 16%)   </br>&emsp;(<span class='aDam'>Air</span>: 2%)   </br>&emsp;(<span class='eDam'>Earth</span>: 2%) </br>Duration: 30s </br>Range: 16 Blocks",
+        "archetype": "Summoner",
+        "archetype_req": 3,
+        "parents": [
+            17,
+            16
+        ],
+        "dependencies": [
+            0
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 15,
+            "col": 1,
+            "icon": "node_3"
+        },
+        "properties": {
+            "duration": 30,
+            "range": 16,
+            "max_puppets": 3,
+            "num_puppets": 0,
+            "rallied_puppets": 0,
+            "attack_frequency": 2
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Puppet Damage",
+                "base_spell": 6,
+                "display": "Total Puppet DPS",
+                "parts": [
+                    {
+                        "name": "Puppet Hit",
+                        "multipliers": [
+                            16,
+                            2,
+                            0,
+                            0,
+                            0,
+                            2
+                        ]
+                    },
+                    {
+                        "name": "Puppet DPS",
+                        "hits": {
+                            "Puppet Hit": "21.attack_frequency"
+                        }
+                    },
+                    {
+                        "name": "Total Puppet DPS",
+                        "hits": {
+                            "Puppet DPS": "21.num_puppets"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Active Puppets",
+                "slider_step": 1,
+                "slider_max": 3,
+                "slider_default": 3,
+                "output": [
+                    {
+                        "type": "prop",
+                        "abil": 21,
+                        "name": "num_puppets"
+                    }
+                ],
+                "scaling": [
+                    1
+                ]
+            }
+        ],
+        "id": 21,
+        "children": [
+            24,
+            25
+        ]
+    },
+    {
+        "display_name": "Mask of the Lunatic",
+        "desc": "When casting Uproot, instead wear the Mask of the Lunatic. (Shift + Uproot to remove it) </br> While wearing this Mask, the mana cost of Aura is decreased and you gain damage bonus at the cost of reduced resistance. </br> Mana Cost: -30% </br>Effects: +35% Damage Bonus to Self    -20% Resistance Bonus to Self",
+        "base_abil": 7,
+        "archetype": "Ritualist",
+        "archetype_req": 2,
+        "parents": [
+            18,
+            33
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 15,
+            "col": 3,
+            "icon": "node_3"
+        },
+        "properties": {
+            "lunatic_damage": 35
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Switch Masks",
+                "base_spell": 4,
+                "parts": [],
+                "display": ""
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Mask of the Lunatic",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Mask",
+                        "value": "7.lunatic_damage"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "defMult.Mask",
+                        "value": -20
+                    },
+                    {
+                        "type": "stat",
+                        "name": "spPct3Final",
+                        "value": -30
+                    }
+                ]
+            }
+        ],
+        "id": 22,
+        "children": [
+            26,
+            33
+        ]
+    },
+    {
+        "display_name": "Sacrificial Shrine",
+        "desc": "Your Totem will siphon 2% of your health every 0.4s and transfer it into a Blood Pool. </br> Aura will spend 15 points of Blood Pool to deal +35% damage and heal all allies. </br> </br>Total Heal: 25% (of your max health)",
+        "archetype": "Acolyte",
+        "archetype_req": 3,
+        "parents": [
+            20
+        ],
+        "dependencies": [
+            0
+        ],
+        "blockers": [
+            44
+        ],
+        "cost": 2,
+        "display": {
+            "row": 15,
+            "col": 8,
+            "icon": "node_3"
+        },
+        "properties": {
+            "blood_pool": 30
+        },
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Boosted Aura",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.BloodPool:3.Single Wave",
+                        "value": 35
+                    }
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Heal Amount",
+                "power": 0.25
+            }
+        ],
+        "id": 23,
+        "children": [
+            27
+        ]
+    },
+    {
+        "display_name": "Stagnation",
+        "desc": "Enemies hit by Nature's Jolt will be slowed down. </br> </br>Effect: 40% Slowness to Enemies </br>Duration: 3s",
+        "base_abil": 5,
+        "parents": [
+            21,
+            25
+        ],
+        "dependencies": [
+            16
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 17,
+            "col": 0,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 24,
+        "children": [
+            25,
+            28
+        ]
+    },
+    {
+        "display_name": "Cheaper Aura I",
+        "desc": "Reduce the Mana cost of Aura by 5.",
+        "base_abil": 9,
+        "parents": [
+            24,
+            21,
+            26
+        ],
+        "dependencies": [
+            9
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 17,
+            "col": 2,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "cost": -5
+            }
+        ],
+        "id": 25,
+        "children": [
+            24,
+            26,
+            28,
+            29
+        ]
+    },
+    {
+        "display_name": "Cheaper Uproot I",
+        "desc": "Reduce the Mana cost of Uproot by 5.",
+        "base_abil": 7,
+        "parents": [
+            25,
+            22,
+            27,
+            33
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 17,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "cost": -5
+            }
+        ],
+        "id": 26,
+        "children": [
+            25,
+            27,
+            29,
+            30,
+            37
+        ]
+    },
+    {
+        "display_name": "Rebound",
+        "desc": "Once Aura reaches its maximum range, it will bounce back and deal its effects a second time. </br> Sacrificial Shrine will heal 35% less health.",
+        "base_abil": 9,
+        "parents": [
+            23,
+            26
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 17,
+            "col": 7,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Rebound Total Damage",
+                "hits": {
+                    "First Wave": 2
+                }
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Rebound Total Heal",
+                "hits": {
+                    "First Wave Heal": 2
+                }
+            },
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "healMult.Rebound:3.Heal Amount",
+                        "value": -35
+                    }
+                ]
+            }
+        ],
+        "id": 27,
+        "children": [
+            26,
+            30,
+            31,
+            34
+        ]
+    },
+    {
+        "display_name": "More Puppets I",
+        "desc": "Increase your Max Puppets by +1.",
+        "base_abil": 21,
+        "archetype": "Summoner",
+        "parents": [
+            24,
+            25
+        ],
+        "dependencies": [
+            21
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 18,
+            "col": 1,
+            "icon": "node_0"
+        },
+        "properties": {
+            "max_puppets": 1
+        },
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Active Puppets",
+                "slider_max": 1,
+                "slider_default": 1,
+                "output": [
+                    {
+                        "type": "prop",
+                        "abil": 21,
+                        "name": "num_puppets"
+                    }
+                ],
+                "scaling": [
+                    0
+                ]
+            }
+        ],
+        "id": 28,
+        "children": [
+            32
+        ]
+    },
+    {
+        "display_name": "Haunting Memory",
+        "desc": "When you switch Masks, throw your previous one forwards. If it hits an enemy, it will attach for a short time and debuff them. You will not receive the effects of your Mask until it returns. </br> </br><span class='mc-white'>Total Damage</span>: 240% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 240%) </br>Range: 14 Blocks </br>Effects: -15% Damage Bonus to Enemies (from Lunatic)    -15% Resistance Bonus to Enemies (from Fanatic)    +30% Slowness to Enemies (from Heretic) </br>Duration: 4s",
+        "base_abil": 7,
+        "archetype": "Ritualist",
+        "parents": [
+            25,
+            26
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "archetype_req": 4,
+        "display": {
+            "row": 18,
+            "col": 3,
+            "icon": "node_4"
+        },
+        "properties": {
+            "range": 14
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "display": "Mask Throw",
+                "target_part": "Mask Throw",
+                "multipliers": [
+                    240,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 29,
+        "children": []
+    },
+    {
+        "display_name": "Totemic Reach",
+        "desc": "Increase your Totem's area of effect. </br> </br>Area of Effect: +4 Blocks (Circle-Shaped)",
+        "base_abil": 0,
+        "parents": [
+            26,
+            27
+        ],
+        "dependencies": [
+            0
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 18,
+            "col": 5,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 0,
+                        "name": "aoe",
+                        "value": 4
+                    }
+                ]
+            }
+        ],
+        "id": 30,
+        "children": []
+    },
+    {
+        "display_name": "Blood Connection",
+        "desc": "If you are outside of your Totem's range, Haul will teleport you to it.",
+        "base_abil": 5,
+        "archetype": "Acolyte",
+        "parents": [
+            27
+        ],
+        "dependencies": [
+            5
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 18,
+            "col": 8,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 31,
+        "children": []
+    },
+    {
+        "display_name": "Exploding Puppets",
+        "desc": "When your Puppets have 3s left, they will charge towards enemies at high speed and explode. </br> </br><span class='mc-white'>Total Damage</span>: 200% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 150%)   </br>&emsp;(<span class='fDam'>Fire</span>: 50%) </br>Area of Effect: 3 Blocks (Circle-Shaped)",
+        "base_abil": 21,
+        "archetype": "Summoner",
+        "parents": [
+            28
+        ],
+        "dependencies": [
+            21
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 20,
+            "col": 1,
+            "icon": "node_2"
+        },
+        "properties": {
+            "aoe": 3
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 6,
+                "target_part": "Puppet Explosion",
+                "multipliers": [
+                    150,
+                    0,
+                    0,
+                    0,
+                    50,
+                    0
+                ]
+            }
+        ],
+        "id": 32,
+        "children": [
+            35,
+            36
+        ]
+    },
+    {
+        "display_name": "Hymn of Hate",
+        "desc": "When wearing the Mask of the Lunatic, killing an enemy with Aura will cast a new Aura at its location, dealing -50% of its damage.",
+        "base_abil": 9,
+        "archetype": "Ritualist",
+        "parents": [
+            22
+        ],
+        "dependencies": [
+            22
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 15,
+            "col": 6,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Hymn of Hate",
+                "hits": {
+                    "Single Wave": 0.5
+                }
+            }
+        ],
+        "id": 33,
+        "children": [
+            22,
+            26
+        ]
+    },
+    {
+        "display_name": "Larger Blood Pool",
+        "desc": "Increase your maximum Blood Pool by +30 points.",
+        "archetype": "Acolyte",
+        "base_abil": 23,
+        "parents": [
+            27,
+            37
+        ],
+        "dependencies": [
+            23
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 20,
+            "col": 7,
+            "icon": "node_0"
+        },
+        "properties": {
+            "blood_pool": 30
+        },
+        "effects": [],
+        "id": 34,
+        "children": [
+            37,
+            38,
+            40
+        ]
+    },
+    {
+        "display_name": "Bullwhip",
+        "desc": "Hitting enemies with Uproot or Haunting Memory will inflict them with Whipped. Your Summons will focus Whipped enemies and deal additional damage to them. </br> </br>Effect: +20% Damage Bonus to Summons </br>Duration: 10s",
+        "archetype": "Summoner",
+        "parents": [
+            32
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 21,
+            "col": 0,
+            "icon": "node_4"
+        },
+        "properties": {
+            "duration": 10,
+            "damage_boost": 20
+        },
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Bullwhip",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Bullwhip:6.Puppet Hit",
+                        "value": "35.damage_boost"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.Bullwhip:7.Effigy Hit",
+                        "value": "35.damage_boost"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.Bullwhip:6.Puppet Explosion",
+                        "value": "35.damage_boost"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.Bullwhip:1.Smash Damage",
+                        "value": "35.damage_boost"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.Bullwhip:1.Tick Damage",
+                        "value": "35.damage_boost"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.Bullwhip:5.Explosion Damage",
+                        "value": "35.damage_boost"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.Bullwhip:12.Hummingbird Hit",
+                        "value": "35.damage_boost"
+                    }
+                ]
+            }
+        ],
+        "id": 35,
+        "children": [
+            41
+        ]
+    },
+    {
+        "display_name": "More Puppets II",
+        "desc": "Increase your maximum Puppets by +2.",
+        "base_abil": 21,
+        "archetype": "Summoner",
+        "parents": [
+            32
+        ],
+        "dependencies": [
+            28
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 22,
+            "col": 1,
+            "icon": "node_0"
+        },
+        "properties": {
+            "max_puppets": 2
+        },
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Active Puppets",
+                "slider_max": 2,
+                "slider_default": 2,
+                "output": [
+                    {
+                        "type": "prop",
+                        "abil": 21,
+                        "name": "num_puppets"
+                    }
+                ],
+                "scaling": [
+                    0
+                ]
+            }
+        ],
+        "id": 36,
+        "children": [
+            42
+        ]
+    },
+    {
+        "display_name": "Mask of the Fanatic",
+        "desc": "When casting Uproot, instead wear the Mask of the Fanatic. (Shift + Uproot to remove it) </br> While wearing this Mask, the mana cost of Totem is decreased and you gain resistance at the cost of reduced walk speed. </br> Mana Cost: -65% </br>Effects: +35% Resistance to Self    -35% Walk Speed to Self",
+        "base_abil": 7,
+        "archetype": "Ritualist",
+        "archetype_req": 2,
+        "parents": [
+            26,
+            34
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 20,
+            "col": 4,
+            "icon": "node_3"
+        },
+        "properties": {
+            "fanatic_res": 35
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Switch Masks",
+                "base_spell": 4,
+                "parts": [],
+                "display": ""
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Mask of the Fanatic",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "spd",
+                        "value": -35
+                    },
+                    {
+                        "type": "stat",
+                        "name": "defMult.Mask",
+                        "value": "7.fanatic_res"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "spPct1Final",
+                        "value": -65
+                    }
+                ]
+            }
+        ],
+        "id": 37,
+        "children": [
+            34,
+            40,
+            49,
+            68
+        ]
+    },
+    {
+        "display_name": "Lashing Lance",
+        "desc": "Flaming Tongue gains +1 hit, and now inflicts enemies with Bleeding for +1.5s per hit. (Max 6s) </br> Haunting Memory will instead inflict +6s of Bleeding. </br> Bleeding enemies take damage every 0.5s. Bleeding damage dealt within Totem's range also adds +0.8 points to your Blood Pool. </br> </br><span class='mc-white'>Total Damage</span>: +0% (of your DPS, for Uproot, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: -5%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +5%) </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, from Bleeding)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)",
+        "base_abil": 7,
+        "archetype": "Acolyte",
+        "archetype_req": 4,
+        "parents": [
+            34,
+            40
+        ],
+        "dependencies": [
+            20
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 21,
+            "col": 8,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Bleeding",
+                "base_spell": 9,
+                "display": "Bleed DPS",
+                "parts": [
+                    {
+                        "name": "Bleeding Tick",
+                        "multipliers": [
+                            60,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Bleed DPS",
+                        "type": "total",
+                        "hits": {
+                            "Bleeding Tick": 2
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Single Hit",
+                "multipliers": [
+                    -5,
+                    0,
+                    5,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Single Hit": 1
+                }
+            }
+        ],
+        "id": 38,
+        "children": [
+            39,
+            40,
+            45
+        ]
+    },
+    {
+        "display_name": "Vengeful Spirit",
+        "desc": "Your Totem will give all players in its range a damage bonus. </br> </br>Effect: +20% Damage Bonus to Allies",
+        "base_abil": 0,
+        "archetype": "Acolyte",
+        "parents": [
+            40,
+            38
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 22,
+            "col": 7,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 39,
+        "children": []
+    },
+    {
+        "display_name": "Masquerade",
+        "desc": "Switching between Masks 2 times will give you 30 Mana.",
+        "base_abil": 7,
+        "archetype": "Ritualist",
+        "archetype_req": 4,
+        "parents": [
+            37,
+            38,
+            34
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 21,
+            "col": 5,
+            "icon": "node_1"
+        },
+        "properties": {
+            "switch_count": 2,
+            "mana_gain": 30
+        },
+        "effects": [],
+        "id": 40,
+        "children": [
+            38,
+            39,
+            43
+        ]
+    },
+    {
+        "display_name": "Double Totem",
+        "desc": "Increase your maximum Totems by +1. Totem and Aura will do 40% less damage. </br> Regeneration and Sacrificial Shrine will heal 40% less health.",
+        "base_abil": 0,
+        "archetype": "Summoner",
+        "archetype_req": 2,
+        "parents": [
+            35,
+            42
+        ],
+        "dependencies": [
+            9
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 23,
+            "col": 0,
+            "icon": "node_2"
+        },
+        "properties": {
+            "num_totems": 1
+        },
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 9,
+                        "name": "num_totems",
+                        "value": 1
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.MultiTotem:3.Single Wave",
+                        "value": -40
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.MultiTotem:1.Tick Damage",
+                        "value": -40
+                    },
+                    {
+                        "type": "stat",
+                        "name": "healMult.MultiTotem",
+                        "value": -40
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.MultiTotem:5.Explosion Damage",
+                        "value": -40
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.DTotem:7.Effigy Hit",
+                        "value": -20
+                    }
+                ]
+            }
+        ],
+        "id": 41,
+        "children": [
+            42,
+            51
+        ]
+    },
+    {
+        "display_name": "Cheaper Totem II",
+        "desc": "Reduce the mana cost of Totem. </br> Mana Cost: -5",
+        "base_abil": 0,
+        "parents": [
+            36,
+            41,
+            43
+        ],
+        "dependencies": [
+            0
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 23,
+            "col": 2,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "cost": -5
+            }
+        ],
+        "id": 42,
+        "children": [
+            41,
+            43,
+            44,
+            51,
+            52
+        ]
+    },
+    {
+        "display_name": "Storm Dance",
+        "desc": "Enemies hit by Aura will be pulled towards your totem. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS)   </br>&emsp;(<span class='aDam'>Air</span>: +30%)",
+        "base_abil": 9,
+        "archetype": "Ritualist",
+        "parents": [
+            42,
+            40,
+            45
+        ],
+        "dependencies": [
+            9
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 23,
+            "col": 5,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Single Wave",
+                "multipliers": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    30
+                ]
+            }
+        ],
+        "id": 43,
+        "children": [
+            42,
+            44,
+            45,
+            48,
+            52,
+            53
+        ]
+    },
+    {
+        "display_name": "Regeneration",
+        "desc": "Every 0.4s, your Totem will heal every player within its range. </br> </br>Total Heal: 1% (of your max health)",
+        "base_abil": 0,
+        "parents": [
+            42,
+            43
+        ],
+        "dependencies": [],
+        "blockers": [
+            23
+        ],
+        "cost": 2,
+        "display": {
+            "row": 24,
+            "col": 3,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Heal Tick",
+                "power": 0.01,
+                "display": "Heal Rate"
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 5,
+                "target_part": "Explosion Heal",
+                "power": 0.1
+            }
+        ],
+        "id": 44,
+        "children": []
+    },
+    {
+        "display_name": "Cheaper Haul II",
+        "desc": "Reduce the mana cost of Haul. </br> Mana Cost: -5",
+        "base_abil": 5,
+        "parents": [
+            43,
+            38
+        ],
+        "dependencies": [
+            5
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 23,
+            "col": 8,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "cost": -5
+            }
+        ],
+        "id": 45,
+        "children": [
+            43,
+            48,
+            53
+        ]
+    },
+    {
+        "display_name": "Cheaper Aura II",
+        "desc": "Reduce the mana cost of Aura. </br> Mana Cost: -5",
+        "base_abil": 9,
+        "parents": [
+            51,
+            47
+        ],
+        "dependencies": [
+            9
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 28,
+            "col": 1,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "cost": -5
+            }
+        ],
+        "id": 46,
+        "children": [
+            47,
+            61,
+            71
+        ]
+    },
+    {
+        "display_name": "Imbued Totem",
+        "desc": "Increase Totem's damage. </br> </br><span class='mc-white'>Total Damage</span>: +4% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +4%)",
+        "base_abil": 0,
+        "parents": [
+            52,
+            54,
+            46
+        ],
+        "dependencies": [
+            0
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 28,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Tick Damage",
+                "multipliers": [
+                    4,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 5,
+                "target_part": "Explosion Damage",
+                "multipliers": [
+                    4,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 47,
+        "children": [
+            46,
+            50,
+            54,
+            61
+        ]
+    },
+    {
+        "display_name": "Twisted Tether",
+        "desc": "Nearby Bleeding enemies will take damage for every 2% Health you lose. (Max 10 activations at once)  </br> </br><span class='mc-white'>Total Damage</span>: 65% (of your DPS, per 2% health)   </br>&emsp;(<span class='nDam'>Damage</span>: 45%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%) </br>Range: 20 Blocks",
+        "archetype": "Acolyte",
+        "archetype_req": 7,
+        "parents": [
+            43,
+            45
+        ],
+        "dependencies": [
+            38
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 24,
+            "col": 6,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Twisted Tether",
+                "base_spell": 8,
+                "display": "Totem Drain DPS",
+                "parts": [
+                    {
+                        "name": "Tether Tick",
+                        "use_str": false,
+                        "multipliers": [
+                            45,
+                            0,
+                            0,
+                            0,
+                            0,
+                            20
+                        ],
+                        "ignored_mults": [
+                            "Mask",
+                            "Potion",
+                            "Vulnerability"
+                        ]
+                    },
+                    {
+                        "name": "Tether Drain Threshold",
+                        "hits": {
+                            "Tether Tick": 1
+                        },
+                        "display": false
+                    },
+                    {
+                        "name": "Tether DPS",
+                        "hits": {
+                            "Tether Drain Threshold": "0.totem_mul"
+                        },
+                        "display": false
+                    },
+                    {
+                        "name": "Totem Drain DPS",
+                        "hits": {
+                            "Tether DPS": "0.num_totems"
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 48,
+        "children": []
+    },
+    {
+        "display_name": "Totemic Shatter",
+        "desc": "While wearing the Mask of the Fanatic, your Totem will shatter upon impacting the ground, rapidly triggering 8s worth of its effects. </br> Regeneration will only heal 50% of its usual amount.",
+        "parents": [
+            37
+        ],
+        "dependencies": [
+            37
+        ],
+        "blockers": [],
+        "archetype": "Ritualist",
+        "cost": 2,
+        "display": {
+            "row": 21,
+            "col": 3,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Totemic Shatter",
+                "base_spell": 5,
+                "display": "Explosion Damage",
+                "parts": [
+                    {
+                        "name": "Explosion Damage",
+                        "multipliers": [
+                            6,
+                            0,
+                            0,
+                            0,
+                            0,
+                            6
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.TotemShatter:5.Explosion Damage",
+                        "value": 1900
+                    }
+                ]
+            }
+        ],
+        "id": 49,
+        "children": []
+    },
+    {
+        "display_name": "Depersonalization",
+        "desc": "Masquerade will trigger after -1 less Mask switch. Reduces mana  bonus by -10.",
+        "archetype": "Ritualist",
+        "archetype_req": 7,
+        "base_abil": 7,
+        "parents": [
+            54,
+            47
+        ],
+        "dependencies": [
+            40
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 29,
+            "col": 5,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 7,
+                        "name": "switch_count",
+                        "value": -1
+                    },
+                    {
+                        "type": "prop",
+                        "abil": 7,
+                        "name": "mana_gain",
+                        "value": -10
+                    }
+                ]
+            }
+        ],
+        "id": 50,
+        "children": [
+            57
+        ]
+    },
+    {
+        "display_name": "Crimson Effigy",
+        "desc": "Totem will summon an Effigy that will attack enemies and push them towards the nearest Totem every 0.5s. The Effigy will live for as long as its Totem does. </br> Each Totem will summon its own Effigy. Each additional Effigy summoned will decrease all Effigy damage by 0.8x. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 75%)   </br>&emsp;(<span class='fDam'>Fire</span>: 25%) </br>Vision: 18 Blocks (Circle-Shaped)",
+        "archetype": "Summoner",
+        "archetype_req": 6,
+        "parents": [
+            41,
+            42,
+            52
+        ],
+        "dependencies": [
+            17
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 26,
+            "col": 1,
+            "icon": "node_3"
+        },
+        "properties": {
+            "duration": 60,
+            "attack_frequency": 2
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Crimson Effigy",
+                "base_spell": 7,
+                "display": "Total Effigy DPS",
+                "parts": [
+                    {
+                        "name": "Effigy Hit",
+                        "multipliers": [
+                            75,
+                            0,
+                            0,
+                            0,
+                            25,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Single Effigy DPS",
+                        "hits": {
+                            "Effigy Hit": "51.attack_frequency"
+                        }
+                    },
+                    {
+                        "name": "Total Effigy DPS",
+                        "hits": {
+                            "Single Effigy DPS": "0.num_totems"
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 51,
+        "children": [
+            46,
+            52,
+            56,
+            66
+        ]
+    },
+    {
+        "display_name": "Mask of the Heretic",
+        "desc": "When casting Uproot, instead wear the Mask of the Heretic. (Shift + Uproot to remove it) </br> While wearing this Mask, the mana cost of Haul is reduced and you gain walk speed at the cost of reduced damage. </br> Mana Cost: -50% </br>Effects: +80% Walk Speed to Self    -10% Damage Bonus to Self",
+        "base_abil": 7,
+        "archetype": "Ritualist",
+        "archetype_req": 2,
+        "parents": [
+            43,
+            51,
+            42
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 26,
+            "col": 4,
+            "icon": "node_3"
+        },
+        "properties": {
+            "heretic_speed": 80
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Switch Masks",
+                "base_spell": 4,
+                "parts": [],
+                "display": ""
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Mask of the Heretic",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "spd",
+                        "value": "7.heretic_speed"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.Mask",
+                        "value": -10
+                    },
+                    {
+                        "type": "stat",
+                        "name": "spPct2Final",
+                        "value": -50
+                    }
+                ]
+            }
+        ],
+        "id": 52,
+        "children": [
+            47,
+            51,
+            62,
+            66
+        ]
+    },
+    {
+        "display_name": "Eldritch Call",
+        "desc": "Casting Totem while holding shift will spend 30 points of Blood Pool (per Totem) to call upon 4 nightmarish tentacles. </br> Tentacles debuff bleeding enemies in range and each deal damage to one enemy every 2s. </br> Blood Connection turns into a teleport while Eldritch Call is active. </br> </br><span class='mc-white'>Total Damage</span>: 840% (of your DPS, per strike)   </br>&emsp;(<span class='nDam'>Damage</span>: 640%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 100%)   </br>&emsp;(<span class='fDam'>Fire</span>: 100%) </br>Area of Effect: 18 Blocks (Circle-Shaped) </br>Effects: +40% Slowness to Enemies   -15% Resistance Bonus to Enemies </br>Duration: 10s",
+        "archetype": "Acolyte",
+        "archetype_req": 7,
+        "parents": [
+            43,
+            45
+        ],
+        "dependencies": [
+            38
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 26,
+            "col": 7,
+            "icon": "node_3"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Eldritch Call",
+                "base_spell": 11,
+                "display": "DPS",
+                "parts": [
+                    {
+                        "name": "Single Hit",
+                        "multipliers": [
+                            640,
+                            0,
+                            100,
+                            0,
+                            100,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "DPS",
+                        "hits": {
+                            "Single Hit": 0.5
+                        }
+                    },
+                    {
+                        "name": "Total Damage",
+                        "hits": {
+                            "Single Hit": 4
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 53,
+        "children": [
+            54,
+            55
+        ]
+    },
+    {
+        "display_name": "Fluid Healing",
+        "desc": "Increases Aura's healing by +0.3% for every 1% </br>Water Damage Bonus you have from items. (Max +75%)",
+        "parents": [
+            53,
+            55,
+            47
+        ],
+        "dependencies": [
+            23
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 28,
+            "col": 6,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": false,
+                "inputs": [
+                    {
+                        "type": "stat",
+                        "name": "wDamPct"
+                    }
+                ],
+                "output": {
+                    "type": "stat",
+                    "name": "healMult.FluidHealing:3.Heal Amount"
+                },
+                "scaling": [
+                    0.3
+                ],
+                "max": 75
+            }
+        ],
+        "id": 54,
+        "children": [
+            47,
+            50,
+            55,
+            58
+        ]
+    },
+    {
+        "display_name": "Bloodier I",
+        "desc": "Increase your maximum Blood Pool by +30 points. Increase your maximum Bleeding duration by +1.5s.",
+        "archetype": "Acolyte",
+        "base_abil": 23,
+        "parents": [
+            53,
+            54
+        ],
+        "dependencies": [
+            23
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 28,
+            "col": 8,
+            "icon": "node_0"
+        },
+        "properties": {
+            "blood_pool": 30
+        },
+        "effects": [],
+        "id": 55,
+        "children": [
+            54,
+            58
+        ]
+    },
+    {
+        "display_name": "Maddening Roots",
+        "desc": "Uproot will slow down enemies. </br> </br>Effect: 40% Slowness to Enemies </br>Duration: 3s",
+        "base_abil": 7,
+        "archetype": "Summoner",
+        "parents": [
+            51
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 27,
+            "col": 0,
+            "icon": "node_2"
+        },
+        "properties": {
+            "effects": 40,
+            "duration": 3
+        },
+        "effects": [],
+        "id": 56,
+        "children": []
+    },
+    {
+        "display_name": "Chant of the Heretic",
+        "desc": "When switching to the Mask of the Heretic, you and your allies are given a speed boost. -15% of the bonus decays every second. </br> </br>Effect: +60% Walk Speed to Allies </br>Area of Effect: 8 Blocks (Circle-Shaped) </br>Cooldown: 8s",
+        "archetype": "Ritualist",
+        "archetype_req": 0,
+        "parents": [
+            50,
+            59
+        ],
+        "dependencies": [
+            52
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 31,
+            "col": 5,
+            "icon": "node_2"
+        },
+        "properties": {
+            "aoe": 8
+        },
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Chant of the Heretic",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "spd",
+                        "value": 60
+                    }
+                ]
+            }
+        ],
+        "id": 57,
+        "children": [
+            59,
+            60,
+            67,
+            74
+        ]
+    },
+    {
+        "display_name": "Deeper Wounds",
+        "desc": "Increase Bleeding damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%)",
+        "archetype": "Acolyte",
+        "parents": [
+            54,
+            55
+        ],
+        "dependencies": [
+            38
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 29,
+            "col": 7,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 9,
+                "target_part": "Bleeding Tick",
+                "multipliers": [
+                    20,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 58,
+        "children": [
+            59,
+            63
+        ]
+    },
+    {
+        "display_name": "Blood Rite",
+        "desc": "When any player takes damage within your Totem's range, 35% of the damage taken proportional to your maximum health is added to your Blood Pool. (Max 10 points per hit)",
+        "archetype": "Acolyte",
+        "archetype_req": 9,
+        "parents": [
+            58,
+            57
+        ],
+        "dependencies": [
+            23
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 31,
+            "col": 7,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 59,
+        "children": [
+            57,
+            60,
+            69
+        ]
+    },
+    {
+        "display_name": "Sanguine Strike",
+        "desc": "Greatly reduce Main Attack spread. </br> Your Main Attack will now inflict enemies with Bleeding for +0.25s per beam. </br> Bleeding enemies take damage every 0.5s. Bleeding damage dealt within Totem's range also adds +0.8 points to your Blood Pool. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, from Bleeding)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)",
+        "parents": [
+            59,
+            57
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 32,
+            "col": 6,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 60,
+        "children": []
+    },
+    {
+        "display_name": "Friendly Fire",
+        "desc": "Hitting your Puppets with Main Attack will cause them to lose 2s of their duration per beam and give them a damage boost. </br> </br>Effect: +10% Damage Bonus to Puppets </br>Duration: 2s",
+        "archetype": "Summoner",
+        "base_abil": 999,
+        "parents": [
+            46,
+            47
+        ],
+        "dependencies": [
+            21
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 29,
+            "col": 2,
+            "icon": "node_1"
+        },
+        "effects": [],
+        "id": 61,
+        "children": []
+    },
+    {
+        "display_name": "Chant of the Fanatic",
+        "desc": "When switching to the Mask of the Fanatic, you and your allies are given a temporary resistance buff. </br> </br>Effect: 70% Resistance Bonus to Allies </br>Duration: 2s </br>Area of Effect: 8 Blocks (Circle-Shaped) </br>Cooldown: 8s",
+        "base_abil": 7,
+        "archetype": "Ritualist",
+        "archetype_req": 0,
+        "parents": [
+            52
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 27,
+            "col": 5,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Chant of the Fanatic",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "defMult.Chant",
+                        "value": 70
+                    }
+                ]
+            }
+        ],
+        "id": 62,
+        "children": []
+    },
+    {
+        "display_name": "Bloodletting",
+        "desc": "Increase Twisted Tether's damage. </br> </br><span class='mc-white'>Total Damage</span>: +25% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +25%)",
+        "archetype": "Acolyte",
+        "parents": [
+            58
+        ],
+        "dependencies": [
+            48
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 30,
+            "col": 8,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 8,
+                "target_part": "Tether Tick",
+                "multipliers": [
+                    25,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 63,
+        "children": []
+    },
+    {
+        "display_name": "Triple Totem",
+        "desc": "Increase your maximum Totems by +1. Totem and Aura will do 50% less damage. </br> Regeneration and Sacrificial Shrine will heal 50% less health.",
+        "base_abil": 0,
+        "archetype": "Summoner",
+        "archetype_req": 8,
+        "parents": [
+            73,
+            65
+        ],
+        "dependencies": [
+            41
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 32,
+            "col": 0,
+            "icon": "node_2"
+        },
+        "properties": {
+            "num_totems": 1
+        },
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 9,
+                        "name": "num_totems",
+                        "value": 1
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.MultiTotem:3.Single Wave",
+                        "value": -10
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.MultiTotem:1.Tick Damage",
+                        "value": -10
+                    },
+                    {
+                        "type": "stat",
+                        "name": "healMult.MultiTotem",
+                        "value": -10
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.MultiTotem:5.Explosion Damage",
+                        "value": -10
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.TTotem:7.Effigy Hit",
+                        "value": -20
+                    }
+                ]
+            }
+        ],
+        "id": 64,
+        "children": [
+            65,
+            72
+        ]
+    },
+    {
+        "display_name": "Invigorating Wave",
+        "desc": "Aura will temporarily increase your Summons' attack speed. Players hit will gain +2 mana. </br> </br>Effect: +30% Attack Speed to Summons </br>Duration: 2.5s",
+        "archetype": "Summoner",
+        "archetype_req": 3,
+        "parents": [
+            73,
+            64,
+            67
+        ],
+        "dependencies": [
+            9
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 32,
+            "col": 2,
+            "icon": "node_4"
+        },
+        "properties": {
+            "TODO": "Make this not multiply base damage...",
+            "duration": 2.5
+        },
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Invigorate Puppets",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 21,
+                        "name": "attack_frequency",
+                        "value": 0.6
+                    },
+                    {
+                        "type": "prop",
+                        "abil": 51,
+                        "name": "attack_frequency",
+                        "value": 0.6
+                    },
+                    {
+                        "type": "prop",
+                        "abil": 73,
+                        "name": "attack_frequency",
+                        "value": 1.2
+                    },
+                    {
+                        "type": "prop",
+                        "abil": 0,
+                        "name": "rate",
+                        "value": -0.12
+                    }
+                ]
+            }
+        ],
+        "id": 65,
+        "children": [
+            64,
+            67,
+            72
+        ]
+    },
+    {
+        "display_name": "Seeking Totem",
+        "desc": "While wearing the Mask of the Heretic, your Totem will move towards you, unless you are within its range.",
+        "base_abil": 0,
+        "archetype": "Ritualist",
+        "parents": [
+            52,
+            51
+        ],
+        "dependencies": [
+            52
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 27,
+            "col": 3,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 66,
+        "children": []
+    },
+    {
+        "display_name": "Frog Dance",
+        "desc": "When wearing the Mask of the Heretic, Haul will instead bounce you off the ground 3 times at an increasing speed and damage nearby enemies. </br> Frog Dance does not require Totem to be used. </br> </br><span class='mc-white'>Total Damage</span>: 200% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 150%)   </br>&emsp;(<span class='wDam'>Water</span>: 50%) </br>Area of Effect: 4.5 Blocks (Circle-Shaped)",
+        "archetype": "Ritualist",
+        "base_abil": 5,
+        "parents": [
+            57,
+            65
+        ],
+        "dependencies": [
+            52
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 32,
+            "col": 4,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "target_part": "Hop Damage",
+                "multipliers": [
+                    150,
+                    0,
+                    0,
+                    50,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Hop Damage": 3
+                },
+                "display": "Total Damage"
+            },
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Frog:2.Hop Damage",
+                        "value": -100
+                    }
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Mask of the Heretic",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Frog:2.Hop Damage",
+                        "value": 100
+                    }
+                ]
+            }
+        ],
+        "id": 67,
+        "children": [
+            65
+        ]
+    },
+    {
+        "display_name": "Chant of the Lunatic",
+        "desc": "When switching to the Mask of the Lunatic, reduce the defenses of nearby enemies. </br> </br>Effect: -15% Resistance Bonus to Enemies </br>Duration: 3s </br>Area of Effect: 8 Blocks (Circle-Shaped) </br>Cooldown: 8s",
+        "archetype": "Ritualist",
+        "base_abil": 7,
+        "parents": [
+            37
+        ],
+        "dependencies": [
+            22
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 22,
+            "col": 4,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Chant of the Lunatic",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Vulnerability",
+                        "value": 15
+                    }
+                ]
+            }
+        ],
+        "id": 68,
+        "children": []
+    },
+    {
+        "display_name": "Bloodier II",
+        "desc": "Increase your maximum Blood Pool by +30 points. Increase your maximum Bleeding duration by +1.5s.",
+        "archetype": "Acolyte",
+        "base_abil": 23,
+        "parents": [
+            59
+        ],
+        "dependencies": [
+            23
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 33,
+            "col": 8,
+            "icon": "node_0"
+        },
+        "properties": {
+            "blood_pool": 30
+        },
+        "effects": [],
+        "id": 69,
+        "children": [
+            75
+        ]
+    },
+    {
+        "display_name": "Shepherd",
+        "desc": "When you or your Summons kill an enemy, gain +1 Max Puppets for 15s. (Max +8)",
+        "archetype": "Summoner",
+        "base_abil": 21,
+        "parents": [
+            72
+        ],
+        "dependencies": [
+            21
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 35,
+            "col": 0,
+            "icon": "node_2"
+        },
+        "properties": {
+            "max_puppets": 8
+        },
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Active Puppets",
+                "slider_max": 8,
+                "output": [
+                    {
+                        "type": "prop",
+                        "abil": 21,
+                        "name": "num_puppets"
+                    }
+                ],
+                "scaling": [
+                    0
+                ]
+            }
+        ],
+        "id": 70,
+        "children": []
+    },
+    {
+        "display_name": "Commander",
+        "desc": "Casting Aura while holding shift will rally all active Puppets to your side, granting them increased attack speed and accuracy. </br> Your Main Attack deals 3% more damage for each rallied Puppet. </br> While not rallied, your Summons' attacks will build up the duration of this ability by +0.1s per attack. (Max 30s) </br> </br>Effect: +25% Attack Speed to Puppets",
+        "archetype": "Summoner",
+        "archetype_req": 4,
+        "parents": [
+            46
+        ],
+        "dependencies": [
+            5
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 29,
+            "col": 0,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Commander",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 21,
+                        "name": "attack_frequency",
+                        "value": 0.5
+                    },
+                    {
+                        "type": "prop",
+                        "abil": 21,
+                        "name": "rallied_puppets",
+                        "value": "21.num_puppets"
+                    }
+                ]
+            },
+            {
+                "type": "stat_scaling",
+                "slider": false,
+                "inputs": [
+                    {
+                        "type": "prop",
+                        "abil": 21,
+                        "name": "rallied_puppets"
+                    }
+                ],
+                "output": {
+                    "type": "stat",
+                    "name": "damMult.Commander:0.Single Beam"
+                },
+                "scaling": [
+                    3
+                ]
+            }
+        ],
+        "id": 71,
+        "children": [
+            73
+        ]
+    },
+    {
+        "display_name": "Soaring Wingbeats",
+        "desc": "Your Hummingbirds' passive effects are improved. </br> </br>Effects: +20% Walk Speed to Self    +2 Jump Height to Self",
+        "archetype": "Summoner",
+        "base_abil": 73,
+        "parents": [
+            64,
+            65
+        ],
+        "dependencies": [
+            73
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 34,
+            "col": 1,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Hummingbirds",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "jh",
+                        "value": 2
+                    },
+                    {
+                        "type": "stat",
+                        "name": "spd",
+                        "value": 20
+                    }
+                ]
+            }
+        ],
+        "id": 72,
+        "children": [
+            70,
+            76
+        ]
+    },
+    {
+        "display_name": "Hummingbirds' Song",
+        "desc": "Summon 2 Hummingbird Carvings which fly around you, passively granting a walk speed buff. Casting Haul while holding shift will temporarily send your Hummingbirds to attack nearby enemes, rapidly piercing through them every 0.25s. Casting it again will call them back early. While they are attacking, your Hummingbirds will not apply their passive effects to you. (Duration: 10s)",
+        "archetype": "Summoner",
+        "archetype_req": 10,
+        "parents": [
+            71
+        ],
+        "dependencies": [
+            5
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 31,
+            "col": 1,
+            "icon": "node_3"
+        },
+        "properties": {
+            "count": 2,
+            "attack_frequency": 4
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Hummingbirds' Song",
+                "base_spell": 12,
+                "display": "Total Hummingbird DPS",
+                "parts": [
+                    {
+                        "name": "Hummingbird Hit",
+                        "multipliers": [
+                            20,
+                            0,
+                            5,
+                            0,
+                            0,
+                            5
+                        ]
+                    },
+                    {
+                        "name": "Single Hummingbird DPS",
+                        "hits": {
+                            "Hummingbird Hit": "73.attack_frequency"
+                        }
+                    },
+                    {
+                        "name": "Total Hummingbird DPS",
+                        "hits": {
+                            "Single Hummingbird DPS": "73.count"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Hummingbirds",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "spd",
+                        "value": 40
+                    }
+                ]
+            }
+        ],
+        "id": 73,
+        "children": [
+            64,
+            65
+        ]
+    },
+    {
+        "display_name": "Awakened",
+        "desc": "After saving 150 mana from your Masks' mana reductions, switching Masks will cause you to become Awakened for 25s, giving you the upsides of all Masks at once with no downsides. </br> Switching to an attached Mask while Awakened will immediately recall the Mask back to you.",
+        "base_abil": 7,
+        "archetype": "Ritualist",
+        "archetype_req": 11,
+        "parents": [
+            57,
+            76
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 35,
+            "col": 5,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Switch Masks",
+                "base_spell": 4,
+                "parts": [],
+                "display": ""
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Awakened",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Mask",
+                        "value": "7.lunatic_damage"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "defMult.Mask",
+                        "value": "7.fanatic_res"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "spd",
+                        "value": "7.heretic_speed"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "spPct1Final",
+                        "value": -65
+                    },
+                    {
+                        "type": "stat",
+                        "name": "spPct2Final",
+                        "value": -50
+                    },
+                    {
+                        "type": "stat",
+                        "name": "spPct3Final",
+                        "value": -30
+                    }
+                ]
+            }
+        ],
+        "id": 74,
+        "children": [
+            76
+        ]
+    },
+    {
+        "display_name": "Blood Sorrow",
+        "desc": "Casting Uproot or Haunting Memory while holding shift will spend 70 points of Blood Pool to cast a destructive beam that chains between enemies and allies, and damages enemies every 0.2s. </br> You and any allies within the beam will receive +2% Overhealth per hit. Bonus health decays over 20s. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 100%)   </br>&emsp;(<span class='wDam'>Water</span>: 20%) </br>Duration: 5s </br>Range: 24 Blocks",
+        "archetype": "Acolyte",
+        "archetype_req": 12,
+        "parents": [
+            69
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 34,
+            "col": 7,
+            "icon": "node_3"
+        },
+        "properties": {
+            "duration": 5
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Blood Sorrow",
+                "base_spell": 10,
+                "display": "Beam DPS",
+                "parts": [
+                    {
+                        "name": "Beam Tick Damage",
+                        "multipliers": [
+                            100,
+                            0,
+                            0,
+                            20,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Beam DPS",
+                        "hits": {
+                            "Beam Tick Damage": 5
+                        }
+                    },
+                    {
+                        "name": "Total Damage",
+                        "hits": {
+                            "Beam DPS": "75.duration"
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 75,
+        "children": []
+    },
+    {
+        "display_name": "Cheaper Uproot II",
+        "desc": "Reduce the mana cost of Uproot. </br> Mana Cost: -5",
+        "base_abil": 7,
+        "parents": [
+            72,
+            74
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 35,
+            "col": 3,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "cost": -5
+            }
+        ],
+        "id": 76,
+        "children": [
+            74
+        ]
+    }
+]

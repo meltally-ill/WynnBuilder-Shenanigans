@@ -1,0 +1,3436 @@
+[
+    {
+        "display_name": "Spin Attack",
+        "desc": "Click Combo: RIGHT-LEFT-RIGHT </br> Slashes rapidly around you, damaging enemies over a large area. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 120%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 30%) </br>Area of Effect: 4.5 Blocks (Circle-Shaped)",
+        "archetype": "",
+        "archetype_req": 0,
+        "parents": [],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 0,
+            "col": 4,
+            "icon": "node_assassin"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Spin Attack",
+                "cost": 40,
+                "base_spell": 1,
+                "display": "Spin Attack",
+                "parts": [
+                    {
+                        "name": "Spin Attack",
+                        "type": "damage",
+                        "multipliers": [
+                            120,
+                            0,
+                            30,
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            }
+        ],
+        "id": 0,
+        "children": [
+            1
+        ]
+    },
+    {
+        "display_name": "Dagger Proficiency I",
+        "desc": "Increases your Walk Speed and Main Attack's damage by +5%.",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 999,
+        "parents": [
+            2,
+            0
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 2,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "spd",
+                        "value": 5
+                    }
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 0,
+                "target_part": "Melee",
+                "multipliers": [
+                    5,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 1,
+        "children": [
+            2,
+            3
+        ]
+    },
+    {
+        "display_name": "Cheaper Spin Attack I",
+        "desc": "Reduce the Mana cost of Spin Attack. </br> Mana Cost: -10",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 0,
+        "parents": [
+            1
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 2,
+            "col": 2,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "cost": -10
+            }
+        ],
+        "id": 2,
+        "children": [
+            1
+        ]
+    },
+    {
+        "display_name": "Double Spin",
+        "desc": "Spin Attack will activate twice, with a larger area of effect on the second spin. </br> </br><span class='mc-white'>Total Damage</span>: -40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: -40%) </br>Area of Effect: +2 Blocks (Circle-Shaped)",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 0,
+        "parents": [
+            1
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 4,
+            "col": 4,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Spin Attack": 2
+                },
+                "display": "Total Damage"
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Spin Attack",
+                "behavior": "modify",
+                "multipliers": [
+                    -40,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 3,
+        "children": [
+            5
+        ]
+    },
+    {
+        "display_name": "Poisoned Blade",
+        "desc": "For every 2% or 2 Raw Main Attack Damage you have from items, gain +5/3s Poison Damage. (Max 50/3s) </br> Your Main Attack gains additional range. </br> </br>Range: +1 Block",
+        "archetype": "Shadestepper",
+        "archetype_req": 0,
+        "parents": [
+            5
+        ],
+        "dependencies": [],
+        "blockers": [
+            6
+        ],
+        "cost": 1,
+        "display": {
+            "row": 7,
+            "col": 2,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": false,
+                "inputs": [
+                    {
+                        "type": "stat",
+                        "name": "mdPct"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "mdRaw"
+                    }
+                ],
+                "output": [
+                    {
+                        "type": "stat",
+                        "name": "poison"
+                    }
+                ],
+                "scaling": [
+                    2,
+                    2
+                ],
+                "max": 50
+            }
+        ],
+        "id": 4,
+        "children": [
+            5,
+            7
+        ]
+    },
+    {
+        "display_name": "Dash",
+        "desc": "Click Combo: RIGHT-RIGHT-RIGHT </br> Dash in the direction you're facing. </br> Mana Cost: 20",
+        "archetype": "",
+        "archetype_req": 0,
+        "parents": [
+            6,
+            4,
+            3
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 7,
+            "col": 4,
+            "icon": "node_assassin"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Dash",
+                "cost": 20,
+                "base_spell": 2,
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "None",
+                        "type": "damage",
+                        "multipliers": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            }
+        ],
+        "id": 5,
+        "children": [
+            4,
+            6
+        ]
+    },
+    {
+        "display_name": "Double Slice",
+        "desc": "Your Main Attack will hit twice, but deal -40% damage per hit.",
+        "archetype": "Acrobat",
+        "archetype_req": 0,
+        "base_abil": 999,
+        "parents": [
+            5
+        ],
+        "dependencies": [],
+        "blockers": [
+            4
+        ],
+        "cost": 1,
+        "display": {
+            "row": 7,
+            "col": 6,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 0,
+                "target_part": "Melee",
+                "behavior": "modify",
+                "multipliers": [
+                    -40,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 0,
+                "display": "Total Damage",
+                "target_part": "Total Damage",
+                "hits": {
+                    "Melee": 2
+                }
+            }
+        ],
+        "id": 6,
+        "children": [
+            5,
+            9
+        ]
+    },
+    {
+        "display_name": "Smoke Bomb",
+        "desc": "Click Combo: RIGHT-RIGHT-LEFT </br> Throws a bomb that slowly emanates smoke, damaging all enemies in it every 0.5s. </br> Mana Cost: 35 </br><span class='mc-white'>Total Damage</span>: 35% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 25%)   </br>&emsp;(<span class='aDam'>Air</span>: 5%)   </br>&emsp;(<span class='eDam'>Earth</span>: 5%) </br>Range: 10 Blocks </br>Duration: 5s </br>Area of Effect: 3 Blocks (Circle-Shaped)",
+        "archetype": "",
+        "archetype_req": 0,
+        "parents": [
+            4,
+            8
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 9,
+            "col": 2,
+            "icon": "node_assassin"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Smoke Bomb",
+                "cost": 35,
+                "base_spell": 4,
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Per Tick",
+                        "type": "damage",
+                        "multipliers": [
+                            25,
+                            5,
+                            0,
+                            0,
+                            0,
+                            5
+                        ]
+                    },
+                    {
+                        "name": "Per Bomb",
+                        "type": "total",
+                        "hits": {
+                            "Per Tick": 10
+                        }
+                    },
+                    {
+                        "name": "Total Damage",
+                        "type": "total",
+                        "hits": {
+                            "Per Bomb": 1
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 7,
+        "children": [
+            8,
+            10,
+            11,
+            19
+        ]
+    },
+    {
+        "display_name": "Cheaper Dash",
+        "desc": "Reduce the Mana cost of Dash. </br> Mana Cost: -5",
+        "base_abil": 5,
+        "parents": [
+            7,
+            9
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 9,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "cost": -5
+            }
+        ],
+        "id": 8,
+        "children": [
+            7,
+            9,
+            12,
+            13
+        ]
+    },
+    {
+        "display_name": "Multihit",
+        "desc": "Click Combo: RIGHT-LEFT-LEFT </br> Unleashes a rapid flurry of 8 hits to enemies facing you, dealing heavy damage. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%) </br>Range: 3 Blocks (Cone-Shaped)",
+        "parents": [
+            6,
+            8
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 9,
+            "col": 6,
+            "icon": "node_assassin"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Multihit",
+                "cost": 40,
+                "base_spell": 3,
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Per Hit",
+                        "multipliers": [
+                            30,
+                            0,
+                            0,
+                            10,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Total Damage",
+                        "type": "total",
+                        "hits": {
+                            "Per Hit": 8
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 9,
+        "children": [
+            8,
+            13,
+            14
+        ]
+    },
+    {
+        "display_name": "Earth Mastery",
+        "desc": "Increase your base damage from all Earth attacks. </br> </br>Earth Damage: +2-4 </br>Earth Damage: +20%",
+        "archetype": "Shadestepper",
+        "archetype_req": 0,
+        "base_abil": 998,
+        "parents": [
+            7,
+            11
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 13,
+            "col": 0,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "eDamPct",
+                        "value": 20
+                    },
+                    {
+                        "type": "stat",
+                        "name": "eDamAddMin",
+                        "value": 2
+                    },
+                    {
+                        "type": "stat",
+                        "name": "eDamAddMax",
+                        "value": 4
+                    }
+                ]
+            }
+        ],
+        "id": 10,
+        "children": [
+            11,
+            15
+        ]
+    },
+    {
+        "display_name": "Thunder Mastery",
+        "desc": "Increase your base damage from all Thunder attacks. </br> </br>Thunder Damage: +1-8 </br>Thunder Damage: +10%",
+        "archetype": "Shadestepper",
+        "archetype_req": 0,
+        "base_abil": 998,
+        "parents": [
+            10,
+            7
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 13,
+            "col": 2,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "tDamPct",
+                        "value": 10
+                    },
+                    {
+                        "type": "stat",
+                        "name": "tDamAddMin",
+                        "value": 1
+                    },
+                    {
+                        "type": "stat",
+                        "name": "tDamAddMax",
+                        "value": 8
+                    }
+                ]
+            }
+        ],
+        "id": 11,
+        "children": [
+            10,
+            15
+        ]
+    },
+    {
+        "display_name": "Fire Mastery",
+        "desc": "Increase your base damage from all Fire attacks. </br> </br>Fire Damage: +3-5 </br>Fire Damage: +15%",
+        "archetype": "Trickster",
+        "base_abil": 998,
+        "parents": [
+            8,
+            13
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 14,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "fDamPct",
+                        "value": 15
+                    },
+                    {
+                        "type": "stat",
+                        "name": "fDamAddMin",
+                        "value": 3
+                    },
+                    {
+                        "type": "stat",
+                        "name": "fDamAddMax",
+                        "value": 5
+                    }
+                ]
+            }
+        ],
+        "id": 12,
+        "children": [
+            70
+        ]
+    },
+    {
+        "display_name": "Water Mastery",
+        "desc": "Increase your base damage from all Water attacks. </br> </br>Water Damage: +2-4 </br>Water Damage: +15%",
+        "archetype": "Acrobat",
+        "base_abil": 998,
+        "parents": [
+            8,
+            9,
+            14
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 13,
+            "col": 6,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "wDamPct",
+                        "value": 15
+                    },
+                    {
+                        "type": "stat",
+                        "name": "wDamAddMin",
+                        "value": 2
+                    },
+                    {
+                        "type": "stat",
+                        "name": "wDamAddMax",
+                        "value": 4
+                    }
+                ]
+            }
+        ],
+        "id": 13,
+        "children": [
+            12,
+            14,
+            16
+        ]
+    },
+    {
+        "display_name": "Air Mastery",
+        "desc": "Increase your base damage from all Air attacks. </br> </br>Air Damage: +3-4 </br>Air Damage: +15%",
+        "archetype": "Acrobat",
+        "archetype_req": 0,
+        "base_abil": 998,
+        "parents": [
+            13,
+            9
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 13,
+            "col": 8,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "aDamPct",
+                        "value": 15
+                    },
+                    {
+                        "type": "stat",
+                        "name": "aDamAddMin",
+                        "value": 3
+                    },
+                    {
+                        "type": "stat",
+                        "name": "aDamAddMax",
+                        "value": 4
+                    }
+                ]
+            }
+        ],
+        "id": 14,
+        "children": [
+            13,
+            16
+        ]
+    },
+    {
+        "display_name": "Backstab",
+        "desc": "Makes Multihit a single devastating hit. If you strike an enemy from behind, it deals double the damage. </br> Mana Cost: -5 </br><span class='mc-white'>Total Damage</span>: 300% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 250%)   </br>&emsp;(<span class='eDam'>Earth</span>: 50%)",
+        "archetype": "Shadestepper",
+        "archetype_req": 2,
+        "base_abil": 9,
+        "parents": [
+            10,
+            11
+        ],
+        "dependencies": [
+            9
+        ],
+        "blockers": [
+            40,
+            17
+        ],
+        "cost": 2,
+        "display": {
+            "row": 15,
+            "col": 1,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Backstab",
+                "base_spell": 3,
+                "display": "Backstab Damage",
+                "parts": [
+                    {
+                        "name": "Backstab Damage",
+                        "type": "damage",
+                        "multipliers": [
+                            250,
+                            50,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Backstab",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Backstab:3.Backstab Damage",
+                        "value": 100
+                    }
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "cost": -5
+            }
+        ],
+        "id": 15,
+        "children": [
+            18
+        ]
+    },
+    {
+        "display_name": "Ripple",
+        "desc": "Falling 5 blocks or more deals damage around you when you land. </br> This damage is increased by +12% for every additional block you fall afterwards, up to +10 blocks. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 90%)   </br>&emsp;(<span class='wDam'>Water</span>: 15%)   </br>&emsp;(<span class='aDam'>Air</span>: 15%) </br>Area of Effect: 8 Blocks (Circle-Shaped)",
+        "archetype": "Acrobat",
+        "archetype_req": 0,
+        "parents": [
+            13,
+            14
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 14,
+            "col": 7,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Ripple",
+                "base_spell": 9,
+                "display": "Ripple Damage",
+                "parts": [
+                    {
+                        "name": "Ripple Damage",
+                        "multipliers": [
+                            90,
+                            0,
+                            0,
+                            15,
+                            0,
+                            15
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Blocks Fallen",
+                "output": {
+                    "type": "stat",
+                    "name": "damMult.Ripple:9.Ripple Damage"
+                },
+                "slider_max": 10,
+                "scaling": [
+                    12
+                ]
+            }
+        ],
+        "id": 16,
+        "children": [
+            36
+        ]
+    },
+    {
+        "display_name": "Finality",
+        "desc": "Multihit's damage ramps up every  hit, dealing additional damage. Damage bonus caps at 8 hits. </br> </br><span class='mc-white'>Total Damage</span>: +6% (of your DPS, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: +4%)   </br>&emsp;(<span class='aDam'>Air</span>: +2%)",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 9,
+        "parents": [
+            25,
+            28
+        ],
+        "dependencies": [
+            9
+        ],
+        "blockers": [
+            15
+        ],
+        "cost": 2,
+        "display": {
+            "row": 22,
+            "col": 8,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Finality Bonus",
+                "multipliers": [
+                    112,
+                    0,
+                    0,
+                    0,
+                    0,
+                    56
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Finality Bonus": 1
+                }
+            }
+        ],
+        "id": 17,
+        "children": [
+            28,
+            33
+        ]
+    },
+    {
+        "display_name": "Vanish",
+        "desc": "Dash will hide you into the shadows. You cannot heal or gain mana while in this state. (Attack or get hit to cancel) </br> </br>Effect: Invisibility to Self </br>Duration: 5s </br>Cooldown: 5s",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 5,
+        "parents": [
+            15,
+            70
+        ],
+        "dependencies": [
+            5
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 16,
+            "col": 2,
+            "icon": "node_4"
+        },
+        "properties": {
+            "duration": 5,
+            "cooldown": 5
+        },
+        "effects": [],
+        "id": 18,
+        "children": [
+            21,
+            70
+        ]
+    },
+    {
+        "display_name": "Sticky Bomb",
+        "desc": "Smoke Bomb will stick to enemies and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS)   </br>&emsp;(<span class='fDam'>Fire</span>: +10%)",
+        "base_abil": 7,
+        "parents": [
+            7
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 10,
+            "col": 1,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "behavior": "modify",
+                "target_part": "Per Tick",
+                "multipliers": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    10,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "behavior": "modify",
+                "target_part": "Single Bomb",
+                "multipliers": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    10,
+                    0
+                ]
+            }
+        ],
+        "id": 19,
+        "children": []
+    },
+    {
+        "display_name": "Righting Reflex",
+        "desc": "When you hold shift while airborne, slowly glide and become immune to fall damage. (Max 10s)",
+        "archetype": "Acrobat",
+        "archetype_req": 0,
+        "parents": [
+            35,
+            40
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 27,
+            "col": 5,
+            "icon": "node_1"
+        },
+        "properties": {
+            "cooldown": 2
+        },
+        "effects": [],
+        "id": 20,
+        "children": []
+    },
+    {
+        "display_name": "Surprise Strike",
+        "desc": "Your first hit after casting Vanish will deal +80% more damage.",
+        "archetype": "Shadestepper",
+        "archetype_req": 3,
+        "base_abil": 5,
+        "parents": [
+            18
+        ],
+        "dependencies": [
+            18
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 19,
+            "col": 2,
+            "icon": "node_3"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Surprise Strike",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.SurpriseStrike",
+                        "value": 80
+                    }
+                ]
+            }
+        ],
+        "id": 21,
+        "children": [
+            24
+        ]
+    },
+    {
+        "display_name": "Mirror Image",
+        "desc": "Summon 3 Mirror Clones after reappearing from Vanish that will follow and protect you. </br> When hit, lose a Mirror Clone, reducing -25% of incoming damage and granting you a damage bonus for 3s. (1s cooldown) </br> </br>Effect: 30% Damage Bonus to self </br>Cooldown: 15s",
+        "archetype": "Trickster",
+        "archetype_req": 2,
+        "parents": [
+            70
+        ],
+        "dependencies": [
+            18
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 19,
+            "col": 4,
+            "icon": "node_3"
+        },
+        "properties": {
+            "clone": 3,
+            "cooldown": 15,
+            "damage_reduction": 25
+        },
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Clones",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "defMult.Clone",
+                        "value": "22.damage_reduction"
+                    }
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Clone Sacrifice",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Potion",
+                        "value": 30
+                    }
+                ]
+            }
+        ],
+        "id": 22,
+        "children": [
+            30,
+            79
+        ]
+    },
+    {
+        "display_name": "Lacerate",
+        "desc": "Spin Attack will lunge you forward, deal 3 strikes and then lunge you upward. </br> Using Hop while Lacerate is active launches you further. </br> </br><span class='mc-white'>Total Damage</span>: 90% (of your DPS, per strike)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%)",
+        "archetype": "Acrobat",
+        "archetype_req": 3,
+        "base_abil": 0,
+        "parents": [
+            36
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 19,
+            "col": 7,
+            "icon": "node_3"
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Lacerate",
+                "base_spell": 1,
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Per Hit",
+                        "type": "damage",
+                        "multipliers": [
+                            60,
+                            0,
+                            0,
+                            10,
+                            0,
+                            20
+                        ]
+                    },
+                    {
+                        "name": "Total Damage",
+                        "type": "total",
+                        "hits": {
+                            "Per Hit": 3
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 23,
+        "children": [
+            25
+        ]
+    },
+    {
+        "display_name": "Silent Killer",
+        "desc": "Resets Vanish's cooldown after killing an enemy.",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 5,
+        "parents": [
+            21
+        ],
+        "dependencies": [
+            18
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 20,
+            "col": 1,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 24,
+        "children": [
+            26,
+            27
+        ]
+    },
+    {
+        "display_name": "Wall of Smoke",
+        "desc": "Smoke Bomb will throw +2 bombs. </br> </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: -10%)",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 7,
+        "parents": [
+            23,
+            79
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [
+            39
+        ],
+        "cost": 2,
+        "display": {
+            "row": 20,
+            "col": 8,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "behavior": "modify",
+                "target_part": "Total Damage",
+                "hits": {
+                    "Per Bomb": 2,
+                    "Single Bomb": 2
+                }
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "behavior": "modify",
+                "target_part": "Per Tick",
+                "multipliers": [
+                    -10,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "behavior": "modify",
+                "target_part": "Single Bomb",
+                "multipliers": [
+                    -10,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 25,
+        "children": [
+            17,
+            46,
+            79
+        ]
+    },
+    {
+        "display_name": "Rolling Fog",
+        "desc": "Increase Smoke Bomb's range and area of effect. </br> </br>Range: +10 Blocks </br>Area of Effect: +1 Block (Circle-Shaped)",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 7,
+        "parents": [
+            24,
+            27
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 22,
+            "col": 0,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 26,
+        "children": [
+            27,
+            29,
+            31
+        ]
+    },
+    {
+        "display_name": "Shadow Travel",
+        "desc": "Gain +120% Speed Bonus when in Vanish.",
+        "archetype": "Shadestepper",
+        "archetype_req": 0,
+        "base_abil": 5,
+        "parents": [
+            26,
+            24,
+            28
+        ],
+        "dependencies": [
+            18
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 22,
+            "col": 2,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 27,
+        "children": [
+            26,
+            28,
+            29,
+            32,
+            80
+        ]
+    },
+    {
+        "display_name": "Cheaper Multihit I",
+        "desc": "Reduce the Mana cost of Multihit by 5.",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 9,
+        "parents": [
+            27,
+            17,
+            46,
+            30
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 22,
+            "col": 5,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "cost": -5
+            }
+        ],
+        "id": 28,
+        "children": [
+            17,
+            27,
+            32,
+            33,
+            80
+        ]
+    },
+    {
+        "display_name": "Shadow Siphon",
+        "desc": "Reduces Vanish's cooldown by -1.75s after striking an enemy from behind with Backstab.",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 18,
+        "parents": [
+            26,
+            27
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 23,
+            "col": 1,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 29,
+        "children": []
+    },
+    {
+        "display_name": "Last Laugh",
+        "desc": "When losing any Clone, it will cast one of your spells before dying. </br> Mirror Clones will cast Multihit before dying.",
+        "archetype": "Trickster",
+        "archetype_req": 3,
+        "base_abil": 5,
+        "parents": [
+            22,
+            46
+        ],
+        "dependencies": [
+            22
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 21,
+            "col": 4,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 30,
+        "children": [
+            28,
+            46
+        ]
+    },
+    {
+        "display_name": "Cheaper Smoke Bomb",
+        "desc": "Reduce the Mana cost of Smoke Bomb. </br> Mana Cost: -5",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 7,
+        "parents": [
+            26,
+            32
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 25,
+            "col": 0,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "cost": -5
+            }
+        ],
+        "id": 31,
+        "children": [
+            32,
+            34,
+            38
+        ]
+    },
+    {
+        "display_name": "Blazing Powder",
+        "desc": "Spin Attack and Lacerate will deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   (</br>Damage: +20%)",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 0,
+        "parents": [
+            31,
+            27,
+            28
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 25,
+            "col": 3,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Per Hit",
+                "behavior": "modify",
+                "multipliers": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    20,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Spin Attack",
+                "behavior": "modify",
+                "multipliers": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    20,
+                    0
+                ]
+            }
+        ],
+        "id": 32,
+        "children": [
+            31,
+            34,
+            35
+        ]
+    },
+    {
+        "display_name": "Weightless",
+        "desc": "You gain +1 Mana if you hit an enemy while airborne. (1.25+ blocks off the ground to be airborne)",
+        "archetype": "Acrobat",
+        "archetype_req": 3,
+        "parents": [
+            17,
+            28
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 25,
+            "col": 7,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 33,
+        "children": [
+            40,
+            77
+        ]
+    },
+    {
+        "display_name": "Black Hole",
+        "desc": "Smoke Bomb will pull nearby enemies. </br> </br>Range: 6 Blocks",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 7,
+        "parents": [
+            31,
+            32
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 26,
+            "col": 1,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 34,
+        "children": []
+    },
+    {
+        "display_name": "Sandbagging",
+        "desc": "Reduce the cooldown on all of your abilities by 30% every time you get hit for less than 10% of your max health. </br> </br>Cooldown: 1s",
+        "archetype": "Trickster",
+        "archetype_req": 3,
+        "parents": [
+            32,
+            40
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 26,
+            "col": 4,
+            "icon": "node_2"
+        },
+        "properties": {
+            "cooldown": 1
+        },
+        "effects": [],
+        "id": 35,
+        "children": [
+            20,
+            39,
+            40,
+            42
+        ]
+    },
+    {
+        "display_name": "Hop",
+        "desc": "Leap forwards when you double jump. </br> </br>Cooldown: 2s",
+        "archetype": "Acrobat",
+        "archetype_req": 0,
+        "parents": [
+            16,
+            70
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 16,
+            "col": 7,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 36,
+        "children": [
+            23,
+            70
+        ]
+    },
+    {
+        "display_name": "Dancing Blade",
+        "desc": "When using Swan Dive with 3+ Momentum, you will leap back into the air 0.25s after landing.",
+        "archetype": "Acrobat",
+        "archetype_req": 0,
+        "base_abil": 5,
+        "parents": [
+            60,
+            44
+        ],
+        "dependencies": [
+            5
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 29,
+            "col": 7,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 37,
+        "children": []
+    },
+    {
+        "display_name": "Violent Vortex",
+        "desc": "Dealing over 1.5x of your max health as damage in a single hit will deal 45% of the damage to other nearby enemies. </br> </br>Area of Effect: 10 Blocks (Circle-Shaped) </br>Cooldown: 2s",
+        "archetype": "Shadestepper",
+        "archetype_req": 0,
+        "parents": [
+            31,
+            39
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 27,
+            "col": 0,
+            "icon": "node_2"
+        },
+        "properties": {
+            "range": 10,
+            "cooldown": 2
+        },
+        "effects": [],
+        "id": 38,
+        "children": [
+            39,
+            41
+        ]
+    },
+    {
+        "display_name": "Duplicity",
+        "desc": "Summon +2 additional Mirror Clones with Mirror Image. </br> </br>Cooldown: +5s",
+        "archetype": "Trickster",
+        "archetype_req": 3,
+        "base_abil": 22,
+        "parents": [
+            35,
+            38
+        ],
+        "dependencies": [
+            22
+        ],
+        "blockers": [
+            25
+        ],
+        "cost": 1,
+        "display": {
+            "row": 27,
+            "col": 3,
+            "icon": "node_0"
+        },
+        "properties": {
+            "clone": 2
+        },
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Spell Copies",
+                "slider_max": 2,
+                "behavior": "modify"
+            }
+        ],
+        "id": 39,
+        "children": [
+            38,
+            41
+        ]
+    },
+    {
+        "display_name": "Mutilate",
+        "desc": "Increase Multihit's amount of hits by +3. </br> Increase Finality's damage cap by +3 hits.",
+        "base_abil": 9,
+        "parents": [
+            35,
+            33
+        ],
+        "dependencies": [],
+        "blockers": [
+            15
+        ],
+        "cost": 1,
+        "display": {
+            "row": 26,
+            "col": 6,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Per Hit": 3
+                }
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Finality Bonus",
+                "multipliers": [
+                    108,
+                    0,
+                    0,
+                    0,
+                    0,
+                    54
+                ]
+            }
+        ],
+        "id": 40,
+        "children": [
+            20,
+            35
+        ]
+    },
+    {
+        "display_name": "Marked",
+        "desc": "Smoke Bomb will add +1 Mark to enemies it hits. (Max 4, 0.1s Cooldown) </br> Marked enemies will take +7% damage from attacks for each mark they have. </br> Marked will decay once every 10s.",
+        "archetype": "Shadestepper",
+        "archetype_req": 5,
+        "parents": [
+            38,
+            39
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 28,
+            "col": 1,
+            "icon": "node_3"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Marked",
+                "slider_step": 1,
+                "slider_max": 4,
+                "output": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Marked"
+                    }
+                ],
+                "scaling": [
+                    7
+                ]
+            }
+        ],
+        "id": 41,
+        "children": [
+            47,
+            51
+        ]
+    },
+    {
+        "display_name": "Malicious Mockery",
+        "desc": "Last Laugh stores a number of Tricks on enemies based on the type of Clone. (Max 25) </br> Casting Dash while sneaking will detonate all nearby stored Tricks, dealing damage based on how many stacks were consumed. </br> Mirror Clones apply +1 Trick per hit. Mirage Clones apply +2 Tricks per hit. Shadow Clones apply +8 Tricks per hit. </br> </br><span class='mc-white'>Total Damage</span>: 10% (of your DPS, per Trick)   </br>&emsp;(<span class='nDam'>Damage</span>: 10%) </br>Range: 32 Blocks </br>Area of Effect: 2 Blocks (Circle-Shaped)",
+        "archetype": "Trickster",
+        "archetype_req": 5,
+        "parents": [
+            35,
+            44
+        ],
+        "dependencies": [
+            30
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 28,
+            "col": 4,
+            "icon": "node_3"
+        },
+        "properties": {
+            "tricks": 0
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Malicious Mockery",
+                "base_spell": 9,
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Malicious Mockery Damage",
+                        "multipliers": [
+                            10,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Total Damage",
+                        "hits": {
+                            "Malicious Mockery Damage": "42.tricks"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Tricks Detonated",
+                "slider_step": 1,
+                "slider_max": 25,
+                "output": [
+                    {
+                        "type": "prop",
+                        "abil": 42,
+                        "name": "tricks"
+                    }
+                ],
+                "scaling": [
+                    1
+                ]
+            }
+        ],
+        "id": 42,
+        "children": [
+            44,
+            53,
+            71
+        ]
+    },
+    {
+        "display_name": "Echo",
+        "desc": "After losing a Mirror Clone, your next Spin Attack or Smoke Bomb will be copied by all active Clones.",
+        "archetype": "Trickster",
+        "archetype_req": 5,
+        "base_abil": 22,
+        "parents": [
+            50,
+            74,
+            73
+        ],
+        "dependencies": [
+            22
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 34,
+            "col": 5,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Spell Copies",
+                "slider_step": 1,
+                "slider_max": 3,
+                "output": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.EchoCast:1.Spin Attack"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.EchoCast:1.Per Hit"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.EchoCast:4.Per Tick"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.EchoCast:4.Single Bomb"
+                    }
+                ],
+                "scaling": [
+                    100
+                ]
+            }
+        ],
+        "id": 43,
+        "children": [
+            59,
+            74
+        ]
+    },
+    {
+        "display_name": "Shurikens",
+        "desc": "After using Dash, you prepare +3 shurikens. (Max 9) </br> Your next Main Attack will throw all your prepared shurikens. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS, per shuriken)   </br>&emsp;(<span class='nDam'>Damage</span>: 100%)   </br>&emsp;(<span class='fDam'>Fire</span>: 20%) </br>Range: 50 Blocks",
+        "archetype": "Acrobat",
+        "archetype_req": 0,
+        "base_abil": 5,
+        "parents": [
+            42,
+            60
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 28,
+            "col": 6,
+            "icon": "node_4"
+        },
+        "properties": {
+            "range": 50,
+            "count": 9
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Shurikens",
+                "base_spell": 6,
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Per Shuriken",
+                        "type": "damage",
+                        "multipliers": [
+                            100,
+                            0,
+                            0,
+                            0,
+                            20,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Total Damage",
+                        "type": "total",
+                        "hits": {
+                            "Per Shuriken": 3
+                        }
+                    },
+                    {
+                        "name": "Maximum Damage",
+                        "type": "total",
+                        "hits": {
+                            "Per Shuriken": "5.count"
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 44,
+        "children": [
+            37,
+            42,
+            60
+        ]
+    },
+    {
+        "display_name": "Far Reach",
+        "desc": "Increase the range of Multihit. </br> </br>Range: +2 Blocks",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 9,
+        "parents": [
+            56,
+            59
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 37,
+            "col": 7,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 45,
+        "children": [
+            59,
+            62,
+            63,
+            66
+        ]
+    },
+    {
+        "display_name": "Psithurism",
+        "desc": "Increase your Walk Speed by +20% and your Jump Height by +1.",
+        "archetype": "",
+        "archetype_req": 0,
+        "parents": [
+            25,
+            30,
+            79
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 21,
+            "col": 7,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "spd",
+                        "value": 20
+                    },
+                    {
+                        "type": "stat",
+                        "name": "jh",
+                        "value": 1
+                    }
+                ]
+            }
+        ],
+        "id": 46,
+        "children": [
+            28,
+            30
+        ]
+    },
+    {
+        "display_name": "Ambush",
+        "desc": "Increases Surprise Strike's damage by +40%.",
+        "base_abil": 5,
+        "parents": [
+            41
+        ],
+        "dependencies": [
+            21
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 31,
+            "col": 0,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Surprise Strike",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.SurpriseStrike",
+                        "value": 40
+                    }
+                ]
+            }
+        ],
+        "id": 47,
+        "children": [
+            75
+        ]
+    },
+    {
+        "display_name": "Cheaper Dash II",
+        "desc": "Reduce the Mana cost of Dash. </br> Mana Cost: -5",
+        "base_abil": 5,
+        "parents": [
+            60,
+            54
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 31,
+            "col": 8,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "cost": -5
+            }
+        ],
+        "id": 48,
+        "children": [
+            49,
+            54
+        ]
+    },
+    {
+        "display_name": "Aerial Ace",
+        "desc": "Hitting an enemy with Swan Dive gives you a damage boost. </br> </br>Effect: +35% Damage Bonus to Self </br>Duration: 7.5s",
+        "archetype": "Acrobat",
+        "archetype_req": 0,
+        "parents": [
+            50,
+            48
+        ],
+        "dependencies": [
+            77
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 33,
+            "col": 8,
+            "icon": "node_4"
+        },
+        "properties": {
+            "strength": 35
+        },
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Aerial Ace",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Potion",
+                        "value": "49.strength"
+                    }
+                ]
+            }
+        ],
+        "id": 49,
+        "children": [
+            50,
+            56
+        ]
+    },
+    {
+        "display_name": "Cheaper Spin Attack II",
+        "desc": "Reduce the Mana cost of Spin Attack. </br> Mana Cost: -5",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 0,
+        "parents": [
+            49,
+            54,
+            73
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 33,
+            "col": 6,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "cost": -5
+            }
+        ],
+        "id": 50,
+        "children": [
+            43,
+            49,
+            56,
+            73
+        ]
+    },
+    {
+        "display_name": "Death Magnet",
+        "desc": "When exiting Vanish, pull all nearby Marked mobs towards where you entered Vanish. </br> </br>Range: 20 Blocks",
+        "archetype": "Shadestepper",
+        "archetype_req": 0,
+        "base_abil": 5,
+        "parents": [
+            41
+        ],
+        "dependencies": [
+            18,
+            41
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 31,
+            "col": 2,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 51,
+        "children": [
+            52
+        ]
+    },
+    {
+        "display_name": "Cheaper Multihit II",
+        "desc": "Reduce the Mana cost of Multihit. </br> Mana Cost: -5",
+        "base_abil": 9,
+        "parents": [
+            51,
+            75,
+            73
+        ],
+        "dependencies": [
+            9
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 33,
+            "col": 2,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "cost": -5
+            }
+        ],
+        "id": 52,
+        "children": [
+            55,
+            73,
+            74,
+            75
+        ]
+    },
+    {
+        "display_name": "Hoodwink",
+        "desc": "After killing an enemy, salvage 50% of their Tricks. (Max 10 per mob, 40 total) </br> Casting Spin Attack while sneaking will transfer salvaged Tricks onto enemies and immediately detonate them.",
+        "archetype": "Trickster",
+        "archetype_req": 1,
+        "base_abil": 0,
+        "parents": [
+            42
+        ],
+        "dependencies": [
+            42
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 29,
+            "col": 3,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 53,
+        "children": []
+    },
+    {
+        "display_name": "Wall Jump",
+        "desc": "Reduces Hop's cooldown by -1s. Using Hop into a wall will bounce you backward. (Hold shift to cancel)",
+        "archetype": "Acrobat",
+        "archetype_req": 5,
+        "parents": [
+            48
+        ],
+        "dependencies": [
+            36
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 31,
+            "col": 6,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 54,
+        "children": [
+            48,
+            50
+        ]
+    },
+    {
+        "display_name": "Fatal Spin",
+        "desc": "Increases Spin Attack and Lacerate's range and damage, and adds +1 Mark to enemies hit. </br> </br><span class='mc-white'>Total Damage</span>: +20% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%) </br>Area of Effect: +1 Block (Circle-Shaped)",
+        "archetype": "Shadestepper",
+        "archetype_req": 8,
+        "base_abil": 0,
+        "parents": [
+            75,
+            52
+        ],
+        "dependencies": [
+            41
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 34,
+            "col": 1,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Per Hit",
+                "behavior": "modify",
+                "multipliers": [
+                    20,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Spin Attack",
+                "behavior": "modify",
+                "multipliers": [
+                    20,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 55,
+        "children": [
+            57,
+            58,
+            76
+        ]
+    },
+    {
+        "display_name": "Eviscerate",
+        "desc": "Lacerate deals more damage, and will slash +1 more time. </br> </br><span class='mc-white'>Total Damage</span>: +10% (of your DPS)   </br>&emsp;(<span class='tDam'>Thunder</span>: +10%)",
+        "archetype": "Acrobat",
+        "base_abil": 0,
+        "parents": [
+            50,
+            49
+        ],
+        "dependencies": [
+            23
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 34,
+            "col": 7,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Per Hit",
+                "behavior": "modify",
+                "multipliers": [
+                    0,
+                    0,
+                    10,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Per Hit": 1
+                }
+            }
+        ],
+        "id": 56,
+        "children": [
+            45
+        ]
+    },
+    {
+        "display_name": "Bladestorm",
+        "desc": "Increases Violent Vortex's damage  by +55% and increases the damage requirement to be 2.5x your max health.",
+        "archetype": "Shadestepper",
+        "archetype_req": 4,
+        "parents": [
+            55
+        ],
+        "dependencies": [
+            38
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 35,
+            "col": 0,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 57,
+        "children": []
+    },
+    {
+        "display_name": "Harvester",
+        "desc": "Gain +2 Mana for every leftover Mark when killing an enemy, and for every Mark you consume with your abilities.",
+        "archetype": "Shadestepper",
+        "archetype_req": 0,
+        "parents": [
+            55,
+            59
+        ],
+        "dependencies": [
+            41
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 37,
+            "col": 1,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 58,
+        "children": [
+            59,
+            61,
+            64
+        ]
+    },
+    {
+        "display_name": "Cheaper Smoke Bomb II",
+        "desc": "Reduce the Mana cost of Smoke Bomb. </br> Mana Cost: -5",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 7,
+        "parents": [
+            58,
+            45,
+            74,
+            43
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 37,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "cost": -5
+            }
+        ],
+        "id": 59,
+        "children": [
+            45,
+            58,
+            61,
+            62,
+            65
+        ]
+    },
+    {
+        "display_name": "Blade Fury",
+        "desc": "Multihit gains extra damage and can be aimed in all directions. </br> Multihit Damage: +10% (of your DPS, per hit)   </br>&emsp;(<span class='tDam'>Thunder</span>: +10%)",
+        "archetype": "Acrobat",
+        "archetype_req": 0,
+        "base_abil": 9,
+        "parents": [
+            77,
+            44
+        ],
+        "dependencies": [
+            9
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 28,
+            "col": 8,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Per Hit",
+                "multipliers": [
+                    0,
+                    0,
+                    10,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 60,
+        "children": [
+            37,
+            44,
+            48
+        ]
+    },
+    {
+        "display_name": "More Marks",
+        "desc": "Increase your maximum Marks by +2.",
+        "archetype": "Shadestepper",
+        "archetype_req": 0,
+        "base_abil": 41,
+        "parents": [
+            58,
+            59
+        ],
+        "dependencies": [
+            41
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 38,
+            "col": 2,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Marked",
+                "slider_max": 2
+            }
+        ],
+        "id": 61,
+        "children": []
+    },
+    {
+        "display_name": "Deflagrate",
+        "desc": "Bamboozle coats enemies struck with a flammable catalyst, making them +1% Enkindled whenever you strike them. </br> The catalyst flares up when it reaches 100% or at the end of its duration, dealing damage based on how Enkindled the target was. </br> Enkindled enemies take +30% more </br>Fire damage from you. </br> </br><span class='mc-white'>Total Damage</span>: 15% (of your DPS, per 1% Enkindle)   </br>&emsp;(<span class='nDam'>Damage</span>: 12%)   </br>&emsp;(<span class='fDam'>Fire</span>: 3%) </br>Duration: 8s </br>Cooldown: 8s",
+        "archetype": "Trickster",
+        "archetype_req": 8,
+        "parents": [
+            59,
+            45
+        ],
+        "dependencies": [
+            70
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 38,
+            "col": 5,
+            "icon": "node_2"
+        },
+        "properties": {
+            "enkindled_pct": 0
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Deflagrate",
+                "base_spell": 13,
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Enkindled Damage",
+                        "multipliers": [
+                            12,
+                            0,
+                            0,
+                            0,
+                            3,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Total Damage",
+                        "hits": {
+                            "Enkindled Damage": "62.enkindled_pct"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Enkindled Percent",
+                "slider_step": 1,
+                "slider_max": 100,
+                "output": [
+                    {
+                        "type": "prop",
+                        "abil": 62,
+                        "name": "enkindled_pct"
+                    }
+                ],
+                "scaling": [
+                    1
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Enkindled",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Enkindled;f",
+                        "value": 30
+                    }
+                ]
+            }
+        ],
+        "id": 62,
+        "children": []
+    },
+    {
+        "display_name": "Ricochets",
+        "desc": "Your Shurikens will bounce 2 times between enemies upon impact. </br> </br>Range: 12 Blocks",
+        "archetype": "Acrobat",
+        "archetype_req": 8,
+        "base_abil": 5,
+        "parents": [
+            45
+        ],
+        "dependencies": [
+            44
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 38,
+            "col": 8,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 63,
+        "children": []
+    },
+    {
+        "display_name": "Satsujin",
+        "desc": "If an enemy has 4+ Marks, your next Backstab will deal +200% damage, or your next Powder Special will deal +100% damage. </br> Both consume all Marks on the enemy. </br> </br>Cooldown: 15s (per enemy)",
+        "archetype": "Shadestepper",
+        "archetype_req": 12,
+        "parents": [
+            58
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 39,
+            "col": 1,
+            "icon": "node_3"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Satsujin",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Satsujin:3.Backstab Damage",
+                        "value": 200
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.Satsujin:0.Powder Special",
+                        "value": 100
+                    }
+                ]
+            }
+        ],
+        "id": 64,
+        "children": [
+            68,
+            69
+        ]
+    },
+    {
+        "display_name": "Noxious Haze",
+        "desc": "Smoke Bomb makes you and any allies become Noxious while standing in it, which lingers after leaving the area. </br> While Noxious, deal +10% damage to enemies for every debuff they have. (Max 5) Allies only receive 30% of the bonus. </br> </br>Duration: 3s",
+        "archetype": "Trickster",
+        "archetype_req": 11,
+        "base_abil": 7,
+        "parents": [
+            59
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 39,
+            "col": 4,
+            "icon": "node_3"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Active Debuffs",
+                "slider_step": 1,
+                "slider_max": 5,
+                "output": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Noxious"
+                    }
+                ],
+                "scaling": [
+                    10
+                ]
+            }
+        ],
+        "id": 65,
+        "children": [
+            78
+        ]
+    },
+    {
+        "display_name": "Jasmine Bloom",
+        "desc": "After spending 40 Mana or gaining 2 Momentum, an area underneath you blooms and damages enemies below it every 0.3s. </br> The duration is reset and the radius is increased after every bloom. (Max 5 Blooms) </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS, from bloom)   </br>&emsp;(<span class='nDam'>Damage</span>: 75%)   </br>&emsp;(<span class='eDam'>Earth</span>: 15%)   </br>&emsp;(<span class='wDam'>Water</span>: 15%)   </br>&emsp;(<span class='aDam'>Air</span>: 15%) </br>Duration: 5s </br>Area of Effect: +1.5 Blocks (per bloom)",
+        "archetype": "Acrobat",
+        "archetype_req": 12,
+        "parents": [
+            45
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 39,
+            "col": 7,
+            "icon": "node_3"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Jasmine Bloom",
+                "base_spell": 7,
+                "display": "DPS",
+                "parts": [
+                    {
+                        "name": "Per Hit",
+                        "multipliers": [
+                            75,
+                            15,
+                            0,
+                            15,
+                            0,
+                            15
+                        ]
+                    },
+                    {
+                        "name": "DPS",
+                        "hits": {
+                            "Per Hit": 3.333333333
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 66,
+        "children": [
+            67
+        ]
+    },
+    {
+        "display_name": "Petal Storm",
+        "desc": "A maximum sized Jasmine Bloom will transform Swan Dive into a huge petal storm, consuming your bloom to give it increased damage and range </br> Explosion Damage: +200% </br>Area of Effect: +3 Blocks",
+        "archetype": "Acrobat",
+        "archetype_req": 0,
+        "parents": [
+            66
+        ],
+        "dependencies": [
+            77
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 40,
+            "col": 8,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Petal Storm",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.PetalStorm:10.Swan Dive Explosion per Hit",
+                        "value": 200
+                    }
+                ]
+            }
+        ],
+        "id": 67,
+        "children": []
+    },
+    {
+        "display_name": "Devour",
+        "desc": "Harvester will give +2 Mana.",
+        "archetype": "",
+        "archetype_req": 0,
+        "parents": [
+            64
+        ],
+        "dependencies": [
+            58
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 41,
+            "col": 0,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 68,
+        "children": []
+    },
+    {
+        "display_name": "Marked for Death",
+        "desc": "Increases Marked's damage bonus by +4%.",
+        "archetype": "",
+        "archetype_req": 0,
+        "base_abil": 41,
+        "parents": [
+            64
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 41,
+            "col": 2,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Marked",
+                "output": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Marked"
+                    }
+                ],
+                "scaling": [
+                    4
+                ]
+            }
+        ],
+        "id": 69,
+        "children": []
+    },
+    {
+        "display_name": "Bamboozle",
+        "desc": "Multihit will instead teleport you forward and strike with a brutal fiery slash. </br> </br><span class='mc-white'>Total Damage</span>: 350% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 300%)   </br>&emsp;(<span class='fDam'>Fire</span>: 50%) </br>Range: 6 Blocks </br>Area of Effect: 5 Blocks (Circle-Shaped) </br>Cooldown: 5s",
+        "archetype": "Trickster",
+        "archetype_req": 0,
+        "base_abil": 9,
+        "parents": [
+            12,
+            18,
+            36
+        ],
+        "dependencies": [
+            9
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 16,
+            "col": 4,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Bamboozle",
+                "base_spell": 8,
+                "display": "Slash Damage",
+                "parts": [
+                    {
+                        "name": "Slash Damage",
+                        "multipliers": [
+                            300,
+                            0,
+                            0,
+                            0,
+                            50,
+                            0
+                        ]
+                    }
+                ]
+            }
+        ],
+        "id": 70,
+        "children": [
+            18,
+            22,
+            36
+        ]
+    },
+    {
+        "display_name": "Distraction",
+        "desc": "Detonating 15+ Tricks on enemies will temporarily reduce their damage. </br> Debuffs applied with Tricks will last +0.4s longer for each extra Trick detonated beyond the requirement. </br> </br>Effects: -15% Damage Bonus to Enemies </br>Duration: 10s",
+        "archetype": "Trickster",
+        "archetype_req": 0,
+        "parents": [
+            42
+        ],
+        "dependencies": [
+            42
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 31,
+            "col": 4,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Distraction",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "defMult.Distraction",
+                        "value": 15
+                    }
+                ]
+            }
+        ],
+        "id": 71,
+        "children": [
+            72,
+            73
+        ]
+    },
+    {
+        "display_name": "Misdirection",
+        "desc": "Detonating 25+ Tricks on enemies will make them Confused. </br> Confused enemies take +30% more </br>Thunder damage from you and will take damage whenever they attack. </br> You may store +15 more Tricks on enemies. </br> </br><span class='mc-white'>Total Damage</span>: 160% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 130%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 30%) </br>Cooldown: 0.5s </br>Duration: 15s",
+        "archetype": "Trickster",
+        "archetype_req": 0,
+        "base_abil": 42,
+        "parents": [
+            71
+        ],
+        "dependencies": [
+            42
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 32,
+            "col": 5,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Misdirection",
+                "base_spell": 11,
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Confusion Damage",
+                        "multipliers": [
+                            130,
+                            0,
+                            30,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Total Damage",
+                        "hits": {
+                            "Confusion Damage": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Tricks Detonated",
+                "slider_step": 1,
+                "slider_max": 15,
+                "output": [
+                    {
+                        "type": "prop",
+                        "abil": 42,
+                        "name": "tricks"
+                    }
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Confusion",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Confusion;t",
+                        "value": 30
+                    }
+                ]
+            }
+        ],
+        "id": 72,
+        "children": []
+    },
+    {
+        "display_name": "Shadow Projection",
+        "desc": "When you double jump, throw a Shadow Clone in the direction you are facing. </br> Double jump again while sneaking to teleport to the clone, detonating it. </br> Shadow Clones will cast Spin Attack with Last Laugh. </br> </br><span class='mc-white'>Total Damage</span>: 300% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 250%)   </br>&emsp;(<span class='fDam'>Fire</span>: 50%) </br>Range: 32 Blocks </br>Area of Effect: 5 Blocks (Circle-Shaped) </br>Duration: 8s </br>Cooldown: 8s",
+        "archetype": "Trickster",
+        "archetype_req": 0,
+        "parents": [
+            52,
+            71,
+            50
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 33,
+            "col": 4,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Shadow Projection",
+                "base_spell": 14,
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Spin Attack Damage",
+                        "multipliers": [
+                            250,
+                            0,
+                            0,
+                            0,
+                            50,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Total Damage",
+                        "hits": {
+                            "Spin Attack Damage": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Spell Copies",
+                "slider_max": 1,
+                "behavior": "modify"
+            }
+        ],
+        "id": 73,
+        "children": [
+            43,
+            50,
+            52,
+            74
+        ]
+    },
+    {
+        "display_name": "Toxic Sludge",
+        "desc": "Detonating 20+ Tricks on enemies Contaminates them with toxic ooze. </br> Contaminated enemies take +30% more </br>Earth damage from you and will explode on death, damaging nearby enemies. </br> You may store +15 more Tricks on enemies. </br> </br><span class='mc-white'>Total Damage</span>: 400% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 350%)   </br>&emsp;(<span class='eDam'>Earth</span>: 50%) </br>Area of Effect: 5 Blocks (Circle-Shaped) </br>Duration: 25s",
+        "archetype": "Trickster",
+        "archetype_req": 0,
+        "base_abil": 42,
+        "parents": [
+            43,
+            73,
+            52
+        ],
+        "dependencies": [
+            42
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 34,
+            "col": 3,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Toxic Sludge",
+                "base_spell": 12,
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Toxic Sludge Damage",
+                        "multipliers": [
+                            350,
+                            50,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Total Damage",
+                        "hits": {
+                            "Toxic Sludge Damage": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Tricks Detonated",
+                "slider_step": 1,
+                "slider_max": 15,
+                "output": [
+                    {
+                        "type": "prop",
+                        "abil": 42,
+                        "name": "tricks"
+                    }
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Contamination",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Contamination;e",
+                        "value": 30
+                    }
+                ]
+            }
+        ],
+        "id": 74,
+        "children": [
+            43,
+            59
+        ]
+    },
+    {
+        "display_name": "Nightcloak Knife",
+        "desc": "If cast while in Vanish, Spin Attack will consume all Marks from nearby enemies to summon the Nightcloak Knife.\n The Knife will copy your attacks on enemies near you, dealing 9% of your damage for every 2 Mark consumed. (Max 10 Marks)",
+        "archetype": "Shadestepper",
+        "archetype_req": 0,
+        "parents": [
+            52,
+            47
+        ],
+        "dependencies": [
+            41
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 33,
+            "col": 0,
+            "icon": "node_4"
+        },
+        "properties": {
+            "duration": 40,
+            "range": 6
+        },
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Knives Active",
+                "slider_max": 5,
+                "output": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Nightcloak"
+                    }
+                ],
+                "scaling": [
+                    13
+                ]
+            }
+        ],
+        "id": 75,
+        "children": [
+            52,
+            55
+        ]
+    },
+    {
+        "display_name": "Dissolution",
+        "desc": "When entering and exiting Vanish, become immune to knockback and gain resistance for a brief moment. </br> </br>Effect: +60% Resistance Bonus to Self </br>Duration: 0.5s",
+        "archetype": "Shadestepper",
+        "archetype_req": 2,
+        "base_abil": 5,
+        "parents": [
+            55
+        ],
+        "dependencies": [
+            18
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 35,
+            "col": 2,
+            "icon": "node_1"
+        },
+        "properties": {
+            "duration": 0.5
+        },
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Dissolution",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "defMult.Dissolution",
+                        "value": 75
+                    }
+                ]
+            }
+        ],
+        "id": 76,
+        "children": []
+    },
+    {
+        "display_name": "Swan Dive",
+        "desc": "Landing 15 hits against an enemy while midair grants you +1 Momentum. (Max 10) </br> Ripple consumes your Momentum, releasing a powerful explosion that deals massive damage and briefly blinds enemies. For each stack of Momentum, this explosion deals +10% more damage. </br> While midair, hold shift to quickly drop down. </br> </br><span class='mc-white'>Total Damage</span>: 480% (of your DPS, over 5 hits)   </br>&emsp;(<span class='nDam'>Damage</span>: 400%)   </br>&emsp;(<span class='eDam'>Earth</span>: 40%)   </br>&emsp;(<span class='aDam'>Air</span>: 40%) </br>Area of Effect: 8 Blocks (Circle-Shaped) </br>Effect: Blindness to Enemies </br>Duration: 1s",
+        "archetype": "Acrobat",
+        "archetype_req": 6,
+        "parents": [
+            33
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 26,
+            "col": 8,
+            "icon": "node_3"
+        },
+        "properties": {
+            "aoe": 8
+        },
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Momentum",
+                "multiplicative": true,
+                "output": {
+                    "type": "stat",
+                    "name": "damMult.Momentum:10.Swan Dive Explosion per Hit"
+                },
+                "slider_max": 10,
+                "scaling": [
+                    10
+                ]
+            },
+            {
+                "type": "replace_spell",
+                "name": "Swan Dive",
+                "base_spell": 10,
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Swan Dive Explosion per Hit",
+                        "multipliers": [
+                            80,
+                            8,
+                            0,
+                            0,
+                            0,
+                            8
+                        ]
+                    },
+                    {
+                        "name": "Total Damage",
+                        "hits": {
+                            "Swan Dive Explosion per Hit": 5
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 77,
+        "children": [
+            60
+        ]
+    },
+    {
+        "display_name": "Soul Siphon",
+        "desc": "Detonating 30+ Tricks on enemies will make them 200% Drained and take +30% more </br>Water damage from you. </br> Whenever you or an ally attacks a Drained enemy, siphon 7.5% of it, converting it into 7.5% Overhealth that decays over 20s. (Max 25%) </br> You may store +20 more Tricks on enemies. </br> </br>Cooldown: 2s </br>Duration: 25s",
+        "archetype": "Trickster",
+        "archetype_req": 0,
+        "base_abil": 42,
+        "parents": [
+            65
+        ],
+        "dependencies": [
+            42
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 40,
+            "col": 5,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Tricks Detonated",
+                "slider_step": 1,
+                "slider_max": 20,
+                "output": [
+                    {
+                        "type": "prop",
+                        "abil": 42,
+                        "name": "tricks"
+                    }
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Soul Siphon",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Soul Siphon;w",
+                        "value": 30
+                    }
+                ]
+            }
+        ],
+        "id": 78,
+        "children": []
+    },
+    {
+        "display_name": "Foul Play",
+        "desc": "While Mirror Image is active, Bamboozle will slay a Mirror Clone instead of having a cooldown. </br> Reduce the Mana cost of Multihit. </br> Mana Cost: -5",
+        "archetype": "Trickster",
+        "archetype_req": 2,
+        "parents": [
+            22,
+            25
+        ],
+        "dependencies": [
+            22
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 20,
+            "col": 5,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "cost": -5
+            }
+        ],
+        "id": 79,
+        "children": [
+            25,
+            46
+        ]
+    },
+    {
+        "display_name": "Mirage",
+        "desc": "After using Bamboozle or Shadow Projection to teleport, leave behind a Mirage Clone which draws mobs within 8 blocks towards it. </br> Mirage Clones disappear when an enemy is within 0.75 blocks or when they expire, and will cast Smoke Bomb with Last Laugh. </br> </br>Duration: 5s </br>Cooldown: 2s",
+        "archetype": "Trickster",
+        "base_abil": 9,
+        "parents": [
+            27,
+            28
+        ],
+        "dependencies": [
+            70
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 23,
+            "col": 4,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 80,
+        "children": []
+    }
+]

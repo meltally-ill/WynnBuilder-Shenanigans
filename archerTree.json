@@ -1,0 +1,3602 @@
+[
+    {
+        "display_name": "Arrow Bomb",
+        "desc": "Click Combo: LEFT-RIGHT-RIGHT </br> Shoots a long-ranged arrow that explodes and deals high damage over a large area. (Self-damage for 10% of your DPS) </br> Mana Cost: 45 </br><span class='mc-white'>Total Damage</span>: 160% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 140%)   </br>&emsp;(<span class='fDam'>Fire</span>: 20%) </br>Range: \u00c2\u00b126 Blocks </br>Area of Effect: 4.5 Blocks (Circle-Shaped)",
+        "parents": [],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 0,
+            "col": 4,
+            "icon": "node_archer"
+        },
+        "properties": {
+            "aoe": 4.5,
+            "range": 26
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Arrow Bomb",
+                "cost": 45,
+                "base_spell": 3,
+                "spell_type": "damage",
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Arrow Bomb",
+                        "type": "damage",
+                        "multipliers": [
+                            140,
+                            0,
+                            0,
+                            0,
+                            20,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Self Damage",
+                        "type": "damage",
+                        "use_str": false,
+                        "multipliers": [
+                            10,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Total Damage",
+                        "type": "total",
+                        "hits": {
+                            "Arrow Bomb": 1
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 0,
+        "children": [
+            1
+        ]
+    },
+    {
+        "display_name": "Bow Proficiency",
+        "desc": "Improve your Main Attack's damage and range when using a bow. </br> Main Attack Damage: +5% </br>Main Attack Range: +6 Blocks",
+        "base_abil": 999,
+        "parents": [
+            2,
+            0
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 2,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {
+            "range": 6
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 0,
+                "target_part": "Single Shot",
+                "multipliers": [
+                    5,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 0,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Single Shot": 1
+                },
+                "display": "Total Damage"
+            }
+        ],
+        "id": 1,
+        "children": [
+            2,
+            3
+        ]
+    },
+    {
+        "display_name": "Cheaper Arrow Bomb I",
+        "desc": "Reduce the Mana cost of Arrow Bomb. </br> Mana Cost: -10",
+        "base_abil": 0,
+        "parents": [
+            1
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 2,
+            "col": 6,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "cost": -10
+            }
+        ],
+        "id": 2,
+        "children": [
+            1
+        ]
+    },
+    {
+        "display_name": "Heart Shatter",
+        "desc": "Hitting a mob directly with Arrow Bomb, will shatter its heart and deal additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +100%)",
+        "base_abil": 0,
+        "parents": [
+            1
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 4,
+            "col": 4,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Heart Shatter",
+                "multipliers": [
+                    100,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Heart Shatter": 1
+                }
+            }
+        ],
+        "id": 3,
+        "children": [
+            5
+        ]
+    },
+    {
+        "display_name": "Double Shots",
+        "desc": "Doubles Main Attack arrows and reduces their damage. (Harder to hit distant enemies) </br> Main Attack Damage: -40% (per arrow)",
+        "archetype": "Boltslinger",
+        "archetype_req": 0,
+        "base_abil": 999,
+        "parents": [
+            5
+        ],
+        "dependencies": [],
+        "blockers": [
+            6
+        ],
+        "cost": 1,
+        "display": {
+            "row": 7,
+            "col": 2,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 0,
+                "target_part": "Single Shot",
+                "multipliers": [
+                    -40,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 0,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Single Shot": 1
+                }
+            }
+        ],
+        "id": 4,
+        "children": [
+            5,
+            7
+        ]
+    },
+    {
+        "display_name": "Escape",
+        "desc": "Click Combo: LEFT-LEFT-LEFT </br> Throw yourself backward to avoid danger. (Hold shift while escaping to cancel) </br> Mana Cost: 20",
+        "parents": [
+            4,
+            6,
+            3
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 7,
+            "col": 4,
+            "icon": "node_archer"
+        },
+        "properties": {
+            "aoe": 0,
+            "range": 0
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Escape",
+                "cost": 20,
+                "base_spell": 2,
+                "display": "",
+                "parts": []
+            }
+        ],
+        "id": 5,
+        "children": [
+            4,
+            6
+        ]
+    },
+    {
+        "display_name": "Power Shots",
+        "desc": "Your Main Attack arrows have increased speed and knockback.",
+        "archetype": "Sharpshooter",
+        "archetype_req": 0,
+        "base_abil": 999,
+        "parents": [
+            5
+        ],
+        "dependencies": [],
+        "blockers": [
+            4
+        ],
+        "cost": 1,
+        "display": {
+            "row": 7,
+            "col": 6,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 6,
+        "children": [
+            5,
+            9
+        ]
+    },
+    {
+        "display_name": "Arrow Storm",
+        "desc": "Click Combo: LEFT-RIGHT-LEFT </br> Shoots a stream of 8 arrows, dealing significant damage to close mobs and pushing them away. </br> Mana Cost: 35 </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 10%) </br>Range: \u00c2\u00b116 Blocks",
+        "parents": [
+            4,
+            8
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 9,
+            "col": 2,
+            "icon": "node_archer"
+        },
+        "properties": {
+            "range": 16,
+            "arrows_per_stream": 8,
+            "attack_frequency": 10,
+            "arrow_streams": 1
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Arrow Storm",
+                "cost": 35,
+                "base_spell": 1,
+                "spell_type": "damage",
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Single Arrow",
+                        "multipliers": [
+                            30,
+                            0,
+                            10,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Single Stream",
+                        "hits": {
+                            "Single Arrow": "7.arrows_per_stream"
+                        }
+                    },
+                    {
+                        "name": "Single Shot",
+                        "hits": {
+                            "Single Arrow": "7.arrow_streams"
+                        },
+                        "display": false
+                    },
+                    {
+                        "name": "Arrow Storm DPS",
+                        "hits": {
+                            "Single Shot": "7.attack_frequency"
+                        }
+                    },
+                    {
+                        "name": "Total Damage",
+                        "hits": {
+                            "Single Stream": "7.arrow_streams"
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 7,
+        "children": [
+            8,
+            10,
+            11,
+            12
+        ]
+    },
+    {
+        "display_name": "Cheaper Escape I",
+        "desc": "Reduce the Mana cost of Escape by 5.",
+        "base_abil": 5,
+        "parents": [
+            7,
+            9
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 9,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "cost": -5
+            }
+        ],
+        "id": 8,
+        "children": [
+            7,
+            9,
+            12,
+            13,
+            15
+        ]
+    },
+    {
+        "display_name": "Arrow Shield",
+        "desc": "Click Combo: LEFT-LEFT-RIGHT </br> Forms a shield around you that slightly reduces the damage you take. Being hit will consume one charge of the shield. Enemies that get too close will take damage and be knocked away. (3 charges) </br> Mana Cost: 30 </br><span class='mc-white'>Total Damage</span>: 70% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)   </br>&emsp;(<span class='aDam'>Air</span>: 10%) </br>Effect: 20% Resistance Bonus </br>Area of Effect: 2.3 Blocks (Circle-Shaped) </br>Duration: 60s",
+        "parents": [
+            6,
+            8
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 9,
+            "col": 6,
+            "icon": "node_archer"
+        },
+        "properties": {
+            "charges": 3,
+            "duration": 60,
+            "range": 2.3,
+            "resistance": 20
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Arrow Shield",
+                "cost": 30,
+                "base_spell": 4,
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Shield Damage",
+                        "type": "damage",
+                        "multipliers": [
+                            60,
+                            0,
+                            0,
+                            0,
+                            0,
+                            10
+                        ]
+                    },
+                    {
+                        "name": "Shield DPS",
+                        "type": "total",
+                        "hits": {
+                            "Shield Damage": 4
+                        }
+                    },
+                    {
+                        "name": "Total Damage",
+                        "type": "total",
+                        "hits": {
+                            "Shield Damage": "9.charges"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Arrow Defense",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "defMult.Potion",
+                        "value": "9.resistance"
+                    }
+                ]
+            }
+        ],
+        "id": 9,
+        "children": [
+            8,
+            13,
+            14
+        ]
+    },
+    {
+        "display_name": "Windy Feet",
+        "desc": "Casting Escape grants a speed buff to you and nearby players. </br> </br>Effect: +40% Speed Bonus to Allies </br>Duration: 120s </br>Area of Effect: 8 Blocks (Circle-Shaped)",
+        "base_abil": 5,
+        "parents": [
+            7
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 10,
+            "col": 1,
+            "icon": "node_1"
+        },
+        "properties": {
+            "aoe": 8,
+            "duration": 120,
+            "speed": 0.2
+        },
+        "effects": [],
+        "id": 10,
+        "children": []
+    },
+    {
+        "display_name": "Air Mastery",
+        "base_abil": 998,
+        "desc": "Increase your base damage from all Air attacks. </br> </br>Air Damage: +3-4 </br>Air Damage: +15%",
+        "archetype": "Boltslinger",
+        "archetype_req": 0,
+        "parents": [
+            7
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 13,
+            "col": 0,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "aDamPct",
+                        "value": 15
+                    },
+                    {
+                        "type": "stat",
+                        "name": "aDamAddMin",
+                        "value": 3
+                    },
+                    {
+                        "type": "stat",
+                        "name": "aDamAddMax",
+                        "value": 4
+                    }
+                ]
+            }
+        ],
+        "id": 11,
+        "children": [
+            17
+        ]
+    },
+    {
+        "display_name": "Thunder Mastery",
+        "base_abil": 998,
+        "desc": "Increase your base damage from all Thunder attacks. </br> </br>Thunder Damage: +1-8 </br>Thunder Damage: +10%",
+        "archetype": "Boltslinger",
+        "archetype_req": 0,
+        "parents": [
+            7,
+            8,
+            13
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 13,
+            "col": 2,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "tDamPct",
+                        "value": 10
+                    },
+                    {
+                        "type": "stat",
+                        "name": "tDamAddMin",
+                        "value": 1
+                    },
+                    {
+                        "type": "stat",
+                        "name": "tDamAddMax",
+                        "value": 8
+                    }
+                ]
+            }
+        ],
+        "id": 12,
+        "children": [
+            13,
+            15,
+            16
+        ]
+    },
+    {
+        "display_name": "Fire Mastery",
+        "base_abil": 998,
+        "desc": "Increase your base damage from all Fire attacks. </br> </br>Fire Damage: +3-5 </br>Fire Damage: +15%",
+        "archetype": "Sharpshooter",
+        "archetype_req": 0,
+        "parents": [
+            12,
+            9,
+            8
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 13,
+            "col": 6,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "fDamPct",
+                        "value": 15
+                    },
+                    {
+                        "type": "stat",
+                        "name": "fDamAddMin",
+                        "value": 3
+                    },
+                    {
+                        "type": "stat",
+                        "name": "fDamAddMax",
+                        "value": 5
+                    }
+                ]
+            }
+        ],
+        "id": 13,
+        "children": [
+            12,
+            15,
+            19
+        ]
+    },
+    {
+        "display_name": "Water Mastery",
+        "base_abil": 998,
+        "desc": "Increase your base damage from all Water attacks. </br> </br>Water Damage: +2-4 </br>Water Damage: +15%",
+        "archetype": "Sharpshooter",
+        "archetype_req": 0,
+        "parents": [
+            9
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 13,
+            "col": 8,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "wDamPct",
+                        "value": 15
+                    },
+                    {
+                        "type": "stat",
+                        "name": "wDamAddMin",
+                        "value": 2
+                    },
+                    {
+                        "type": "stat",
+                        "name": "wDamAddMax",
+                        "value": 4
+                    }
+                ]
+            }
+        ],
+        "id": 14,
+        "children": [
+            20
+        ]
+    },
+    {
+        "display_name": "Earth Mastery",
+        "base_abil": 998,
+        "desc": "Increase your base damage from all Earth attacks. </br> </br>Earth Damage: +2-4 </br>Earth Damage: +20%",
+        "archetype": "Trapper",
+        "archetype_req": 0,
+        "parents": [
+            12,
+            8,
+            13
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 14,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "eDamPct",
+                        "value": 20
+                    },
+                    {
+                        "type": "stat",
+                        "name": "eDamAddMin",
+                        "value": 2
+                    },
+                    {
+                        "type": "stat",
+                        "name": "eDamAddMax",
+                        "value": 4
+                    }
+                ]
+            }
+        ],
+        "id": 15,
+        "children": [
+            18
+        ]
+    },
+    {
+        "display_name": "Nimble String",
+        "desc": "Doubles the speed of Arrow Storm and shoots +6 arrows per stream. </br> </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: -5%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -5%)",
+        "base_abil": 7,
+        "parents": [
+            12,
+            17
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [
+            20
+        ],
+        "cost": 2,
+        "display": {
+            "row": 15,
+            "col": 2,
+            "icon": "node_2"
+        },
+        "properties": {
+            "arrows_per_stream": 6,
+            "attack_frequency": 10
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Single Arrow",
+                "multipliers": [
+                    -5,
+                    0,
+                    -5,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 16,
+        "children": [
+            17,
+            21
+        ]
+    },
+    {
+        "display_name": "Buckshot",
+        "desc": "When Arrow Shield loses its last charge, spew 75 piercing arrows forth from your bow. </br> </br><span class='mc-white'>Total Damage</span>: 4% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 3%)   </br>&emsp;(<span class='aDam'>Air</span>: 1%)",
+        "base_abil": 9,
+        "parents": [
+            16,
+            11
+        ],
+        "dependencies": [
+            9
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 15,
+            "col": 0,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Single Buckshot Arrow",
+                "multipliers": [
+                    3,
+                    0,
+                    0,
+                    0,
+                    0,
+                    1
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Total Buckshot Damage",
+                "hits": {
+                    "Single Buckshot Arrow": 75
+                }
+            }
+        ],
+        "id": 17,
+        "children": [
+            16,
+            22
+        ]
+    },
+    {
+        "display_name": "Bryophyte Roots",
+        "desc": "Hitting an enemy with Arrow Storm will create an area of effect that slows them down and deals damage every 0.4s. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='eDam'>Earth</span>: 10%) </br>Effect: 40% Slowness to Enemies </br>Duration: 5s </br>Area of Effect: 2 Blocks (Circle-Shaped)",
+        "base_abil": 7,
+        "archetype": "Trapper",
+        "archetype_req": 1,
+        "parents": [
+            19,
+            15
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 16,
+            "col": 4,
+            "icon": "node_2"
+        },
+        "properties": {
+            "aoe": 2,
+            "duration": 5,
+            "slowness": 0.4
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Bryophyte Roots",
+                "cost": 0,
+                "multipliers": [
+                    30,
+                    10,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Total Roots Damage",
+                "hits": {
+                    "Bryophyte Roots": 12
+                }
+            }
+        ],
+        "id": 18,
+        "children": [
+            19,
+            24
+        ]
+    },
+    {
+        "display_name": "Fire Creep",
+        "desc": "Arrow Bomb will leave a trail of fire for 6s. Enemies that walk into it take damage every 0.4s. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='fDam'>Fire</span>: 20%) </br>Duration: 6s </br>Cooldown: 3s",
+        "base_abil": 0,
+        "parents": [
+            20,
+            13,
+            18
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 16,
+            "col": 6,
+            "icon": "node_2"
+        },
+        "properties": {
+            "duration": 6
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Fire Creep",
+                "multipliers": [
+                    30,
+                    0,
+                    0,
+                    0,
+                    20,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Total Burn Damage",
+                "hits": {
+                    "Fire Creep": 15
+                }
+            }
+        ],
+        "id": 19,
+        "children": [
+            18,
+            20
+        ]
+    },
+    {
+        "display_name": "Phantom Ray",
+        "desc": "Condense Arrow Storm into a single ray that damages enemies 10 times per second. </br> Mana Cost: -5 </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS, per hit)   </br>&emsp;(<span class='nDam'>Damage</span>: 25%)   </br>&emsp;(<span class='wDam'>Water</span>: 5%) </br>Range: 16 Blocks </br>Duration: 1.2s",
+        "base_abil": 7,
+        "parents": [
+            14,
+            19
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [
+            26,
+            16,
+            67
+        ],
+        "cost": 2,
+        "display": {
+            "row": 16,
+            "col": 8,
+            "icon": "node_4"
+        },
+        "properties": {
+            "range": 16,
+            "ray_duration": 1.2
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Phantom Ray",
+                "base_spell": 1,
+                "spell_type": "damage",
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Single Tick",
+                        "type": "damage",
+                        "multipliers": [
+                            25,
+                            0,
+                            0,
+                            5,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "DPS",
+                        "type": "total",
+                        "hits": {
+                            "Single Tick": 10
+                        }
+                    },
+                    {
+                        "name": "Total Damage",
+                        "type": "total",
+                        "hits": {
+                            "DPS": "7.ray_duration"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "cost": -5
+            }
+        ],
+        "id": 20,
+        "children": [
+            19,
+            25
+        ]
+    },
+    {
+        "display_name": "Triple Shots",
+        "desc": "Triples Main Attack arrows but they deal -10% of normal Main Attack arrow damage. </br> Main Attack Damage: -10%",
+        "archetype": "Boltslinger",
+        "archetype_req": 0,
+        "base_abil": 999,
+        "parents": [
+            16,
+            22
+        ],
+        "dependencies": [
+            4
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 17,
+            "col": 2,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 0,
+                "target_part": "Single Shot",
+                "multipliers": [
+                    -10,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 0,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Single Shot": 1
+                },
+                "display": "Total Damage"
+            }
+        ],
+        "id": 21,
+        "children": [
+            22,
+            23
+        ]
+    },
+    {
+        "display_name": "Frenzy",
+        "desc": "Hitting an enemy will give you a brief buff of +3% Walk Speed. (Max +70%) -5% of the bonus decays every second.",
+        "archetype": "Boltslinger",
+        "archetype_req": 0,
+        "parents": [
+            21,
+            17
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 17,
+            "col": 0,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Hits dealt",
+                "slider_max": 60,
+                "output": {
+                    "type": "stat",
+                    "name": "spd"
+                },
+                "scaling": [
+                    1
+                ],
+                "max": 60
+            }
+        ],
+        "id": 22,
+        "children": [
+            21,
+            23
+        ]
+    },
+    {
+        "display_name": "Guardian Angels",
+        "desc": "Your Arrow Shield turns into 2 sentient bows that fire at nearby enemies every 0.45s, each with 10 ammunition. (Arrow Shield will no longer push enemies away or provide resistance) </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS, per shot)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='aDam'>Air</span>: 10%) </br>Range: 6 Blocks </br>Duration: 60s",
+        "archetype": "Boltslinger",
+        "archetype_req": 3,
+        "base_abil": 9,
+        "parents": [
+            21,
+            22
+        ],
+        "dependencies": [
+            9
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 19,
+            "col": 1,
+            "icon": "node_3"
+        },
+        "properties": {
+            "range": 6,
+            "duration": 60,
+            "shots": 10,
+            "attack_frequency": 2.22222222222
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Guardian Angels",
+                "base_spell": 4,
+                "display": "DPS",
+                "parts": [
+                    {
+                        "name": "Single Shot",
+                        "type": "damage",
+                        "multipliers": [
+                            30,
+                            0,
+                            0,
+                            0,
+                            0,
+                            10
+                        ]
+                    },
+                    {
+                        "name": "Single Bow",
+                        "type": "total",
+                        "hits": {
+                            "Single Shot": "9.shots"
+                        },
+                        "display": false
+                    },
+                    {
+                        "name": "Single Volley",
+                        "type": "total",
+                        "hits": {
+                            "Single Shot": "9.charges"
+                        },
+                        "display": false
+                    },
+                    {
+                        "name": "DPS",
+                        "type": "total",
+                        "hits": {
+                            "Single Volley": "9.attack_frequency"
+                        }
+                    },
+                    {
+                        "name": "Total Damage",
+                        "type": "total",
+                        "hits": {
+                            "Single Bow": "9.charges"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 9,
+                        "name": "charges",
+                        "value": -1
+                    }
+                ]
+            }
+        ],
+        "id": 23,
+        "children": [
+            26
+        ]
+    },
+    {
+        "display_name": "Basaltic Trap",
+        "desc": "When you hit the ground with Arrow Bomb, leave a Trap that damages enemies. (Max 2 Traps) </br> </br><span class='mc-white'>Total Damage</span>: 250% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 210%)   </br>&emsp;(<span class='eDam'>Earth</span>: 20%)   </br>&emsp;(<span class='fDam'>Fire</span>: 20%) </br>Range: 2 Blocks (Circle-Shaped) </br>Area of Effect: 7 Blocks (Circle-Shaped)",
+        "archetype": "Trapper",
+        "archetype_req": 2,
+        "parents": [
+            18
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 19,
+            "col": 4,
+            "icon": "node_3"
+        },
+        "properties": {
+            "aoe": 7,
+            "traps": 2
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Basaltic Trap",
+                "base_spell": 7,
+                "display": "Trap Damage",
+                "parts": [
+                    {
+                        "name": "Trap Damage",
+                        "type": "damage",
+                        "multipliers": [
+                            210,
+                            20,
+                            0,
+                            0,
+                            20,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Burst Damage",
+                        "type": "total",
+                        "hits": {
+                            "Trap Damage": "24.traps"
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 24,
+        "children": [
+            27,
+            28
+        ]
+    },
+    {
+        "display_name": "Focus",
+        "desc": "When hitting an aggressive enemy 5+ blocks away, gain +1 Focus. (Max 3) (Lose 50% Focus if you miss once) </br> Damage Bonus: +15% (per focus) </br>Cooldown: 1s",
+        "archetype": "Sharpshooter",
+        "archetype_req": 2,
+        "parents": [
+            20
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 19,
+            "col": 8,
+            "icon": "node_3"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Focus",
+                "output": {
+                    "type": "stat",
+                    "name": "damMult.Focus"
+                },
+                "scaling": [
+                    15
+                ],
+                "slider_max": 3
+            }
+        ],
+        "id": 25,
+        "children": [
+            29
+        ]
+    },
+    {
+        "display_name": "Windstorm",
+        "desc": "Arrow Storm will shoot +1 stream of arrows and +2 extra arrows per stream. </br> Arrow Storm gains recoil while midair. </br> </br><span class='mc-white'>Total Damage</span>: -10% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: -9%)   </br>&emsp;(<span class='tDam'>Thunder</span>: -3%)   </br>&emsp;(<span class='aDam'>Air</span>: +2%)",
+        "base_abil": 7,
+        "parents": [
+            23,
+            27
+        ],
+        "dependencies": [],
+        "blockers": [
+            20
+        ],
+        "cost": 2,
+        "display": {
+            "row": 21,
+            "col": 1,
+            "icon": "node_4"
+        },
+        "properties": {
+            "arrow_streams": 1,
+            "arrows_per_stream": 2
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Single Arrow",
+                "multipliers": [
+                    -9,
+                    0,
+                    -3,
+                    0,
+                    0,
+                    2
+                ]
+            }
+        ],
+        "id": 26,
+        "children": [
+            27,
+            34,
+            35,
+            37
+        ]
+    },
+    {
+        "display_name": "Cheaper Arrow Storm I",
+        "desc": "Reduce the Mana cost of Arrow Storm by 5.",
+        "base_abil": 7,
+        "parents": [
+            28,
+            26,
+            24
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 21,
+            "col": 3,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "cost": -5
+            }
+        ],
+        "id": 27,
+        "children": [
+            26,
+            28,
+            30,
+            35
+        ]
+    },
+    {
+        "display_name": "Implosion",
+        "desc": "Arrow Bomb pulls enemies towards you. If a Trap is nearby, it will pull them towards it instead. Increases Heart Shatter's damage. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +40%)",
+        "archetype": "Trapper",
+        "archetype_req": 0,
+        "base_abil": 0,
+        "parents": [
+            27,
+            24,
+            29
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 21,
+            "col": 5,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Heart Shatter",
+                "multipliers": [
+                    40,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 28,
+        "children": [
+            27,
+            29,
+            30,
+            31
+        ]
+    },
+    {
+        "display_name": "Arrow Wall",
+        "desc": "Gives Arrow Shield +2 extra charges. Guardian Angels will deal -40% damage.",
+        "base_abil": 9,
+        "parents": [
+            25,
+            28
+        ],
+        "dependencies": [
+            9
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 21,
+            "col": 7,
+            "icon": "node_0"
+        },
+        "properties": {
+            "charges": 2
+        },
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Arrow Wall:4.Single Shot",
+                        "value": -40
+                    }
+                ]
+            }
+        ],
+        "id": 29,
+        "children": [
+            28,
+            31,
+            32
+        ]
+    },
+    {
+        "display_name": "Patient Hunter",
+        "desc": "Your Traps will deal +20% more damage for every second it's active. (Max +100%) </br> Increase your maximum Traps by +1.",
+        "archetype": "Trapper",
+        "archetype_req": 0,
+        "base_abil": 24,
+        "parents": [
+            27,
+            28,
+            31
+        ],
+        "dependencies": [
+            24
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 22,
+            "col": 4,
+            "icon": "node_2"
+        },
+        "properties": {
+            "max": 100
+        },
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Trap Wait Time",
+                "output": {
+                    "type": "stat",
+                    "name": "damMult.Basaltic:7.Trap Damage"
+                },
+                "slider_max": 5,
+                "scaling": [
+                    20
+                ]
+            },
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Trap Wait Time",
+                "output": {
+                    "type": "stat",
+                    "name": "damMult.Basaltic:7.Line Damage Tick"
+                },
+                "scaling": [
+                    20
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 24,
+                        "name": "traps",
+                        "value": 1
+                    }
+                ]
+            }
+        ],
+        "id": 30,
+        "children": [
+            31,
+            36,
+            78
+        ]
+    },
+    {
+        "display_name": "Grappling Hook",
+        "base_abil": 5,
+        "desc": "When casting Escape, throw a hook that pulls you when hitting a block. (Escape will not throw you backward anymore) </br> Holding Shift while casting will pull any enemy you hit. </br> </br>Range: 30 Blocks",
+        "archetype": "Trapper",
+        "archetype_req": 0,
+        "parents": [
+            28,
+            29,
+            30
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 22,
+            "col": 6,
+            "icon": "node_1"
+        },
+        "properties": {
+            "range": 30
+        },
+        "effects": [],
+        "id": 31,
+        "children": [
+            30
+        ]
+    },
+    {
+        "display_name": "More Focus I",
+        "desc": "Increase your maximum Focus by +2.",
+        "archetype": "Sharpshooter",
+        "archetype_req": 0,
+        "base_abil": 25,
+        "parents": [
+            29
+        ],
+        "dependencies": [
+            25
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 22,
+            "col": 8,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Focus",
+                "slider_max": 2,
+                "output": {
+                    "type": "stat",
+                    "name": "damMult.Focus"
+                },
+                "scaling": [
+                    0
+                ]
+            }
+        ],
+        "id": 32,
+        "children": [
+            33,
+            41
+        ]
+    },
+    {
+        "display_name": "Phantom Force",
+        "desc": "Phantom Ray gains extra forward range, and becomes wider. </br> </br>Range: +8 Blocks </br>Area of Effect: +0.2 Blocks",
+        "base_abil": 7,
+        "parents": [
+            32
+        ],
+        "dependencies": [
+            20
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 23,
+            "col": 7,
+            "icon": "node_1"
+        },
+        "properties": {
+            "range": 8
+        },
+        "effects": [],
+        "id": 33,
+        "children": []
+    },
+    {
+        "display_name": "Stormy Feet",
+        "desc": "Windy Feet will last longer and grant a stronger speed buff. </br> </br>Effect: +60% Speed Bonus to Allies </br>Duration: +60s",
+        "archetype": "Boltslinger",
+        "base_abil": 5,
+        "parents": [
+            26
+        ],
+        "dependencies": [
+            10
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 22,
+            "col": 0,
+            "icon": "node_1"
+        },
+        "properties": {
+            "duration": 60
+        },
+        "effects": [],
+        "id": 34,
+        "children": []
+    },
+    {
+        "display_name": "Arsenal Synergy",
+        "desc": "For every 16 arrows shot by Arrow Storm, your Main Attacks will additionally fire a flint arrow that damages enemies. (Max 5) </br> </br><span class='mc-white'>Total Damage</span>: 25% (Main Attack Damage, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 25%) </br>Duration: 6s",
+        "base_abil": 999,
+        "parents": [
+            26,
+            27
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 22,
+            "col": 2,
+            "icon": "node_1"
+        },
+        "properties": {
+            "range": 6
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "target_part": "Flint Arrows",
+                "base_spell": 0,
+                "multipliers": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 0,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Flint Arrows": 1
+                }
+            },
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Flint Arrows",
+                "output": {
+                    "type": "stat",
+                    "name": "nConvBase:0.Flint Arrows"
+                },
+                "scaling": [
+                    25
+                ],
+                "slider_step": 1,
+                "slider_max": 5
+            }
+        ],
+        "id": 35,
+        "children": []
+    },
+    {
+        "display_name": "Call of the Hound",
+        "desc": "Arrow Shield summons a Hound that will attack aggressive enemies every 0.25s and drag them towards your traps. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%) </br>Vision: 18 Blocks (Circle-Shaped) </br>Duration: 60s",
+        "archetype": "Trapper",
+        "archetype_req": 0,
+        "base_abil": 9,
+        "parents": [
+            30
+        ],
+        "dependencies": [
+            9
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 23,
+            "col": 3,
+            "icon": "node_4"
+        },
+        "properties": {
+            "vision": 18,
+            "duration": 60
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Call of the Hound",
+                "base_spell": 8,
+                "display": "DPS",
+                "parts": [
+                    {
+                        "name": "Single Hit",
+                        "multipliers": [
+                            40,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "DPS",
+                        "hits": {
+                            "Single Hit": 4
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 36,
+        "children": []
+    },
+    {
+        "display_name": "Leap",
+        "desc": "Leap forwards when you double jump. The distance scales with your Walk Speed. </br> </br>Cooldown: 4s",
+        "archetype": "Boltslinger",
+        "archetype_req": 4,
+        "parents": [
+            78,
+            26
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 25,
+            "col": 1,
+            "icon": "node_2"
+        },
+        "properties": {
+            "cooldown": 4
+        },
+        "effects": [],
+        "id": 37,
+        "children": [
+            44,
+            46,
+            62,
+            78
+        ]
+    },
+    {
+        "display_name": "Traveler",
+        "desc": "For every 1% Walk Speed you have from items, gain +1 Raw Spell Damage (Max 100)",
+        "parents": [
+            61,
+            52
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 32,
+            "col": 2,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": false,
+                "inputs": [
+                    {
+                        "type": "stat",
+                        "name": "spd"
+                    }
+                ],
+                "output": {
+                    "type": "stat",
+                    "name": "sdRaw"
+                },
+                "scaling": [
+                    1
+                ],
+                "max": 100
+            }
+        ],
+        "id": 38,
+        "children": [
+            56
+        ]
+    },
+    {
+        "display_name": "Bouncing Bomb",
+        "desc": "Arrow Bomb will bounce once when hitting a block or enemy.",
+        "base_abil": 0,
+        "parents": [
+            55,
+            56
+        ],
+        "archetype": "Boltslinger",
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 34,
+            "col": 0,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 39,
+        "children": [
+            56,
+            67
+        ]
+    },
+    {
+        "display_name": "Ivyroot Mamba",
+        "desc": "Bryophyte Roots summons a Snake after disappearing that will spit weakening venom at aggressive enemies every 1s. (Max 1) Enemies will be weakened for 1.5s. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 80%)   </br>&emsp;(<span class='eDam'>Earth</span>: 20%) </br>Effects: -15% Damage Bonus to Enemies </br>Vision: 12 Blocks (Circle-Shaped) </br>Duration: 18s",
+        "archetype": "Trapper",
+        "archetype_req": 3,
+        "base_abil": 7,
+        "parents": [
+            78,
+            41
+        ],
+        "dependencies": [
+            18
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 25,
+            "col": 6,
+            "icon": "node_4"
+        },
+        "properties": {
+            "vision": 12,
+            "duration": 18
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Ivyroot Mamba",
+                "base_spell": 9,
+                "display": "Total DPS",
+                "parts": [
+                    {
+                        "name": "Single Hit",
+                        "multipliers": [
+                            80,
+                            20,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Per Snake DPS",
+                        "hits": {
+                            "Single Hit": 0.6666666666667
+                        }
+                    },
+                    {
+                        "name": "Total DPS",
+                        "hits": {
+                            "Per Snake DPS": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Ivyroot Mamba",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "defMult.Ivyroot Mamba",
+                        "value": 15
+                    }
+                ]
+            }
+        ],
+        "id": 40,
+        "children": [
+            41,
+            42,
+            43,
+            48,
+            78
+        ]
+    },
+    {
+        "display_name": "Twain's Arc",
+        "desc": "If you have 2+ Focus, holding shift will summon Twain's Arc. Charge it up to shoot a destructive long-range beam. </br> </br><span class='mc-white'>Total Damage</span>: 300% (Main Attack Damage)   </br>&emsp;(<span class='nDam'>Damage</span>: 300%) </br>Range: 48 Blocks",
+        "archetype": "Sharpshooter",
+        "archetype_req": 4,
+        "parents": [
+            32,
+            40
+        ],
+        "dependencies": [
+            25
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 25,
+            "col": 8,
+            "icon": "node_4"
+        },
+        "properties": {
+            "range": 64,
+            "focusReq": 2
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Twain's Arc",
+                "base_spell": 5,
+                "scaling": "melee",
+                "use_atkspd": false,
+                "display": "Single Shot",
+                "parts": [
+                    {
+                        "name": "Single Shot",
+                        "type": "damage",
+                        "multipliers": [
+                            300,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            }
+        ],
+        "id": 41,
+        "children": [
+            40,
+            43,
+            49
+        ]
+    },
+    {
+        "display_name": "Rocket Jump",
+        "desc": "Arrow Bomb's recoil is increased, and its self-damage is reduced to 1%.",
+        "base_abil": 0,
+        "parents": [
+            40,
+            78
+        ],
+        "dependencies": [
+            0
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 26,
+            "col": 5,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Self Damage",
+                "behavior": "modify",
+                "multipliers": [
+                    -5,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 42,
+        "children": []
+    },
+    {
+        "display_name": "Scorched Earth",
+        "desc": "Fire Creep becomes much stronger. </br> </br><span class='mc-white'>Total Damage</span>: +15% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)   </br>&emsp;(<span class='fDam'>Fire</span>: +5%) </br>Duration: +2s",
+        "archetype": "Sharpshooter",
+        "archetype_req": 0,
+        "parents": [
+            41,
+            40
+        ],
+        "dependencies": [
+            19
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 26,
+            "col": 7,
+            "icon": "node_0"
+        },
+        "properties": {
+            "duration": 2
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Fire Creep",
+                "multipliers": [
+                    10,
+                    0,
+                    0,
+                    0,
+                    5,
+                    0
+                ]
+            }
+        ],
+        "id": 43,
+        "children": []
+    },
+    {
+        "display_name": "More Traps",
+        "desc": "Increase your maximum Traps by +3.",
+        "archetype": "Trapper",
+        "archetype_req": 0,
+        "base_abil": 24,
+        "parents": [
+            78,
+            37
+        ],
+        "dependencies": [
+            24
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 27,
+            "col": 3,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 24,
+                        "name": "traps",
+                        "value": 3
+                    }
+                ]
+            }
+        ],
+        "id": 44,
+        "children": [
+            47
+        ]
+    },
+    {
+        "display_name": "Divine Intervention",
+        "desc": "Guardian Angels gain +8 additional ammunition. Whenever you cast a spell, your Guardian Angels become briefly empowered. </br> Casting Arrow Storm will cause them to shoot 2.25x faster. </br> </br>Duration: 0.9s </br> Casting Arrow Bomb will cause them to shoot explosive shots, dealing +20% damage. </br> </br>Area of Effect: 3 Blocks (Circle-Shaped) </br>Duration: 3s",
+        "archetype": "Boltslinger",
+        "archetype_req": 6,
+        "base_abil": 9,
+        "parents": [
+            62,
+            46,
+            47
+        ],
+        "dependencies": [
+            23
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 28,
+            "col": 1,
+            "icon": "node_3"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Single Bow",
+                "hits": {
+                    "Single Shot": 8
+                }
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Divine Intervention Arrow Storm",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 9,
+                        "name": "attack_frequency",
+                        "value": 2.77777777778
+                    }
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Divine Intervention Arrow Bomb",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.ArrowBombBoost:4.Single Shot",
+                        "value": 20
+                    }
+                ]
+            }
+        ],
+        "id": 45,
+        "children": [
+            47,
+            50,
+            52,
+            61
+        ]
+    },
+    {
+        "display_name": "Fierce Stomp",
+        "desc": "When using Escape, hold shift to quickly drop down to deal damage and blind enemies. </br> </br><span class='mc-white'>Total Damage</span>: 250% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 250%) </br>Area of Effect: 6 Blocks (Circle-Shaped) </br>Effect: Blindness to Enemies </br>Duration: 1s",
+        "archetype": "Boltslinger",
+        "archetype_req": 0,
+        "base_abil": 5,
+        "parents": [
+            37,
+            62,
+            78
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 26,
+            "col": 2,
+            "icon": "node_1"
+        },
+        "properties": {
+            "aoe": 4
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "target_part": "Fierce Stomp",
+                "cost": 0,
+                "multipliers": [
+                    250,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "target_part": "Total Damage",
+                "cost": 0,
+                "hits": {
+                    "Fierce Stomp": 1
+                },
+                "display": "Total Damage"
+            }
+        ],
+        "id": 46,
+        "children": [
+            45,
+            62
+        ]
+    },
+    {
+        "display_name": "Cheaper Arrow Shield I",
+        "desc": "Reduce the Mana cost of Arrow Shield by 5.",
+        "base_abil": 9,
+        "parents": [
+            45,
+            48,
+            44
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 28,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "cost": -5
+            }
+        ],
+        "id": 47,
+        "children": [
+            45,
+            48,
+            50,
+            51,
+            52
+        ]
+    },
+    {
+        "display_name": "Honed Shield",
+        "desc": "Arrow Shield's radius, knockback, and damage is increased. </br> Guardian Angels' damage is increased. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS, for Arrow Shield)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%) </br>Area of Effect: +1 Blocks (Circle-Shaped) </br> </br><span class='mc-white'>Total Damage</span>: +15% (of your DPS, for Guardian Angels, per shot)   </br>&emsp;(<span class='nDam'>Damage</span>: +15%)",
+        "base_abil": 9,
+        "parents": [
+            40,
+            47,
+            49
+        ],
+        "dependencies": [
+            9
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 28,
+            "col": 6,
+            "icon": "node_0"
+        },
+        "properties": {
+            "knockback": 0.5
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Arrow Shield",
+                "behavior": "modify",
+                "multipliers": [
+                    40,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 9,
+                        "behavior": "modify",
+                        "name": "aoe",
+                        "value": 1
+                    }
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Single Shot",
+                "multipliers": [
+                    15,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "behavior": "modify"
+            }
+        ],
+        "id": 48,
+        "children": [
+            47,
+            49,
+            51,
+            54
+        ]
+    },
+    {
+        "display_name": "Shocking Bomb",
+        "desc": "Arrow Bomb will be unaffected by gravity and increase its explosion damage. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +20%)",
+        "archetype": "Sharpshooter",
+        "archetype_req": 4,
+        "base_abil": 0,
+        "parents": [
+            41,
+            48
+        ],
+        "dependencies": [
+            0
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 28,
+            "col": 8,
+            "icon": "node_2"
+        },
+        "properties": {
+            "gravity": 0
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Arrow Bomb",
+                "multipliers": [
+                    20,
+                    0,
+                    20,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 49,
+        "children": [
+            48,
+            54
+        ]
+    },
+    {
+        "display_name": "Bounding Stride",
+        "desc": "Reduce Leap's cooldown by 2s.",
+        "archetype": "Boltslinger",
+        "archetype_req": 0,
+        "base_abil": 37,
+        "parents": [
+            45,
+            47
+        ],
+        "dependencies": [
+            37
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 29,
+            "col": 2,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 37,
+                        "name": "cooldown",
+                        "value": -2
+                    }
+                ]
+            }
+        ],
+        "id": 50,
+        "children": []
+    },
+    {
+        "display_name": "Homing Shots",
+        "desc": "Your Main Attack arrows will follow nearby enemies and will be unaffected by gravity.",
+        "archetype": "Sharpshooter",
+        "archetype_req": 2,
+        "base_abil": 999,
+        "parents": [
+            47,
+            48
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 29,
+            "col": 5,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 51,
+        "children": []
+    },
+    {
+        "display_name": "Mana Trap",
+        "desc": "Your Traps will give you 0.5 Mana per second and 10 Mana when they explode. </br> Increase your maximum Traps by +1. </br> Mana Cost: +10 </br>Range: 16 Blocks",
+        "archetype": "Trapper",
+        "archetype_req": 6,
+        "base_abil": 24,
+        "parents": [
+            61,
+            47,
+            63,
+            45
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 31,
+            "col": 3,
+            "icon": "node_3"
+        },
+        "properties": {
+            "range": 16,
+            "manaRegen": 0.5,
+            "explosionMana": 10
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "cost": 10
+            },
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 24,
+                        "name": "traps",
+                        "value": 1
+                    }
+                ]
+            }
+        ],
+        "id": 52,
+        "children": [
+            38,
+            57,
+            61,
+            63
+        ]
+    },
+    {
+        "display_name": "Cheaper Arrow Storm II",
+        "desc": "Reduce the Mana cost of Arrow Storm. </br> Mana Cost: -5",
+        "base_abil": 7,
+        "parents": [
+            56,
+            57,
+            64
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 34,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "cost": -5
+            }
+        ],
+        "id": 53,
+        "children": [
+            56,
+            64,
+            65,
+            68,
+            76
+        ]
+    },
+    {
+        "display_name": "Initiator",
+        "desc": "If you do not damage an enemy for 4s or more, your next successful hit will deal +60% damage and add +1 Focus.",
+        "archetype": "Sharpshooter",
+        "parents": [
+            63,
+            48,
+            49
+        ],
+        "dependencies": [
+            25
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 31,
+            "col": 7,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Initiator",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Initiator",
+                        "value": 60
+                    }
+                ]
+            }
+        ],
+        "id": 54,
+        "children": [
+            58,
+            60,
+            63
+        ]
+    },
+    {
+        "display_name": "Vigilant Sentinels",
+        "desc": "Increase Guardian Angels' range and damage. </br> Casting Arrow Shield while Guardian Angels are active will also cast Buckshot. Increase Buckshot's damage. </br> </br><span class='mc-white'>Total Damage</span>: +25% (of your DPS, for Guardian Angels, per shot)   </br>&emsp;(<span class='nDam'>Damage</span>: +20%)   </br>&emsp;(<span class='fDam'>Fire</span>: +5%) </br>Range: +3 Blocks </br> </br><span class='mc-white'>Total Damage</span>: +3% (of your DPS, for Buckshot, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: +3%)",
+        "archetype": "Boltslinger",
+        "archetype_req": 0,
+        "base_abil": 9,
+        "parents": [
+            61
+        ],
+        "dependencies": [
+            23
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 32,
+            "col": 0,
+            "icon": "node_4"
+        },
+        "properties": {
+            "range": 2
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Single Shot",
+                "multipliers": [
+                    20,
+                    0,
+                    0,
+                    0,
+                    5,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Single Buckshot Arrow",
+                "multipliers": [
+                    3,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "behavior": "modify"
+            }
+        ],
+        "id": 55,
+        "children": [
+            39
+        ]
+    },
+    {
+        "display_name": "Parting Gift",
+        "desc": "When casting Escape, release a cluster bomb mid-air that explodes, sending a payload of 150 arrows to your previous location. (Each enemy can only be hit by one arrow) </br> </br><span class='mc-white'>Total Damage</span>: 350% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 300%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 50%) </br>Cooldown: 4s",
+        "base_abil": 5,
+        "parents": [
+            38,
+            39,
+            53
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 34,
+            "col": 2,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "target_part": "Parting Gift Arrow",
+                "multipliers": [
+                    300,
+                    0,
+                    50,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Parting Gift Arrow": 1
+                },
+                "display": "Total Damage"
+            }
+        ],
+        "id": 56,
+        "children": [
+            39,
+            53,
+            65,
+            67
+        ]
+    },
+    {
+        "display_name": "Murder Flock",
+        "desc": "Basaltic Trap summons a Crow upon detonation that will peck at aggressive enemies every 0.9s. (Max 2) Damaged enemies will be distracted for 0.2s. </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%) </br>Effect: Blindness to Enemies </br>Vision: 18 Blocks (Circle-Shaped) </br>Duration: 12s",
+        "archetype": "Trapper",
+        "archetype_req": 5,
+        "base_abil": 9,
+        "parents": [
+            52,
+            63,
+            58
+        ],
+        "dependencies": [
+            24
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 32,
+            "col": 4,
+            "icon": "node_4"
+        },
+        "properties": {
+            "vision": 18,
+            "duration": 12
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Murder Flock",
+                "base_spell": 10,
+                "display": "Total DPS",
+                "parts": [
+                    {
+                        "name": "Single Hit",
+                        "multipliers": [
+                            60,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Crow DPS",
+                        "hits": {
+                            "Single Hit": 1.1111111111
+                        }
+                    },
+                    {
+                        "name": "Total DPS",
+                        "hits": {
+                            "Crow DPS": 2
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 57,
+        "children": [
+            53,
+            58,
+            59
+        ]
+    },
+    {
+        "display_name": "Decimator",
+        "desc": "Phantom Ray will increase its damage by 15% every time you do not miss with it. (Max 90%) </br> Phantom Ray gains extra forward range. </br> </br>Range: +8 Blocks",
+        "archetype": "Sharpshooter",
+        "archetype_req": 0,
+        "base_abil": 7,
+        "parents": [
+            54,
+            60,
+            63,
+            57
+        ],
+        "dependencies": [
+            20
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 32,
+            "col": 6,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Phantom Ray hits",
+                "slider_max": 6,
+                "output": {
+                    "type": "stat",
+                    "name": "damMult.Phantom Ray:1.Single Tick"
+                },
+                "scaling": [
+                    15
+                ]
+            }
+        ],
+        "id": 58,
+        "children": [
+            57,
+            59,
+            60,
+            64
+        ]
+    },
+    {
+        "display_name": "Spectral Hover",
+        "desc": "Slow Falling is applied upon using Escape. Crouching at any point will cancel this effect. </br> </br>Duration: 5s",
+        "parents": [
+            57,
+            58
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 33,
+            "col": 5,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 59,
+        "children": []
+    },
+    {
+        "display_name": "Phasing Beam",
+        "desc": "Twain's Arc charges 25% faster, and can now pierce through up to 5 enemies, dealing reduced damage after piercing. (Damage is dealt as Main Attack Damage) </br> </br><span class='mc-white'>Total Damage</span>: -150% (after piercing)   </br>&emsp;(<span class='nDam'>Damage</span>: -150%)",
+        "archetype": "Sharpshooter",
+        "base_abil": 41,
+        "parents": [
+            58,
+            54
+        ],
+        "dependencies": [
+            41
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 32,
+            "col": 8,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 5,
+                "target_part": "Pierce Damage",
+                "multipliers": [
+                    150,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 60,
+        "children": [
+            58,
+            64
+        ]
+    },
+    {
+        "display_name": "Recycling",
+        "desc": "When any of your projectiles miss, gain +0.1 Mana.",
+        "archetype": "Boltslinger",
+        "archetype_req": 3,
+        "parents": [
+            45,
+            52
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 31,
+            "col": 1,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 61,
+        "children": [
+            38,
+            52,
+            55
+        ]
+    },
+    {
+        "display_name": "Shrapnel Bomb",
+        "desc": "Arrow Bomb's explosion will fling 25 shrapnel, dealing damage in a large area. (Each enemy can only be hit by one shrapnel) </br> </br><span class='mc-white'>Total Damage</span>: 250% (of your DPS, per shrapnel)   </br>&emsp;(<span class='nDam'>Damage</span>: 200%)   </br>&emsp;(<span class='eDam'>Earth</span>: 50%)",
+        "archetype": "Boltslinger",
+        "archetype_req": 2,
+        "base_abil": 0,
+        "parents": [
+            37,
+            46
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 26,
+            "col": 0,
+            "icon": "node_2"
+        },
+        "properties": {
+            "bombs": 25
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Shrapnel Bomblet",
+                "multipliers": [
+                    200,
+                    50,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Shrapnel Bomblet": 1
+                }
+            }
+        ],
+        "id": 62,
+        "children": [
+            45,
+            46
+        ]
+    },
+    {
+        "display_name": "Cheaper Escape II",
+        "desc": "Reduce the Mana cost of Escape. </br> Mana Cost: -5",
+        "base_abil": 5,
+        "parents": [
+            52,
+            54
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 31,
+            "col": 5,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "cost": -5
+            }
+        ],
+        "id": 63,
+        "children": [
+            52,
+            54,
+            57,
+            58
+        ]
+    },
+    {
+        "display_name": "Cheaper Arrow Shield II",
+        "desc": "Reduce the Mana cost of Arrow Shield. </br> Mana Cost: -5",
+        "base_abil": 9,
+        "parents": [
+            60,
+            53,
+            58
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 34,
+            "col": 7,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "cost": -5
+            }
+        ],
+        "id": 64,
+        "children": [
+            53,
+            66,
+            68,
+            70,
+            76
+        ]
+    },
+    {
+        "display_name": "Hookshot",
+        "desc": "Increases your Grappling Hook's range, speed and strength. </br> </br>Range: +8 Blocks",
+        "archetype": "Trapper",
+        "archetype_req": 2,
+        "base_abil": 5,
+        "parents": [
+            53,
+            56
+        ],
+        "dependencies": [
+            31
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 35,
+            "col": 3,
+            "icon": "node_0"
+        },
+        "properties": {
+            "range": 8
+        },
+        "effects": [],
+        "id": 65,
+        "children": []
+    },
+    {
+        "display_name": "Coursing Restraints",
+        "desc": "Shocking Bomb will temporarily shock enemies, reducing their defences. </br> </br>Effect: -15% Resistance Bonus to Enemies </br>Duration: 4s </br>Cooldown: 10s",
+        "archetype": "Sharpshooter",
+        "parents": [
+            64
+        ],
+        "dependencies": [
+            49
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 35,
+            "col": 8,
+            "icon": "node_4"
+        },
+        "properties": {
+            "duration": 4,
+            "cooldown": 12
+        },
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Coursing Restraints",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Vulnerability",
+                        "value": 15
+                    }
+                ]
+            }
+        ],
+        "id": 66,
+        "children": []
+    },
+    {
+        "display_name": "Arrow Hurricane",
+        "desc": "Arrow Storm will shoot +2 extra streams of arrows. </br> Arrow Storm's recoil is doubled.",
+        "archetype": "Boltslinger",
+        "archetype_req": 10,
+        "base_abil": 7,
+        "parents": [
+            39,
+            56
+        ],
+        "dependencies": [
+            26
+        ],
+        "blockers": [
+            20
+        ],
+        "cost": 2,
+        "display": {
+            "row": 37,
+            "col": 1,
+            "icon": "node_3"
+        },
+        "properties": {
+            "arrow_streams": 2
+        },
+        "effects": [],
+        "id": 67,
+        "children": [
+            72,
+            74,
+            77
+        ]
+    },
+    {
+        "display_name": "Tangled Traps",
+        "desc": "Your Traps will be connected by a rope that deals damage to enemies every 0.2s. </br> Increase your maximum Traps by +1. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 20%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%)",
+        "archetype": "Trapper",
+        "archetype_req": 0,
+        "base_abil": 24,
+        "parents": [
+            69,
+            64,
+            53
+        ],
+        "dependencies": [
+            24
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 37,
+            "col": 5,
+            "icon": "node_2"
+        },
+        "properties": {
+            "attackSpeed": 0.2
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 7,
+                "target_part": "Line Damage Tick",
+                "multipliers": [
+                    20,
+                    0,
+                    0,
+                    0,
+                    0,
+                    20
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 7,
+                "target_part": "DPS",
+                "hits": {
+                    "Line Damage Tick": 5
+                }
+            },
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 24,
+                        "name": "traps",
+                        "value": 1
+                    }
+                ]
+            }
+        ],
+        "id": 68,
+        "children": [
+            69,
+            71
+        ]
+    },
+    {
+        "display_name": "Beast Lore",
+        "desc": "Increase your maximum Snakes by +1. Increase your maximum Crows by +2. Increase the damage of your Hound. </br> </br><span class='mc-white'>Total Damage</span>: +40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +40%)",
+        "base_abil": 9,
+        "archetype": "Trapper",
+        "archetype_req": 7,
+        "parents": [
+            68
+        ],
+        "dependencies": [
+            36
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 37,
+            "col": 3,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 8,
+                "target_part": "Single Hit",
+                "multipliers": [
+                    40,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 10,
+                "target_part": "Total DPS",
+                "hits": {
+                    "Crow DPS": 2
+                }
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 9,
+                "target_part": "Total DPS",
+                "hits": {
+                    "Per Snake DPS": 1
+                }
+            }
+        ],
+        "id": 69,
+        "children": [
+            68,
+            71
+        ]
+    },
+    {
+        "display_name": "Crepuscular Ray",
+        "desc": "If you have 5+ Focus, casting Arrow Storm while 4+ blocks above the ground will cause you to levitate and shoot 20 homing arrows per second until you run out of Focus. </br> While in this state, lose 1 Focus every 0.5s. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS, per arrow)   </br>&emsp;(<span class='nDam'>Damage</span>: 90%)   </br>&emsp;(<span class='wDam'>Water</span>: 30%)",
+        "archetype": "Sharpshooter",
+        "archetype_req": 10,
+        "parents": [
+            64
+        ],
+        "dependencies": [
+            7
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 37,
+            "col": 7,
+            "icon": "node_3"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Crepuscular Ray",
+                "base_spell": 6,
+                "display": "DPS",
+                "parts": [
+                    {
+                        "name": "Single Arrow",
+                        "multipliers": [
+                            90,
+                            0,
+                            0,
+                            30,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "DPS",
+                        "hits": {
+                            "Single Arrow": 20
+                        }
+                    },
+                    {
+                        "name": "Max Damage",
+                        "hits": {
+                            "DPS": 7
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 70,
+        "children": [
+            75
+        ]
+    },
+    {
+        "display_name": "Chilling Snare",
+        "desc": "Attach an icy snare to Basaltic Trap, drastically inhibiting and damaging nearby enemies every 0.2s after it detonates. </br> Increase your maximum Traps by +1. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%) </br>Effects: 10% Slowness to Enemies, per hit (Max 90%) </br>Duration: 5s </br>Area of Effect: 7 Blocks (Circle-Shaped) </br>Cooldown: 12s",
+        "archetype": "Trapper",
+        "archetype_req": 11,
+        "base_abil": 24,
+        "parents": [
+            68,
+            69
+        ],
+        "dependencies": [
+            24
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 38,
+            "col": 4,
+            "icon": "node_3"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 7,
+                "target_part": "Trap Damage",
+                "cost": 0,
+                "multipliers": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 24,
+                        "name": "traps",
+                        "value": 1
+                    }
+                ]
+            }
+        ],
+        "id": 71,
+        "children": [
+            73,
+            79
+        ]
+    },
+    {
+        "display_name": "Pyrotechnics",
+        "desc": "Arrow Bomb and Grape Bomb become much hotter, increasing the damage of their explosion. </br> </br><span class='mc-white'>Total Damage</span>: 150% (of your DPS, for Arrow Bomb)   </br>&emsp;(<span class='nDam'>Damage</span>: 120%)   </br>&emsp;(<span class='fDam'>Fire</span>: 30%) </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS, for Grape Bomb)   </br>&emsp;(<span class='nDam'>Damage</span>: 45%)   </br>&emsp;(<span class='fDam'>Fire</span>: 15%)",
+        "archetype": "Boltslinger",
+        "base_abil": 0,
+        "parents": [
+            67
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 39,
+            "col": 0,
+            "icon": "node_1"
+        },
+        "properties": {
+            "range": 4,
+            "shots": 4
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Arrow Bomb",
+                "multipliers": [
+                    120,
+                    0,
+                    0,
+                    0,
+                    30,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Grape Bomb",
+                "multipliers": [
+                    45,
+                    0,
+                    0,
+                    0,
+                    15,
+                    0
+                ]
+            }
+        ],
+        "id": 72,
+        "children": []
+    },
+    {
+        "display_name": "Swift Primer",
+        "desc": "Patient Hunter will increase its damage by +10% per second, and increase its Max Damage by +100%. </br> Increase your maximum Traps by +1.",
+        "archetype": "Trapper",
+        "archetype_req": 0,
+        "base_abil": 24,
+        "parents": [
+            71
+        ],
+        "dependencies": [
+            30
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 39,
+            "col": 3,
+            "icon": "node_0"
+        },
+        "properties": {
+            "max": 100
+        },
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Trap Wait Time",
+                "output": {
+                    "type": "stat",
+                    "name": "damMult.Basaltic:7.Trap Damage"
+                },
+                "slider_max": 2,
+                "scaling": [
+                    10
+                ],
+                "max": 60
+            },
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Trap Wait Time",
+                "output": {
+                    "type": "stat",
+                    "name": "damMult.Basaltic:7.Line Damage Tick"
+                },
+                "scaling": [
+                    10
+                ],
+                "max": 60
+            },
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 24,
+                        "name": "traps",
+                        "value": 1
+                    }
+                ]
+            }
+        ],
+        "id": 73,
+        "children": [
+            74
+        ]
+    },
+    {
+        "display_name": "Snow Storm",
+        "desc": "Enemies near you will be slowed down. </br> </br>Effect: 30% Slowness to Enemies </br>Range: 3 Blocks",
+        "parents": [
+            67,
+            79,
+            73
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 40,
+            "col": 1,
+            "icon": "node_1"
+        },
+        "properties": {
+            "range": 3,
+            "slowness": 0.3
+        },
+        "effects": [],
+        "id": 74,
+        "children": [
+            79
+        ]
+    },
+    {
+        "display_name": "More Focus II",
+        "desc": "Increase your maximum Focus by +2.",
+        "archetype": "Sharpshooter",
+        "archetype_req": 0,
+        "base_abil": 25,
+        "parents": [
+            70
+        ],
+        "dependencies": [
+            25
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 39,
+            "col": 7,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Focus",
+                "slider_max": 2,
+                "output": {
+                    "type": "stat",
+                    "name": "damMult.Focus"
+                },
+                "scaling": [
+                    0
+                ]
+            }
+        ],
+        "id": 75,
+        "children": [
+            79
+        ]
+    },
+    {
+        "display_name": "Ghostly Trigger",
+        "desc": "While airborne after casting Escape, your next 3 Main Attacks can be fired in quick succession regardless of attack speed, and will instantly fire from Twain's Arc. </br> </br>Cooldown: 6s",
+        "archetype": "Sharpshooter",
+        "archetype_req": 0,
+        "base_abil": 25,
+        "parents": [
+            64,
+            53
+        ],
+        "dependencies": [
+            41
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 35,
+            "col": 6,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 76,
+        "children": []
+    },
+    {
+        "display_name": "Elusive",
+        "desc": "\u00c2\u00a77\u00c2\u00a7nArrow Bomb\u00c2\u00a77 and \u00c2\u00a77\u00c2\u00a7nArrow Storm\u00c2\u00a77 will no longer have recoil, and your \u00c2\u00a77\u00c2\u00a7nArrow Bombs\u00c2\u00a77 will not deal self-damage.",
+        "archetype": "Boltslinger",
+        "archetype_req": 0,
+        "parents": [
+            67
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 38,
+            "col": 2,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 77,
+        "children": []
+    },
+    {
+        "display_name": "Grape Bomb",
+        "desc": "Arrow Bomb will throw 3 additional smaller bombs when exploding. </br> </br><span class='mc-white'>Total Damage</span>: 80% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)   </br>&emsp;(<span class='fDam'>Fire</span>: 20%) </br>Area of Effect: 2 Blocks (Circle-Shaped)",
+        "base_abil": 0,
+        "parents": [
+            37,
+            40,
+            30
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 25,
+            "col": 4,
+            "icon": "node_4"
+        },
+        "properties": {
+            "aoe": 2,
+            "grapes": 3
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Grape Bomb",
+                "multipliers": [
+                    60,
+                    0,
+                    0,
+                    0,
+                    20,
+                    0
+                ]
+            }
+        ],
+        "id": 78,
+        "children": [
+            37,
+            40,
+            42,
+            44,
+            46
+        ]
+    },
+    {
+        "display_name": "Cheaper Arrow Bomb II",
+        "desc": "Reduce the Mana cost of Arrow Bomb. </br> Mana Cost: -5",
+        "base_abil": 0,
+        "parents": [
+            71,
+            75,
+            74
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 40,
+            "col": 6,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "cost": -5
+            }
+        ],
+        "id": 79,
+        "children": [
+            74
+        ]
+    }
+]

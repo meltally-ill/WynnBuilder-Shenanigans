@@ -1,0 +1,3415 @@
+[
+    {
+        "display_name": "Bash",
+        "desc": "Click Combo: RIGHT-LEFT-RIGHT </br> Violently bash the ground, dealing high damage in a large area. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 200% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 170%)   </br>&emsp;(<span class='eDam'>Earth</span>: 30%) </br>Area of Effect: 4 Blocks (Circle-Shaped) </br>Range: 3 Blocks",
+        "parents": [],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 0,
+            "col": 4,
+            "icon": "node_warrior"
+        },
+        "properties": {
+            "aoe": 4,
+            "range": 3,
+            "hits": 1
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Bash",
+                "cost": 40,
+                "base_spell": 1,
+                "spell_type": "damage",
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Single Hit",
+                        "type": "damage",
+                        "multipliers": [
+                            170,
+                            30,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Bash Hit",
+                        "type": "total",
+                        "hits": {
+                            "Single Hit": 1
+                        }
+                    },
+                    {
+                        "name": "Total Damage",
+                        "type": "total",
+                        "hits": {
+                            "Bash Hit": "0.hits"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Single Hit",
+                "multipliers": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "hide": true
+            }
+        ],
+        "id": 0,
+        "children": [
+            1
+        ]
+    },
+    {
+        "display_name": "Spear Proficiency 1",
+        "desc": "Improve your Main Attack's damage and range w/ spear",
+        "base_abil": 999,
+        "parents": [
+            2,
+            0
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 2,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {
+            "melee_range": 1
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 0,
+                "target_part": "Melee",
+                "multipliers": [
+                    5,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 1,
+        "children": [
+            2,
+            3
+        ]
+    },
+    {
+        "display_name": "Cheaper Bash I",
+        "desc": "Reduce the Mana cost of Bash. </br> Mana Cost: -10",
+        "base_abil": 0,
+        "parents": [
+            1
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 2,
+            "col": 2,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "cost": -10
+            }
+        ],
+        "id": 2,
+        "children": [
+            1
+        ]
+    },
+    {
+        "display_name": "Double Bash",
+        "desc": "Bash will hit a second time at a farther range. </br> </br><span class='mc-white'>Total Damage</span>: -30% (of your DPS, per bash)   </br>&emsp;(<span class='nDam'>Damage</span>: -30%) </br>Range: +3 Blocks",
+        "parents": [
+            1
+        ],
+        "base_abil": 0,
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 4,
+            "col": 4,
+            "icon": "node_1"
+        },
+        "properties": {
+            "range": 3,
+            "hits": 1
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Single Hit",
+                "cost": 0,
+                "multipliers": [
+                    -30,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 3,
+        "children": [
+            4
+        ]
+    },
+    {
+        "display_name": "Charge",
+        "desc": "Click Combo: RIGHT-RIGHT-RIGHT </br> Charge forward at a high speed. (Hold shift while charging to cancel) </br> Mana Cost: 25",
+        "parents": [
+            6,
+            7,
+            3
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 6,
+            "col": 4,
+            "icon": "node_warrior"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Charge",
+                "cost": 25,
+                "base_spell": 2,
+                "spell_type": "damage",
+                "display": "",
+                "parts": []
+            }
+        ],
+        "id": 4,
+        "children": [
+            6,
+            7
+        ]
+    },
+    {
+        "display_name": "Heavy Impact",
+        "desc": "After using Charge, violently crash down unto the ground and deal damage. </br> </br><span class='mc-white'>Total Damage</span>: 120% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 120%) </br>Area of Effect: 4 Blocks",
+        "base_abil": 4,
+        "parents": [
+            8
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 9,
+            "col": 1,
+            "icon": "node_1"
+        },
+        "properties": {
+            "range": 4,
+            "angle": 40
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "target_part": "Heavy Impact",
+                "cost": 0,
+                "multipliers": [
+                    120,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "target_part": "Contact Damage",
+                "display": "Contact Damage",
+                "hits": {
+                    "Heavy Impact": 1
+                }
+            }
+        ],
+        "id": 5,
+        "children": []
+    },
+    {
+        "display_name": "Vehement",
+        "desc": "For every 1% or 1 Raw Main Attack Damage you have from items, gain +2% Walk Speed (Max 20%) </br> Damage Bonus: +5 (Raw)",
+        "archetype": "Fallen",
+        "archetype_req": 0,
+        "parents": [
+            4
+        ],
+        "dependencies": [],
+        "blockers": [
+            7
+        ],
+        "cost": 1,
+        "display": {
+            "row": 6,
+            "col": 2,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": false,
+                "inputs": [
+                    {
+                        "type": "stat",
+                        "name": "mdPct"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "mdRaw"
+                    }
+                ],
+                "output": {
+                    "type": "stat",
+                    "name": "spd"
+                },
+                "scaling": [
+                    2,
+                    2
+                ],
+                "max": 20
+            },
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damRaw",
+                        "value": 5
+                    }
+                ]
+            }
+        ],
+        "id": 6,
+        "children": [
+            4,
+            8
+        ]
+    },
+    {
+        "display_name": "Tougher Skin",
+        "desc": "Harden your skin and gain +5% Base Resistance. </br> For every 1% or 1 Raw Health Regen you have from items, gain +10 Health (Max 100)",
+        "archetype": "Paladin",
+        "archetype_req": 0,
+        "parents": [
+            4
+        ],
+        "dependencies": [],
+        "blockers": [
+            6
+        ],
+        "cost": 1,
+        "display": {
+            "row": 6,
+            "col": 6,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "defMult.Base",
+                        "value": 5
+                    }
+                ]
+            },
+            {
+                "type": "stat_scaling",
+                "slider": false,
+                "inputs": [
+                    {
+                        "type": "stat",
+                        "name": "hprRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "hprPct"
+                    }
+                ],
+                "output": {
+                    "type": "stat",
+                    "name": "hpBonus"
+                },
+                "scaling": [
+                    10,
+                    10
+                ],
+                "max": 100
+            }
+        ],
+        "id": 7,
+        "children": [
+            4,
+            10
+        ]
+    },
+    {
+        "display_name": "Uppercut",
+        "desc": "Click Combo: RIGHT-LEFT-LEFT </br> Hurls enemies upwards and deal massive damage. </br> Mana Cost: 40 </br><span class='mc-white'>Total Damage</span>: 340% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 260%)   </br>&emsp;(<span class='eDam'>Earth</span>: 40%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 40%) </br>Area of Effect: 1-4 Blocks (Cone-Shaped) </br>Range: 6.5 Blocks",
+        "parents": [
+            6,
+            9
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 8,
+            "col": 2,
+            "icon": "node_warrior"
+        },
+        "properties": {
+            "aoe": 3,
+            "range": 5.5
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Uppercut",
+                "cost": 40,
+                "base_spell": 3,
+                "spell_type": "damage",
+                "scaling": "spell",
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Uppercut",
+                        "multipliers": [
+                            260,
+                            40,
+                            40,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Total Damage",
+                        "hits": {
+                            "Uppercut": 1,
+                            "Smite Damage": 1
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 8,
+        "children": [
+            5,
+            9,
+            11,
+            12
+        ]
+    },
+    {
+        "display_name": "Cheaper Charge",
+        "desc": "Reduce the Mana cost of Charge. </br> Mana Cost: -5",
+        "base_abil": 4,
+        "parents": [
+            8,
+            10
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 8,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "cost": -5
+            }
+        ],
+        "id": 9,
+        "children": [
+            8,
+            10,
+            12,
+            13,
+            14
+        ]
+    },
+    {
+        "display_name": "War Scream",
+        "desc": "Click Combo: RIGHT-RIGHT-LEFT </br> Emits a roar that deals damage, pulls nearby enemies and gives you and nearby players resistance. </br> Mana Cost: 30 </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 75%)   </br>&emsp;(<span class='fDam'>Fire</span>: 25%) </br>Effect: 20% Resistance Bonus to Allies </br>Area of Effect: 12 Blocks (Circle-Shaped) </br>Duration: 30s",
+        "parents": [
+            7,
+            9
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 8,
+            "col": 6,
+            "icon": "node_warrior"
+        },
+        "properties": {
+            "duration": 30,
+            "aoe": 12,
+            "defense_bonus": 20
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "War Scream",
+                "cost": 30,
+                "base_spell": 4,
+                "spell_type": "damage",
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "War Scream",
+                        "multipliers": [
+                            75,
+                            0,
+                            0,
+                            0,
+                            25,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Total Damage",
+                        "hits": {
+                            "War Scream": 1
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 10,
+        "children": [
+            9,
+            14,
+            15
+        ]
+    },
+    {
+        "display_name": "Earth Mastery",
+        "base_abil": 998,
+        "desc": "Increase your base damage from all Earth attacks. </br> </br>Earth Damage: +2-4 </br>Earth Damage: +20%",
+        "archetype": "Fallen",
+        "archetype_req": 0,
+        "parents": [
+            8
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 10,
+            "col": 0,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "eDamPct",
+                        "value": 20
+                    },
+                    {
+                        "type": "stat",
+                        "name": "eDamAddMin",
+                        "value": 2
+                    },
+                    {
+                        "type": "stat",
+                        "name": "eDamAddMax",
+                        "value": 4
+                    }
+                ]
+            }
+        ],
+        "id": 11,
+        "children": [
+            16
+        ]
+    },
+    {
+        "display_name": "Thunder Mastery",
+        "base_abil": 998,
+        "desc": "Increase your base damage from all Thunder attacks. </br> </br>Thunder Damage: +1-8 </br>Thunder Damage: +10%",
+        "archetype": "Fallen",
+        "archetype_req": 0,
+        "parents": [
+            8,
+            14,
+            9
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 10,
+            "col": 2,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "tDamPct",
+                        "value": 10
+                    },
+                    {
+                        "type": "stat",
+                        "name": "tDamAddMin",
+                        "value": 1
+                    },
+                    {
+                        "type": "stat",
+                        "name": "tDamAddMax",
+                        "value": 8
+                    }
+                ]
+            }
+        ],
+        "id": 12,
+        "children": [
+            13,
+            14,
+            17
+        ]
+    },
+    {
+        "display_name": "Water Mastery",
+        "base_abil": 998,
+        "desc": "Increase your damage from all Water attacks. </br> </br>Water Damage: +2-4 </br>Water Damage: +15%",
+        "archetype": "Battle Monk",
+        "archetype_req": 0,
+        "parents": [
+            9,
+            12,
+            14
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 11,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "wDamPct",
+                        "value": 15
+                    },
+                    {
+                        "type": "stat",
+                        "name": "wDamAddMin",
+                        "value": 2
+                    },
+                    {
+                        "type": "stat",
+                        "name": "wDamAddMax",
+                        "value": 4
+                    }
+                ]
+            }
+        ],
+        "id": 13,
+        "children": [
+            18
+        ]
+    },
+    {
+        "display_name": "Air Mastery",
+        "base_abil": 998,
+        "desc": "Increase your base damage from all Air attacks. </br> </br>Air Damage: +3-4 </br>Air Damage: +15%",
+        "archetype": "Battle Monk",
+        "archetype_req": 0,
+        "parents": [
+            10,
+            12,
+            9
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 10,
+            "col": 6,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "aDamPct",
+                        "value": 15
+                    },
+                    {
+                        "type": "stat",
+                        "name": "aDamAddMin",
+                        "value": 3
+                    },
+                    {
+                        "type": "stat",
+                        "name": "aDamAddMax",
+                        "value": 4
+                    }
+                ]
+            }
+        ],
+        "id": 14,
+        "children": [
+            12,
+            13,
+            19
+        ]
+    },
+    {
+        "display_name": "Fire Mastery",
+        "base_abil": 998,
+        "desc": "Increase your base damage from all Fire attacks. </br> </br>Fire Damage: +3-5 </br>Fire Damage: +15%",
+        "archetype": "Paladin",
+        "archetype_req": 0,
+        "parents": [
+            10
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 10,
+            "col": 8,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "fDamPct",
+                        "value": 15
+                    },
+                    {
+                        "type": "stat",
+                        "name": "fDamAddMin",
+                        "value": 3
+                    },
+                    {
+                        "type": "stat",
+                        "name": "fDamAddMax",
+                        "value": 5
+                    }
+                ]
+            }
+        ],
+        "id": 15,
+        "children": [
+            20
+        ]
+    },
+    {
+        "display_name": "Quadruple Bash",
+        "desc": "Bash will cast 4 times consecutively at double the speed. </br> </br><span class='mc-white'>Total Damage</span>: -20% (of your DPS, per bash)   </br>&emsp;(<span class='nDam'>Damage</span>: -20%) </br>Range: +6 Blocks",
+        "archetype": "Fallen",
+        "archetype_req": 0,
+        "base_abil": 0,
+        "parents": [
+            11,
+            17
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 12,
+            "col": 0,
+            "icon": "node_2"
+        },
+        "properties": {
+            "range": 6,
+            "hits": 2
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Single Hit",
+                "multipliers": [
+                    -20,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Quadruple Bash:1.Thunderclap Bonus",
+                        "value": -100
+                    }
+                ]
+            }
+        ],
+        "id": 16,
+        "children": [
+            17,
+            25
+        ]
+    },
+    {
+        "display_name": "Fireworks",
+        "desc": "Mobs hit by Uppercut will explode mid-air and receive additional damage. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +80%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +20%)",
+        "archetype": "Fallen",
+        "archetype_req": 0,
+        "base_abil": 8,
+        "parents": [
+            12,
+            16
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 12,
+            "col": 2,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Fireworks",
+                "multipliers": [
+                    80,
+                    0,
+                    20,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Fireworks": 1
+                }
+            }
+        ],
+        "id": 17,
+        "children": [
+            16,
+            25
+        ]
+    },
+    {
+        "display_name": "Half-Moon Swipe",
+        "desc": "Uppercut will deal a footsweep attack at a longer and wider angle. </br> Mana Cost: -5 </br><span class='mc-white'>Total Damage</span>: -30% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: -60%)   </br>&emsp;(<span class='wDam'>Water</span>: +30%) </br>Range: +1.5 Blocks",
+        "archetype": "Battle Monk",
+        "archetype_req": 1,
+        "base_abil": 8,
+        "parents": [
+            13
+        ],
+        "dependencies": [
+            8
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 13,
+            "col": 4,
+            "icon": "node_4"
+        },
+        "properties": {
+            "range": 1.5,
+            "angle": 10
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Uppercut",
+                "cost": -5,
+                "multipliers": [
+                    -60,
+                    0,
+                    0,
+                    30,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 18,
+        "children": [
+            23
+        ]
+    },
+    {
+        "display_name": "Flyby Jab",
+        "desc": "Damages enemies in your way when using Charge. </br> </br><span class='mc-white'>Total Damage</span>: 120%   </br>&emsp;(<span class='nDam'>Damage</span>: 100%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%) </br>Area of Effect: 2 Blocks",
+        "base_abil": 4,
+        "parents": [
+            14,
+            20
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 12,
+            "col": 6,
+            "icon": "node_1"
+        },
+        "properties": {
+            "aoe": 2
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "target_part": "Flyby Jab",
+                "multipliers": [
+                    100,
+                    0,
+                    0,
+                    0,
+                    0,
+                    20
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "target_part": "Contact Damage",
+                "display": "Contact Damage",
+                "hits": {
+                    "Flyby Jab": 1
+                }
+            }
+        ],
+        "id": 19,
+        "children": [
+            20,
+            21
+        ]
+    },
+    {
+        "display_name": "Flaming Uppercut",
+        "desc": "Uppercut will light mobs on fire, dealing damage every 0.6 seconds. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 35%)   </br>&emsp;(<span class='fDam'>Fire</span>: 15%) </br>Duration: 3s",
+        "archetype": "Paladin",
+        "archetype_req": 0,
+        "base_abil": 8,
+        "parents": [
+            15,
+            19
+        ],
+        "dependencies": [
+            8
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 12,
+            "col": 8,
+            "icon": "node_2"
+        },
+        "properties": {
+            "duration": 3,
+            "rate": 1.6666666666666667
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Flaming Uppercut",
+                "base_spell": 8,
+                "display": "DPS",
+                "parts": [
+                    {
+                        "name": "Damage Tick",
+                        "multipliers": [
+                            35,
+                            0,
+                            0,
+                            0,
+                            15,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "DPS",
+                        "hits": {
+                            "Damage Tick": "8.rate"
+                        }
+                    },
+                    {
+                        "name": "Total Damage",
+                        "hits": {
+                            "Damage Tick": 5
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 20,
+        "children": [
+            19,
+            21
+        ]
+    },
+    {
+        "display_name": "Iron Lungs",
+        "desc": "War Scream will deal more damage. </br> </br><span class='mc-white'>Total Damage</span>: +60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%)   </br>&emsp;(<span class='aDam'>Air</span>: +30%)",
+        "archetype": "Paladin",
+        "archetype_req": 0,
+        "base_abil": 10,
+        "parents": [
+            19,
+            20
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 13,
+            "col": 7,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "War Scream",
+                "multipliers": [
+                    30,
+                    0,
+                    0,
+                    0,
+                    0,
+                    30
+                ]
+            }
+        ],
+        "id": 21,
+        "children": [
+            24
+        ]
+    },
+    {
+        "display_name": "Generalist",
+        "desc": "After casting 3 different spells in a row, your next spell will cost 1 Mana.",
+        "archetype": "Battle Monk",
+        "archetype_req": 3,
+        "parents": [
+            23
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 15,
+            "col": 2,
+            "icon": "node_3"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 22,
+        "children": [
+            23,
+            27
+        ]
+    },
+    {
+        "display_name": "Air Shout",
+        "desc": "War Scream will fire a projectile that can go through walls and deal damage up to 3 times. </br> </br><span class='mc-white'>Total Damage</span>: 75%   </br>&emsp;(<span class='nDam'>Damage</span>: 55%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%) </br>Area of Effect: 2 Blocks (Circle-Shaped) </br>Range: 32 Blocks",
+        "archetype": "Battle Monk",
+        "base_abil": 10,
+        "parents": [
+            18,
+            22
+        ],
+        "dependencies": [
+            10
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 15,
+            "col": 4,
+            "icon": "node_2"
+        },
+        "properties": {
+            "attackRate": 2
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Air Shout",
+                "multipliers": [
+                    55,
+                    0,
+                    0,
+                    0,
+                    0,
+                    20
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Air Shout": 1
+                }
+            },
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Additional Air Shout hits",
+                "slider_max": 2,
+                "output": {
+                    "type": "stat",
+                    "name": "damMult.Air Shout:4.Air Shout"
+                },
+                "scaling": [
+                    100
+                ]
+            }
+        ],
+        "id": 23,
+        "children": [
+            22,
+            27
+        ]
+    },
+    {
+        "display_name": "Mantle of the Bovemists",
+        "desc": "When casting War Scream, create a holy shield around you that reduces all incoming damage by -70% for 3 hits. </br> </br>Cooldown: 20s",
+        "archetype": "Paladin",
+        "archetype_req": 3,
+        "parents": [
+            21
+        ],
+        "dependencies": [
+            10
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 15,
+            "col": 7,
+            "icon": "node_3"
+        },
+        "properties": {
+            "duration": 0.25,
+            "charges": 3
+        },
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Mantle",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "defMult.Mantle",
+                        "value": 70
+                    }
+                ]
+            }
+        ],
+        "id": 24,
+        "children": [
+            30
+        ]
+    },
+    {
+        "display_name": "Bak'al's Grasp",
+        "desc": "Casting War Scream will make you Corrupted. (Shift + War Scream to cancel) </br> While Corrupted, you lose the ability  to heal, and every 1% health you lose will grant you +1% Corrupted. </br> Gain +4 Raw Damage per 2% Corrupted. (Max +120) </br> </br>Cooldown: 10s",
+        "archetype": "Fallen",
+        "archetype_req": 2,
+        "parents": [
+            16,
+            17
+        ],
+        "dependencies": [
+            10
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 16,
+            "col": 1,
+            "icon": "node_3"
+        },
+        "properties": {
+            "cooldown": 15
+        },
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Corrupted",
+                "slider_max": 100,
+                "slider_step": 1,
+                "output": {
+                    "type": "stat",
+                    "name": "damRaw"
+                },
+                "max": 120,
+                "scaling": [
+                    2
+                ]
+            }
+        ],
+        "id": 25,
+        "children": [
+            26
+        ]
+    },
+    {
+        "display_name": "Spear Proficiency II",
+        "desc": "Improve your Main Attack's damage and range when using a spear. </br> Main Attack Damage: +5% </br>Range: +1 Block",
+        "base_abil": 999,
+        "parents": [
+            25,
+            27
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 17,
+            "col": 0,
+            "icon": "node_0"
+        },
+        "properties": {
+            "melee_range": 1
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 0,
+                "target_part": "Melee",
+                "multipliers": [
+                    5,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 26,
+        "children": [
+            27,
+            31,
+            44
+        ]
+    },
+    {
+        "display_name": "Cheaper Uppercut",
+        "desc": "Reduce the Mana cost of Uppercut. </br> Mana Cost: -5",
+        "base_abil": 8,
+        "parents": [
+            26,
+            28,
+            23,
+            22
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 17,
+            "col": 3,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "cost": -5
+            }
+        ],
+        "id": 27,
+        "children": [
+            26,
+            28,
+            29,
+            32,
+            44
+        ]
+    },
+    {
+        "display_name": "Aerodynamics",
+        "desc": "During Charge, you can steer and change direction.",
+        "archetype": "Battle Monk",
+        "archetype_req": 0,
+        "base_abil": 4,
+        "parents": [
+            27,
+            30
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 17,
+            "col": 5,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 28,
+        "children": [
+            27,
+            29,
+            30,
+            53
+        ]
+    },
+    {
+        "display_name": "Counter",
+        "desc": "You take 25% reduced damage and attack back when hit by an enemy attack. </br> </br><span class='mc-white'>Total Damage</span>: 100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 60%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 20%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%) </br>Cooldown: 2s",
+        "archetype": "Battle Monk",
+        "parents": [
+            28,
+            27,
+            53
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 18,
+            "col": 4,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Counter",
+                "base_spell": 5,
+                "display": "Counter Damage",
+                "parts": [
+                    {
+                        "name": "Counter Damage",
+                        "multipliers": [
+                            60,
+                            0,
+                            20,
+                            0,
+                            0,
+                            20
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Counter",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "defMult.Counter",
+                        "value": 25
+                    }
+                ]
+            }
+        ],
+        "id": 29,
+        "children": [
+            53
+        ]
+    },
+    {
+        "display_name": "Manachism",
+        "desc": "If you receive a hit that's less than 5% of your max health, gain 10 Mana. </br> </br>Cooldown: 1s",
+        "archetype": "Paladin",
+        "archetype_req": 3,
+        "parents": [
+            28,
+            24
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 17,
+            "col": 7,
+            "icon": "node_4"
+        },
+        "properties": {
+            "cooldown": 1
+        },
+        "effects": [],
+        "id": 30,
+        "children": [
+            28,
+            47,
+            53
+        ]
+    },
+    {
+        "display_name": "Blood Pact",
+        "desc": "If you do not have enough mana to cast a spell, spend health instead. (0.35% health per mana) </br> A spell cast using health instead of mana will deal +15% to +25% bonus damage, depending on how much of its cost is paid in blood.",
+        "archetype": "Fallen",
+        "archetype_req": 4,
+        "parents": [
+            26
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 20,
+            "col": 0,
+            "icon": "node_3"
+        },
+        "properties": {
+            "health_cost": 0.35,
+            "damage_boost": 25
+        },
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Blood Pact",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.BloodPact",
+                        "value": "31.damage_boost"
+                    }
+                ]
+            }
+        ],
+        "id": 31,
+        "children": [
+            36,
+            39
+        ]
+    },
+    {
+        "display_name": "Flying Kick",
+        "desc": "Hitting mobs with Charge will halt your momentum and knock them away. </br> </br><span class='mc-white'>Total Damage</span>: 400% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 275%)   </br>&emsp;(<span class='aDam'>Air</span>: 75%)   </br>&emsp;(<span class='wDam'>Water</span>: 50%) </br>Area of Effect: 4 Blocks",
+        "archetype": "Battle Monk",
+        "archetype_req": 1,
+        "base_abil": 4,
+        "parents": [
+            27,
+            42
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 20,
+            "col": 3,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "target_part": "Flying Kick",
+                "multipliers": [
+                    275,
+                    0,
+                    0,
+                    50,
+                    0,
+                    75
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "target_part": "Flying Kick Max Damage",
+                "hits": {
+                    "Flying Kick": 1
+                },
+                "display": "Flying Kick Max Damage"
+            }
+        ],
+        "id": 32,
+        "children": [
+            42,
+            58
+        ]
+    },
+    {
+        "display_name": "Cheaper Bash II",
+        "desc": "Reduce the Mana cost of Bash. </br> Mana Cost: -5",
+        "base_abil": 0,
+        "parents": [
+            47,
+            41
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 22,
+            "col": 8,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "cost": -5
+            }
+        ],
+        "id": 33,
+        "children": [
+            34,
+            41
+        ]
+    },
+    {
+        "display_name": "Sacred Surge",
+        "desc": "Gain the ability to unleash a Sacred Surge. Whenever any of your spells or abilities are triggered, increase your Holy Power by 1. </br> Uppercut will spend 25 Holy Power to smite hit enemies with holy energy, dealing extra damage. </br> </br><span class='mc-white'>Total Damage</span>: 375% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 285%)   </br>&emsp;(<span class='wDam'>Water</span>: 50%)   </br>&emsp;(<span class='aDam'>Air</span>: 40%)",
+        "archetype": "Paladin",
+        "archetype_req": 6,
+        "parents": [
+            33,
+            41
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 23,
+            "col": 7,
+            "icon": "node_3"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "target_part": "Smite Damage",
+                "base_spell": 3,
+                "multipliers": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Sacred Surge",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "nConvBase:3.Smite Damage",
+                        "value": 285
+                    },
+                    {
+                        "type": "stat",
+                        "name": "wConvBase:3.Smite Damage",
+                        "value": 50
+                    },
+                    {
+                        "type": "stat",
+                        "name": "aConvBase:3.Smite Damage",
+                        "value": 40
+                    }
+                ]
+            }
+        ],
+        "id": 34,
+        "children": [
+            35,
+            51
+        ]
+    },
+    {
+        "display_name": "Emboldening Cry",
+        "desc": "War Scream bolsters courage, granting players a damage bonus and additional resistance. </br> </br>Effect: +8% Damage Bonus to Players </br>Effect: +5% Resistance Bonus to Allies",
+        "archetype": "Paladin",
+        "archetype_req": 0,
+        "base_abil": 10,
+        "parents": [
+            34
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 24,
+            "col": 8,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 35,
+        "children": []
+    },
+    {
+        "display_name": "Enraged Blow",
+        "desc": "Gain +1.5% damage per 1% Corrupted. (Max +65%)",
+        "archetype": "Fallen",
+        "archetype_req": 0,
+        "base_abil": 25,
+        "parents": [
+            31
+        ],
+        "dependencies": [
+            25
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 21,
+            "col": 1,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider_name": "Corrupted",
+                "slider": true,
+                "output": {
+                    "type": "stat",
+                    "name": "damMult.Enraged"
+                },
+                "max": 65,
+                "scaling": [
+                    1.5
+                ]
+            }
+        ],
+        "id": 36,
+        "children": [
+            43,
+            45
+        ]
+    },
+    {
+        "display_name": "Sparkling Hope",
+        "desc": "Deals damage to all nearby enemies every time you heal 5% of your max health. (Max 5 activations at once)  </br> </br><span class='mc-white'>Total Damage</span>: 60% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%)   </br>&emsp;(<span class='wDam'>Water</span>: 10%)   </br>&emsp;(<span class='fDam'>Fire</span>: 10%) </br>Area of Effect: 6 Blocks (Circle-Shaped)",
+        "parents": [
+            42,
+            47
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 21,
+            "col": 7,
+            "icon": "node_1"
+        },
+        "properties": {
+            "aoe": 6
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Sparkling Hope",
+                "base_spell": 7,
+                "display": "Damage Tick",
+                "parts": [
+                    {
+                        "name": "Damage Tick",
+                        "multipliers": [
+                            40,
+                            0,
+                            0,
+                            10,
+                            10,
+                            0
+                        ]
+                    }
+                ]
+            }
+        ],
+        "id": 37,
+        "children": []
+    },
+    {
+        "display_name": "Riposte",
+        "desc": "Increase the damage reduction of Counter by +10% </br> Increase the damage of Counter and reduce its cooldown by -0.5s. </br> </br><span class='mc-white'>Total Damage</span>: +150% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +90%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +30%)   </br>&emsp;(<span class='aDam'>Air</span>: +30%)",
+        "base_abil": 29,
+        "parents": [
+            40
+        ],
+        "dependencies": [
+            29
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 28,
+            "col": 2,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 5,
+                "target_part": "Counter Damage",
+                "multipliers": [
+                    90,
+                    0,
+                    30,
+                    0,
+                    0,
+                    30
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Counter",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "defMult.Counter",
+                        "value": 10
+                    }
+                ]
+            }
+        ],
+        "id": 38,
+        "children": [
+            40,
+            61
+        ]
+    },
+    {
+        "display_name": "Exhilarate",
+        "desc": "After leaving Corrupted, restore 30% of your Corrupted bar as max health.",
+        "parents": [
+            31
+        ],
+        "dependencies": [
+            44
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 22,
+            "col": 0,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 39,
+        "children": []
+    },
+    {
+        "display_name": "Cheaper War Scream I",
+        "desc": "Reduce the Mana cost of War Scream by 5.",
+        "base_abil": 10,
+        "parents": [
+            50,
+            38
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 28,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "cost": -5
+            }
+        ],
+        "id": 40,
+        "children": [
+            38,
+            59,
+            61,
+            68
+        ]
+    },
+    {
+        "display_name": "Cleansing Breeze",
+        "desc": "Charge will cleanse you of all negative effects and fire, as well as any allies you pass through. </br> </br>Area of Effect: 3 Blocks </br>Cooldown: 3s",
+        "archetype": "Paladin",
+        "archetype_req": 0,
+        "parents": [
+            58,
+            33
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 22,
+            "col": 6,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 41,
+        "children": [
+            33,
+            34,
+            46,
+            58
+        ]
+    },
+    {
+        "display_name": "Crushing Blow",
+        "desc": "Increase the damage of Bash. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS, per Bash)   </br>&emsp;(<span class='nDam'>Damage</span>: +30%)",
+        "base_abil": 0,
+        "parents": [
+            32,
+            47
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 20,
+            "col": 6,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Single Hit",
+                "multipliers": [
+                    30,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 42,
+        "children": [
+            32,
+            37,
+            47,
+            58
+        ]
+    },
+    {
+        "display_name": "Boiling Blood",
+        "desc": "Bash will leave a puddle of boiling blood after its first explosion, slowing down and damaging enemies in it every 0.4 seconds. </br> </br><span class='mc-white'>Total Damage</span>: 30% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 25%)   </br>&emsp;(<span class='fDam'>Fire</span>: 5%) </br>Effect: 20% Slowness to Enemies </br>Duration: 3s </br>Cooldown: 3s",
+        "base_abil": 0,
+        "parents": [
+            36,
+            45
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 23,
+            "col": 1,
+            "icon": "node_2"
+        },
+        "properties": {
+            "duration": 3,
+            "rate": 2.5
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Boiling Blood Tick",
+                "cost": 0,
+                "multipliers": [
+                    25,
+                    0,
+                    0,
+                    0,
+                    5,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Boiling Blood DPS",
+                "hits": {
+                    "Boiling Blood Tick": "0.rate"
+                }
+            }
+        ],
+        "id": 43,
+        "children": [
+            48,
+            60
+        ]
+    },
+    {
+        "display_name": "Intoxicating Blood",
+        "desc": "After leaving Corrupted, gain 2.5% of missing health back for each hit dealt and enemy killed while Corrupted. </br> </br>Cooldown: 0.45s (for hits)",
+        "archetype": "Fallen",
+        "base_abil": 25,
+        "parents": [
+            26,
+            27
+        ],
+        "dependencies": [
+            25
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 18,
+            "col": 1,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 44,
+        "children": []
+    },
+    {
+        "display_name": "Comet",
+        "desc": "After being hit by Fireworks, enemies will crash unto the ground and receive more damage. </br> </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +80%)   </br>&emsp;(<span class='eDam'>Earth</span>: +20%)",
+        "archetype": "Fallen",
+        "archetype_req": 0,
+        "base_abil": 8,
+        "parents": [
+            36,
+            58
+        ],
+        "dependencies": [
+            17
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 22,
+            "col": 2,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Comet",
+                "cost": 0,
+                "multipliers": [
+                    80,
+                    20,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Total Damage",
+                "cost": 0,
+                "hits": {
+                    "Comet": 1
+                }
+            }
+        ],
+        "id": 45,
+        "children": [
+            43,
+            58
+        ]
+    },
+    {
+        "display_name": "Collide",
+        "desc": "Enemies thrown into walls from Flying Kick will explode and receive additional damage. </br> </br><span class='mc-white'>Total Damage</span>: 200% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 150%)   </br>&emsp;(<span class='fDam'>Fire</span>: 50%) </br>Area of Effect: 4 Blocks",
+        "base_abil": 4,
+        "parents": [
+            58,
+            41
+        ],
+        "dependencies": [
+            32
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 23,
+            "col": 5,
+            "icon": "node_1"
+        },
+        "properties": {
+            "aoe": 4
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "target_part": "Collide",
+                "cost": 0,
+                "multipliers": [
+                    150,
+                    0,
+                    0,
+                    0,
+                    50,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "target_part": "Flying Kick Max Damage",
+                "hits": {
+                    "Collide": 1
+                }
+            }
+        ],
+        "id": 46,
+        "children": []
+    },
+    {
+        "display_name": "Rejuvenating Skin",
+        "desc": "For any damage you take, regenerate 30% of the damage over the next 15s.",
+        "archetype": "Paladin",
+        "archetype_req": 5,
+        "parents": [
+            30,
+            42
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 20,
+            "col": 8,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 47,
+        "children": [
+            33,
+            37,
+            42
+        ]
+    },
+    {
+        "display_name": "Uncontainable Corruption",
+        "desc": "Reduces the cooldown of Bak'al's Grasp by -5s, and increases the raw damage gained for every 2% of health lost by +1.",
+        "base_abil": 25,
+        "parents": [
+            43,
+            57
+        ],
+        "dependencies": [
+            25
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 26,
+            "col": 0,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Corrupted",
+                "output": {
+                    "type": "stat",
+                    "name": "damRaw"
+                },
+                "scaling": [
+                    0.5
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 25,
+                        "name": "cooldown",
+                        "value": -5
+                    }
+                ]
+            }
+        ],
+        "id": 48,
+        "children": [
+            52,
+            56,
+            57
+        ]
+    },
+    {
+        "display_name": "Radiant Devotee",
+        "desc": "For every 4% Reflection you have from items, gain +1/5s Mana Regen (Max 10/5s)",
+        "parents": [
+            50,
+            57
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 27,
+            "col": 3,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "inputs": [
+                    {
+                        "type": "stat",
+                        "name": "ref"
+                    }
+                ],
+                "output": {
+                    "type": "stat",
+                    "name": "mr"
+                },
+                "scaling": [
+                    0.25
+                ],
+                "max": 10
+            }
+        ],
+        "id": 49,
+        "children": []
+    },
+    {
+        "display_name": "Whirlwind Strike",
+        "desc": "Uppercut will create a strong gust of air, launching you upward with enemies. (Hold shift to stay grounded) </br> </br><span class='mc-white'>Total Damage</span>: +50% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +10%)   </br>&emsp;(<span class='aDam'>Air</span>: +40%) </br>Area of Effect: Circle-Shaped",
+        "archetype": "Battle Monk",
+        "archetype_req": 6,
+        "base_abil": 8,
+        "parents": [
+            57,
+            58
+        ],
+        "dependencies": [
+            8
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 26,
+            "col": 4,
+            "icon": "node_3"
+        },
+        "properties": {
+            "range": 1
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Uppercut",
+                "multipliers": [
+                    10,
+                    0,
+                    0,
+                    0,
+                    0,
+                    40
+                ]
+            }
+        ],
+        "id": 50,
+        "children": [
+            40,
+            49,
+            57,
+            76
+        ]
+    },
+    {
+        "display_name": "Mythril Skin",
+        "desc": "Gain +5% Base Resistance and become immune to knockback.",
+        "archetype": "Paladin",
+        "parents": [
+            34
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 26,
+            "col": 7,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "defMult.Base",
+                        "value": 5
+                    }
+                ]
+            }
+        ],
+        "id": 51,
+        "children": [
+            54,
+            55
+        ]
+    },
+    {
+        "display_name": "Armour Breaker",
+        "desc": "Gaining 40% Corrupted will make your next Uppercut give you a damage boost. </br> </br>Effect: +30% Damage Bonus to Self </br>Duration: 8s </br>Cooldown: 16s",
+        "archetype": "Fallen",
+        "archetype_req": 0,
+        "base_abil": 8,
+        "parents": [
+            48,
+            57
+        ],
+        "dependencies": [
+            25
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 27,
+            "col": 1,
+            "icon": "node_4"
+        },
+        "properties": {
+            "duration": 8,
+            "potency": 30
+        },
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Armour Breaker",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Potion",
+                        "value": "8.potency"
+                    }
+                ]
+            }
+        ],
+        "id": 52,
+        "children": []
+    },
+    {
+        "display_name": "Shield Strike",
+        "desc": "You gain a broken mantle whenever Mantle of the Bovemists loses a charge. </br> Hitting an enemy with Bash sends all broken mantles at them, dealing damage to nearby enemies. </br> </br><span class='mc-white'>Total Damage</span>: 250% (of your DPS, per broken mantle)   </br>&emsp;(<span class='nDam'>Damage</span>: 200%)   </br>&emsp;(<span class='fDam'>Fire</span>: 50%) </br>Area of Effect: 7 Blocks (Circle-Shaped) </br>Duration: 20s",
+        "archetype": "Paladin",
+        "archetype_req": 0,
+        "base_abil": 24,
+        "parents": [
+            30,
+            29,
+            28
+        ],
+        "dependencies": [
+            24
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 18,
+            "col": 6,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Shield Strike",
+                "base_spell": 6,
+                "display": "Total Damage",
+                "parts": [
+                    {
+                        "name": "Damage per Shield",
+                        "multipliers": [
+                            200,
+                            0,
+                            0,
+                            0,
+                            50,
+                            0
+                        ]
+                    },
+                    {
+                        "name": "Total Damage",
+                        "hits": {
+                            "Damage per Shield": "24.charges"
+                        }
+                    }
+                ]
+            }
+        ],
+        "id": 53,
+        "children": [
+            29
+        ]
+    },
+    {
+        "display_name": "Luster Purge",
+        "desc": "While you have 10 Holy Power, your Main Attacks are empowered, and grant you 5 Holy Power. </br> Main Attack Damage Bonus: +40% </br>Main Attack Range: +25% </br>Cooldown: 2s (for Holy Power)",
+        "archetype": "Paladin",
+        "archetype_req": 0,
+        "parents": [
+            51,
+            55
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 28,
+            "col": 6,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Luster Purge",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Luster Purge:0.Melee",
+                        "value": 40
+                    },
+                    {
+                        "type": "stat",
+                        "name": "damMult.Luster Purge:0.Powder Special",
+                        "value": 40
+                    }
+                ]
+            }
+        ],
+        "id": 54,
+        "children": [
+            55,
+            63
+        ]
+    },
+    {
+        "display_name": "Hallowed Blaze",
+        "desc": "Flaming Uppercut will do more damage, and grant 1 Holy Power</br>whenever it deals damage.</br>(+15% to neutral, +15% to fire)",
+        "archetype": "Paladin",
+        "archetype_req": 0,
+        "parents": [
+            51,
+            54
+        ],
+        "dependencies": [
+            20
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 28,
+            "col": 8,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 8,
+                "target_part": "Damage Tick",
+                "multipliers": [
+                    15,
+                    0,
+                    0,
+                    0,
+                    15,
+                    0
+                ]
+            }
+        ],
+        "id": 55,
+        "children": [
+            54,
+            63
+        ]
+    },
+    {
+        "display_name": "Massive Bash",
+        "desc": "Increase Bash's area of effect radius by +1 per 3% Corrupted. (Max +10)",
+        "archetype": "Fallen",
+        "archetype_req": 7,
+        "base_abil": 25,
+        "parents": [
+            48,
+            61
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 29,
+            "col": 0,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Corrupted",
+                "output": {
+                    "type": "prop",
+                    "abil": 0,
+                    "name": "aoe"
+                },
+                "scaling": [
+                    0.3333333333333333
+                ],
+                "max": 10
+            }
+        ],
+        "id": 56,
+        "children": [
+            61,
+            64,
+            77
+        ]
+    },
+    {
+        "display_name": "Tempest",
+        "desc": "War Scream will ripple the ground and deal damage to enemies 3 times over a large area every 0.6s. </br> </br><span class='mc-white'>Total Damage</span>: 50% (of your DPS, per ripple)   </br>&emsp;(<span class='nDam'>Damage</span>: 30%)   </br>&emsp;(<span class='eDam'>Earth</span>: 10%)   </br>&emsp;(<span class='aDam'>Air</span>: 10%) </br>Area of Effect: 12 Blocks (Circle-Shaped)",
+        "archetype": "Battle Monk",
+        "archetype_req": 0,
+        "base_abil": 10,
+        "parents": [
+            50,
+            48
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 26,
+            "col": 2,
+            "icon": "node_2"
+        },
+        "properties": {
+            "aoe": 12
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Tempest",
+                "multipliers": [
+                    30,
+                    10,
+                    0,
+                    0,
+                    0,
+                    10
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Tempest Total Damage",
+                "hits": {
+                    "Tempest": 3
+                }
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Total Damage",
+                "hits": {
+                    "Tempest Total Damage": 1
+                }
+            }
+        ],
+        "id": 57,
+        "children": [
+            48,
+            49,
+            50,
+            52
+        ]
+    },
+    {
+        "display_name": "Spirit of the Rabbit",
+        "desc": "Reduce the Mana cost of Charge and increase your Walk Speed by +20%. </br> Mana Cost: -5",
+        "base_abil": 4,
+        "parents": [
+            42,
+            32,
+            41,
+            45
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 22,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 2,
+                "cost": -5
+            },
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "spd",
+                        "value": 20
+                    }
+                ]
+            }
+        ],
+        "id": 58,
+        "children": [
+            41,
+            45,
+            46,
+            50
+        ]
+    },
+    {
+        "display_name": "Provoke",
+        "desc": "Enemies damaged by War Scream will become Provoked, targeting only you for at least 8s. </br> Reduce the Mana cost of War Scream. </br> Mana Cost: -5 </br>Cooldown: 15s",
+        "archetype": "Paladin",
+        "archetype_req": 5,
+        "base_abil": 10,
+        "parents": [
+            40,
+            63
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 29,
+            "col": 5,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "cost": -5
+            }
+        ],
+        "id": 59,
+        "children": [
+            63
+        ]
+    },
+    {
+        "display_name": "Massacre",
+        "desc": "While Corrupted, hitting an enemy with your Main Attack will add +1.5% Corruption, per second. (Powder Specials always add +3%)",
+        "base_abil": 999,
+        "parents": [
+            43
+        ],
+        "dependencies": [
+            25
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 24,
+            "col": 2,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 60,
+        "children": []
+    },
+    {
+        "display_name": "Axe Kick",
+        "desc": "Increases the damage and mana cost of Uppercut. </br> Mana Cost: +5 </br><span class='mc-white'>Total Damage</span>: +100% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +100%)",
+        "base_abil": 8,
+        "parents": [
+            38,
+            40,
+            56
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 29,
+            "col": 3,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "target_part": "Uppercut",
+                "cost": 5,
+                "multipliers": [
+                    100,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "id": 61,
+        "children": [
+            56,
+            77
+        ]
+    },
+    {
+        "display_name": "Radiance",
+        "desc": "Bash will buff positive IDs of yourself and allies. (XP Bonus, Loot Bonus, Loot Quality, Gather XP Bonus, and Gather Speed Bonus are excluded) </br> </br>Effect: +20% ID Effectiveness to Allies </br>Duration: 8s </br>Cooldown: 15s",
+        "archetype": "Paladin",
+        "archetype_req": 10,
+        "base_abil": 0,
+        "parents": [
+            63,
+            67
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 33,
+            "col": 7,
+            "icon": "node_4"
+        },
+        "properties": {
+            "cooldown": 15
+        },
+        "effects": [],
+        "id": 62,
+        "children": [
+            67,
+            69,
+            70
+        ]
+    },
+    {
+        "display_name": "Blessed Bulwark",
+        "desc": "Add +2 additional charges to Mantle of the Bovemists.",
+        "base_abil": 24,
+        "parents": [
+            54,
+            55,
+            59
+        ],
+        "dependencies": [
+            24
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 29,
+            "col": 7,
+            "icon": "node_0"
+        },
+        "properties": {
+            "charges": 2
+        },
+        "effects": [],
+        "id": 63,
+        "children": [
+            59,
+            62
+        ]
+    },
+    {
+        "display_name": "Cheaper War Scream II",
+        "desc": "Reduce the Mana cost of War Scream. </br> Mana Cost: -5",
+        "base_abil": 10,
+        "parents": [
+            56,
+            65
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 32,
+            "col": 0,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "cost": -5
+            }
+        ],
+        "id": 64,
+        "children": [
+            65,
+            72
+        ]
+    },
+    {
+        "display_name": "Overwhelming Rage",
+        "desc": "Increases the cap of Enraged Blow by +50%.",
+        "base_abil": 25,
+        "parents": [
+            64
+        ],
+        "dependencies": [
+            25
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 32,
+            "col": 2,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider_name": "Corrupted",
+                "slider": true,
+                "output": {
+                    "type": "stat",
+                    "name": "damMult.Enraged"
+                },
+                "max": -65,
+                "scaling": [
+                    -1.5
+                ]
+            },
+            {
+                "type": "stat_scaling",
+                "slider_name": "Corrupted",
+                "slider": true,
+                "output": {
+                    "type": "stat",
+                    "name": "damMult.Enraged"
+                },
+                "max": 115,
+                "scaling": [
+                    1.5
+                ]
+            }
+        ],
+        "id": 65,
+        "children": [
+            64,
+            72
+        ]
+    },
+    {
+        "display_name": "Discombobulate",
+        "desc": "Damaging enemies will inflict them with +2 Discombobulated. (Max 150) </br> You will deal +1 neutral and elemental damage to enemies for every Discombobulated they have. -4 of the bonus decays every second.",
+        "archetype": "Battle Monk",
+        "archetype_req": 10,
+        "parents": [
+            67,
+            78
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 34,
+            "col": 4,
+            "icon": "node_2"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Hits dealt",
+                "slider_max": 30,
+                "output": [
+                    {
+                        "type": "stat",
+                        "name": "nDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "eDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "tDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "wDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "fDamRaw"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "aDamRaw"
+                    }
+                ],
+                "scaling": [
+                    5
+                ],
+                "max": 150
+            }
+        ],
+        "id": 66,
+        "children": [
+            79
+        ]
+    },
+    {
+        "display_name": "Thunderclap",
+        "desc": "Bash will cast at the player's position at double the speed and with an increased area of effect. </br> </br><span class='mc-white'>Total Damage</span>: +120% (of your DPS, per bash)   </br>&emsp;(<span class='nDam'>Damage</span>: +60%)   </br>&emsp;(<span class='tDam'>Thunder</span>: +60%) </br>Area of Effect: +3 Blocks (Circle-Shaped) </br> With Quadruple Bash, gain less damage. </br> </br><span class='mc-white'>Total Damage</span>: +30% (of your DPS, per bash)   </br>&emsp;(<span class='tDam'>Thunder</span>: +30%)",
+        "archetype": "Battle Monk",
+        "archetype_req": 4,
+        "base_abil": 0,
+        "parents": [
+            68,
+            62,
+            78
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 33,
+            "col": 5,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Single Hit",
+                "multipliers": [
+                    0,
+                    0,
+                    30,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 1,
+                "target_part": "Thunderclap Bonus",
+                "multipliers": [
+                    60,
+                    0,
+                    30,
+                    0,
+                    0,
+                    0
+                ],
+                "hide": true
+            },
+            {
+                "type": "add_spell_prop",
+                "target_part": "Bash Hit",
+                "base_spell": 1,
+                "hits": {
+                    "Thunderclap Bonus": 1
+                }
+            },
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 0,
+                        "name": "aoe",
+                        "value": 3
+                    }
+                ]
+            }
+        ],
+        "id": 67,
+        "children": [
+            62,
+            66,
+            78
+        ]
+    },
+    {
+        "display_name": "Cyclone",
+        "desc": "After casting War Scream, envelop yourself with a vortex that damages nearby enemies every 0.35s.  </br> </br><span class='mc-white'>Total Damage</span>: 70% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 40%)   </br>&emsp;(<span class='aDam'>Air</span>: 20%)   </br>&emsp;(<span class='fDam'>Fire</span>: 10%) </br>Duration: 20s </br>Area of Effect: 6 Blocks (Circle-Shaped)",
+        "archetype": "Battle Monk",
+        "parents": [
+            40
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 31,
+            "col": 4,
+            "icon": "node_2"
+        },
+        "properties": {
+            "aoe": 4,
+            "duration": 20
+        },
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Cyclone",
+                "multipliers": [
+                    40,
+                    0,
+                    0,
+                    0,
+                    10,
+                    20
+                ]
+            },
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Cyclone DPS",
+                "hits": {
+                    "Cyclone": 2.85714285714
+                }
+            }
+        ],
+        "id": 68,
+        "children": [
+            67,
+            78
+        ]
+    },
+    {
+        "display_name": "Consecration",
+        "desc": "Increases the damage of Sacred Surge. </br> </br><span class='mc-white'>Total Damage</span>: +250% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +200%)   </br>&emsp;(<span class='wDam'>Water</span>: +25%)   </br>&emsp;(<span class='aDam'>Air</span>: +25%)",
+        "archetype": "Paladin",
+        "archetype_req": 9,
+        "parents": [
+            62
+        ],
+        "dependencies": [
+            34
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 34,
+            "col": 8,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Sacred Surge",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "nConvBase:3.Smite Damage",
+                        "value": 200
+                    },
+                    {
+                        "type": "stat",
+                        "name": "wConvBase:3.Smite Damage",
+                        "value": 25
+                    },
+                    {
+                        "type": "stat",
+                        "name": "aConvBase:3.Smite Damage",
+                        "value": 25
+                    }
+                ]
+            }
+        ],
+        "id": 69,
+        "children": []
+    },
+    {
+        "display_name": "Heavenly Trumpet",
+        "desc": "Casting War Scream while holding shift with at least 25 Holy Power will spend all of it to sound off a protective trumpet. </br> All nearby allies are granted +1% Overhealth for each point of Holy Power consumed. Overhealth decays over 20s. </br> </br>Range: 16 Blocks (Circle-Shaped) </br>Cooldown: 20s",
+        "archetype": "Paladin",
+        "archetype_req": 12,
+        "parents": [
+            62
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 35,
+            "col": 7,
+            "icon": "node_3"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 70,
+        "children": [
+            73,
+            74
+        ]
+    },
+    {
+        "display_name": "Brink of Madness",
+        "desc": "You gain a +40% Resistance buff if your health is at 25% or less.",
+        "parents": [
+            72,
+            73
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 36,
+            "col": 1,
+            "icon": "node_4"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Brink",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "defMult.Brink",
+                        "value": 40
+                    }
+                ]
+            }
+        ],
+        "id": 71,
+        "children": [
+            73
+        ]
+    },
+    {
+        "display_name": "Bloodlust",
+        "desc": "After leaving Corrupted, annihilate all enemies around you. For every 1% Corrupted you had, damage increases by 5%. </br> </br><span class='mc-white'>Total Damage</span>: 400% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 300%)   </br>&emsp;(<span class='fDam'>Fire</span>: 100%) </br>Area of Effect: 12 Blocks (Circle-Shaped)",
+        "archetype": "Fallen",
+        "archetype_req": 10,
+        "parents": [
+            64,
+            65
+        ],
+        "dependencies": [
+            25
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 34,
+            "col": 1,
+            "icon": "node_3"
+        },
+        "properties": {
+            "aoe": 8
+        },
+        "effects": [
+            {
+                "type": "replace_spell",
+                "name": "Bloodlust Damage",
+                "base_spell": 10,
+                "display": "Annihilation",
+                "parts": [
+                    {
+                        "name": "Annihilation",
+                        "multipliers": [
+                            300,
+                            0,
+                            0,
+                            0,
+                            100,
+                            0
+                        ],
+                        "ignored_mults": [
+                            "Enraged"
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Corrupted",
+                "behavior": "modify",
+                "output": {
+                    "type": "stat",
+                    "name": "damMult.Bloodlust:10.Annihilation"
+                },
+                "scaling": [
+                    5
+                ]
+            }
+        ],
+        "id": 72,
+        "children": [
+            71,
+            75
+        ]
+    },
+    {
+        "display_name": "Cheaper Uppercut 2",
+        "desc": "Reduce the Mana cost of Uppercut by 5.",
+        "base_abil": 8,
+        "parents": [
+            70,
+            71
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 36,
+            "col": 4,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 3,
+                "cost": -5
+            }
+        ],
+        "id": 73,
+        "children": [
+            71
+        ]
+    },
+    {
+        "display_name": "Second Chance",
+        "desc": "Keeps you alive with 30% of your health remaining and makes all nearby allies invincible after receiving a fatal blow. </br> </br>Effect: Invincibility to Allies </br>Duration: 3s </br>Area of Effect: 12 Blocks (Circle-Shaped) </br>Cooldown: 10m",
+        "archetype": "Paladin",
+        "archetype_req": 0,
+        "parents": [
+            70
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 36,
+            "col": 8,
+            "icon": "node_4"
+        },
+        "properties": {
+            "duration": 3,
+            "aoe": 12
+        },
+        "effects": [],
+        "id": 74,
+        "children": []
+    },
+    {
+        "display_name": "Haemorrhage",
+        "desc": "Reduce Blood Pact's health cost. (0.235% health per mana)",
+        "archetype": "Fallen",
+        "archetype_req": 0,
+        "base_abil": 31,
+        "parents": [
+            72
+        ],
+        "dependencies": [
+            31
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 35,
+            "col": 0,
+            "icon": "node_0"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "raw_stat",
+                "bonuses": [
+                    {
+                        "type": "prop",
+                        "abil": 31,
+                        "name": "health_cost",
+                        "value": -0.115
+                    }
+                ]
+            }
+        ],
+        "id": 75,
+        "children": []
+    },
+    {
+        "display_name": "Freestream Flow",
+        "desc": "You fall more slowly during Charge. </br> </br>Duration: 2s",
+        "base_abil": 4,
+        "parents": [
+            50
+        ],
+        "dependencies": [
+            28
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 27,
+            "col": 5,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 76,
+        "children": []
+    },
+    {
+        "display_name": "Mindless Slaughter",
+        "desc": "Massacre adds twice as much Corruption. </br> While Corrupted, your Main Attack and Powder Specials now cost 0.5% health to use, activating Blood Pact.",
+        "archetype": "Fallen",
+        "base_abil": 60,
+        "parents": [
+            56,
+            61
+        ],
+        "dependencies": [
+            60
+        ],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 30,
+            "col": 1,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [],
+        "id": 77,
+        "children": []
+    },
+    {
+        "display_name": "Pressure",
+        "desc": "When Generalist acts on a spell, it is enhanced. </br> Bash gains 4x as many hits and is 0.2s faster. </br> Uppercut deals additional damage. </br><span class='mc-white'>Total Damage</span>: +395% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: +170%)   </br>&emsp;(<span class='nDam'>Rainbow Damage</span>: +45%) </br> War Scream grants a damage boost, but effect duration is reduced. </br>Effect: +10% Damage Bonus to Players </br>Duration: 12s",
+        "base_abil": 10,
+        "archetype": "Battle Monk",
+        "archetype_req": 10,
+        "parents": [
+            68,
+            67
+        ],
+        "dependencies": [
+            22
+        ],
+        "blockers": [],
+        "cost": 2,
+        "display": {
+            "row": 33,
+            "col": 3,
+            "icon": "node_3"
+        },
+        "properties": {
+            "pressure_rainbow_uppercut": 55,
+            "pressure_neutral_uppercut": 170,
+            "pressure_bash_hits": 4,
+            "pressure_scream_boost": 10
+        },
+        "effects": [
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Pressure",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "nConvBase:3.Uppercut",
+                        "value": "10.pressure_neutral_uppercut"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "eConvBase:3.Uppercut",
+                        "value": "10.pressure_rainbow_uppercut"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "tConvBase:3.Uppercut",
+                        "value": "10.pressure_rainbow_uppercut"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "wConvBase:3.Uppercut",
+                        "value": "10.pressure_rainbow_uppercut"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "fConvBase:3.Uppercut",
+                        "value": "10.pressure_rainbow_uppercut"
+                    },
+                    {
+                        "type": "stat",
+                        "name": "aConvBase:3.Uppercut",
+                        "value": "10.pressure_rainbow_uppercut"
+                    },
+                    {
+                        "type": "prop",
+                        "abil": 0,
+                        "name": "hits",
+                        "mult": true,
+                        "value": "10.pressure_bash_hits"
+                    }
+                ]
+            },
+            {
+                "type": "raw_stat",
+                "toggle": "Activate Pressure Strength",
+                "bonuses": [
+                    {
+                        "type": "stat",
+                        "name": "damMult.Strength",
+                        "value": "10.pressure_scream_boost"
+                    }
+                ]
+            }
+        ],
+        "id": 78,
+        "children": [
+            66,
+            67
+        ]
+    },
+    {
+        "display_name": "Reverberance",
+        "desc": "Air Shout can hit +2 times, and deals more damage. </br> </br><span class='mc-white'>Total Damage</span>: 40% (of your DPS)   </br>&emsp;(<span class='nDam'>Damage</span>: 20%)   </br>&emsp;(<span class='tDam'>Thunder</span>: 10%)   </br>&emsp;(<span class='aDam'>Air</span>: 10%)",
+        "base_abil": 10,
+        "parents": [
+            66
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "cost": 1,
+        "display": {
+            "row": 35,
+            "col": 3,
+            "icon": "node_1"
+        },
+        "properties": {},
+        "effects": [
+            {
+                "type": "add_spell_prop",
+                "base_spell": 4,
+                "target_part": "Air Shout",
+                "multipliers": [
+                    20,
+                    0,
+                    10,
+                    0,
+                    0,
+                    10
+                ]
+            },
+            {
+                "type": "stat_scaling",
+                "slider": true,
+                "slider_name": "Additional Air Shout hits",
+                "slider_max": 2
+            }
+        ],
+        "id": 79,
+        "children": []
+    }
+]

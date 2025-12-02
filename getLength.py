@@ -1,12 +1,27 @@
 from custombase64 import Base64
+from typing import DefaultDict
 import json
 
-with open("atree.json", 'r') as f:
-    data = json.load(f)
+# for whoever is going to use this
+# feed a string into decodeHash and outputs currently only the ability tree
+# ability tree is stored as the individual nodes, you can decipher their names with data[index]['display_name']
+# and their position is stored in data[index]['display'], which should return a dict with {row, col, icon}
 
-print(data['Shaman'][0])
+classType = "warrior"
+
+# TODO: load weapon type dynamically
+# defaults to warrior currently
+# nvm im not doing allat
+# the way wynnbuilder does it is look up the item in their list of items and determines the class from the weapontype
+# *should* be possible for crafteds since they're a lot easier to grab but hell no im not doing allat
+# realistic implementation should be "assume class is current class" unless otherwise specified, if then just bring up a box to import and whatnot idfk how it works
+# figuring this out would take significant time and effort honestly and i do not want to be doing allat
+# there is an items.json on their github: https://github.com/wynnbuilder/wynnbuilder.github.io/blob/master/data/2.1.6.0/items.json
+# someone else can figure that out but everything else is #done and #finished
 
 string = "CN000000000000000000000We6I0"
+string_1 = "CN000000000000000000000GF7I-00"
+string_2 = "CN000000000000000000000GF7I-G0"
 string2 = "CN0e1wMziGvQw7169F9OC79j7j7i9I0urix4GXAC0bZBCegPKVfzu0"
 string3 = "CN0G741PCv8Y6c6MCY6d9I0IdWJDY0s4s4saEcEcE6u4982OJOJOJwOwOwOWJaW8WDXDXDfZfZfZnCH2Y0s4s4saEcEcEcu490HUBSKB0qVRuxkFN0"
 string4 = "CN0e10-CHW7Z7J0ZUoTYU2RY482yOyO2OqJkJqJ8Ja0H0R2R2RI73RI73SY441i9i9i9TCi9TCm9IG4mcmcmcqnmcqnOc81H0R2R2RI73RI7JSY4WgcHEt2o50QFlt5h06LF"
@@ -38,7 +53,7 @@ def decodeHash(string: str) -> int:
     #decodeAspects
     idx = decodeAspects(idx, bitstring)
     # should have idx here
-    print(idx)
+    return decodeAtree(idx, bitstring, "shaman")
 
 # decodes a piece of equipment
 def decodeEquipment(idx: int, bitstring: str) -> int:
@@ -222,13 +237,61 @@ def decodeAspects(idx: int, bitstring: str) -> int:
     
     return idx
 
-# decodes the ability tree
+# decodes the ability tree, given a specific class
 def decodeAtree(idx: int, bitstring: str, cl: str):
-    i = 0
+    COUNTER = bitstring[idx:].count('1') # sanity check for the number of abilities to output
+    i, j = 0, 0
+    with open(f"{cl}Tree.json", 'r') as f:
+        data = json.load(f)
     out = []
-    out.push(data[cl][0])
+    out.append(data[0]) # always will have first node in tree CLUELESS
+                        # fuck accounting for empty trees if you are sharing this and it doesnt work its YOUR fault
 
+    # recursively traverse the tree, adding abilities according to the bitstring
     def traverse(head, visited, out):
-        #for child in head[] # TODO: create preprocessing function to add the children attribute to each node 
-        i += 0 # dummy nop for now
-print(decodeHash(string4))
+        nonlocal i
+        nonlocal j
+        flag = False # flag is set to true if a blocker for an ability has been added
+        # checking if node has already been visited, if not, set to visited
+        for child in head['children']:
+            if visited[child]:
+                continue
+            else:
+                visited[child] = True
+            
+            # checking if a blocker for an ability has been added, if true, set flag
+            try:
+                # print(data[child]['blockers'])
+                if data[child]['blockers']:
+                    for blocker in data[child]['blockers']:
+                        if data[blocker] in out:
+                            flag = True
+            except:
+                continue
+
+            try:
+                # if the ability is set to true in the bitstring, and it isn't being blocked, add the ability
+                # j simply exists as a sanity checker to make sure we don't add too many abilities since my code is Flawless and Will Never Break
+                if bitstring[i+idx] == '1' and j < COUNTER and not flag:
+                    i += 1
+                    j += 1
+                    out.append(data[child])
+                    #print(out)
+                    # recurse
+                    traverse(data[child], visited, out)
+                else:
+                    # if we don't add the ability, still move to next index
+                    i += 1
+            except Exception as e:
+                # handling the cases where the ability isn't in the tree, and the ability bitstring isn't completely full
+                # theres probably a more elegant way to go about this but idgaf anymore its whatever
+                print(e)
+                i += 1
+                break
+    traverse(data[0], DefaultDict(bool), out)
+    return out
+
+
+# a = decodeHash(string3)
+# print(a)
+# print(len(a))
