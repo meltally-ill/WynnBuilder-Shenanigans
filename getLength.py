@@ -63,11 +63,12 @@ def decodeEquipment(idx: int, bitstring: str) -> int:
                                                     # you need to reverse the string once again because endianness or some bullshit
                                                     # idfk i've reversed strings at least 3 times but it works and i dont want to think about it more
         idx += 2
+        # EQUIPMENT_KIND = NORMAL
         if equipment_kind == "00":
-            # EQUIPMENT_KIND = NORMAL
-            equipment_id = bitstring[idx:idx+13][::-1] # dude i hate this
+            # EQUIPMENT_ID
+            equipment_id = int(bitstring[idx:idx+13][::-1], 2) - 1 # dude i hate this
             idx += 13
-            print(int(equipment_id, 2) - 1)
+            print(equipment_id) # only prints right now because im lazy
         elif equipment_kind == "01":
             # decodeCrafted
             idx = decodeCrafted(idx, bitstring, i)
