@@ -7,7 +7,7 @@ def add_children(nodes):
         node['children'] = []
     for child_idx, node in enumerate(nodes):
         parents = node.get('parents', [])
-        print(parents)
+        #print(parents)
         for parent in parents:
             if 0 <= parent < len(nodes):
                 if child_idx not in nodes[parent]['children']:
