@@ -1,6 +1,8 @@
 from custombase64 import Base64
-from typing import DefaultDict, List, Dict, Any
+from typing import DefaultDict
 import json
+
+from processAtree import add_children
 
 # for whoever is going to use this
 # feed a string into decodeHash and outputs currently only the ability tree
@@ -18,6 +20,26 @@ classType = "warrior"
 # figuring this out would take significant time and effort honestly and i do not want to be doing allat
 # there is an items.json on their github: https://github.com/wynnbuilder/wynnbuilder.github.io/blob/master/data/2.1.6.0/items.json
 # someone else can figure that out but everything else is #done and #finished
+import requests
+
+def fetch_versions():
+    url = "https://api.github.com/repos/wynnbuilder/wynnbuilder.github.io/contents/data"
+    resp = requests.get(url)
+    resp.raise_for_status()
+    folders = [item['name'] for item in resp.json() if item['type'] == 'dir']
+    folders.sort()
+    return {i: v for i, v in enumerate(folders)}
+
+VERSION_MAP = fetch_versions()
+
+def load_items(version: str):
+    url = f"https://raw.githubusercontent.com/wynnbuilder/wynnbuilder.github.io/master/data/{version}/items.json"
+    map = {}
+    data = requests.get(url).json()
+    for item in data["items"]:
+        map[str(item["id"])] = item
+    map["-1"] = {"name": "! Unknown Item"}
+    return map
 
 string = "CN000000000000000000000We6I0"
 string_1 = "CN000000000000000000000GF7I-00"
@@ -25,6 +47,7 @@ string_2 = "CN000000000000000000000GF7I-G0"
 string2 = "CN0e1wMziGvQw7169F9OC79j7j7i9I0urix4GXAC0bZBCegPKVfzu0"
 string3 = "CN0G741PCv8Y6c6MCY6d9I0IdWJDY0s4s4saEcEcE6u4982OJOJOJwOwOwOWJaW8WDXDXDfZfZfZnCH2Y0s4s4saEcEcEcu490HUBSKB0qVRuxkFN0"
 string4 = "CN0e10-CHW7Z7J0ZUoTYU2RY482yOyO2OqJkJqJ8Ja0H0R2R2RI73RI73SY441i9i9i9TCi9TCm9IG4mcmcmcqnmcqnOc81H0R2R2RI73RI7JSY4WgcHEt2o50QFlt5h06LF"
+hero = "CN0ytmd6qI2X7GoD6eG15OyGhcnCpBl7NQ6sy4s3"
 
 # converts a wynnbuilder hash into the underlying bytestring
 def convert_to_bits(string: str) -> str:
@@ -40,10 +63,20 @@ def decodeHash(string: str) -> int:
     # decodeHeader
     idx += 6
     # VERSION_ID
+    version = get_version_id(bitstring)
+    version = VERSION_MAP[version]
+    print("Version:", version)
     idx += 10
 
+    item_map = load_items(version)
     #decodeEquipment
-    idx = decodeEquipment(idx, bitstring)
+    idx, equipments = decodeEquipment(idx, bitstring)
+    print("equipment ids:", equipments)
+    for equipment in equipments:
+        print(item_map[str(equipment)]["name"])
+    item = item_map[str(equipments[8])]
+    print("weapon:", item["name"])
+    cls = item["classReq"]
     #decodeTomes
     idx = decodeTomes(idx, bitstring)
     #decodeSp
@@ -53,27 +86,35 @@ def decodeHash(string: str) -> int:
     #decodeAspects
     idx = decodeAspects(idx, bitstring)
     # should have idx here
-    return decodeAtree(idx, bitstring, "shaman")
+    return decodeAtree(idx, bitstring, cls, version)
+
+def get_version_id(bitstring: str) -> int:
+    start = 6
+    end = start + 10
+    version_bits = bitstring[start:end][::-1]
+    return int(version_bits, 2)
 
 # decodes a piece of equipment
 def decodeEquipment(idx: int, bitstring: str) -> int:
+    equipments = []
     for i in range(9):
         # EQUIPMENT_KIND
         equipment_kind = bitstring[idx:idx+2][::-1] # future reminder for anyone using my bitstring implementation
                                                     # you need to reverse the string once again because endianness or some bullshit
                                                     # idfk i've reversed strings at least 3 times but it works and i dont want to think about it more
         idx += 2
-        # EQUIPMENT_KIND = NORMAL
         if equipment_kind == "00":
             # EQUIPMENT_ID
             equipment_id = int(bitstring[idx:idx+13][::-1], 2) - 1 # dude i hate this
             idx += 13
-            print(equipment_id) # only prints right now because im lazy
+            equipments.append(equipment_id)
         elif equipment_kind == "01":
             # decodeCrafted
             idx = decodeCrafted(idx, bitstring, i)
+            equipments.append(-1)
         elif equipment_kind == "10":
             # customs, shouldn't reach
+            equipments.append(-1)
             print("something bad happened")
 
         # decoding powders
@@ -84,11 +125,10 @@ def decodeEquipment(idx: int, bitstring: str) -> int:
             if powder_flag == "1":
                 # decodePowders
                 idx = decodePowders(idx, bitstring)
-    return idx
+    return idx, equipments
 
 # decodes a crafted item
 # fuck actual documentation formatting
-# iamgoingtoshootmyself is for determining if the item is a weapon or not (i = 8)
 def decodeCrafted(idx: int, bitstring: str, iamgoingtoshootmyself: int) -> int:
     startIdx = idx
     # legacy bit
@@ -172,7 +212,7 @@ def decodeTomes(idx: int, bitstring: str) -> int:
             # TOME_SLOT_FLAG.USED
             elif tome_slot_flag == '1':
                 idx += 8
-    
+
     return idx
 
 # decodes skillpoints
@@ -192,12 +232,12 @@ def decodeSp(idx: int, bitstring: str) -> int:
             element_flag = bitstring[idx:idx+1]
             idx += 1
             # SP_ELEMENT_FLAG.ELEMENT_ASSIGNED
-            if element_flag == '1': 
+            if element_flag == '1':
                 idx += 12
             # SP_ELEMENT_FLAG.ELEMENT_UNASSIGNED
             elif element_flag == '0':
                 idx += 0 # dummy nop
-    
+
     return idx
 
 # decodes level
@@ -238,21 +278,23 @@ def decodeAspects(idx: int, bitstring: str) -> int:
                 idx += 5
                 # ASPECT_TIER
                 idx += 2
-    
+
     return idx
 
 # decodes the ability tree, given a specific class
-def decodeAtree(idx: int, bitstring: str, cl: str) -> List[Dict[Any, Any]]:
+def decodeAtree(idx: int, bitstring: str, cl: str, version: str):
     COUNTER = bitstring[idx:].count('1') # sanity check for the number of abilities to output
     i, j = 0, 0
-    with open(f"{cl}Tree.json", 'r') as f:
-        data = json.load(f)
+    data = requests.get(f"https://raw.githubusercontent.com/wynnbuilder/wynnbuilder.github.io/master/data/{version}/atree.json").json()[cl.title()]
+    data = add_children(data)
+#    with open(f"{cl}Tree.json", 'r') as f:
+#        data = json.load(f)
     out = []
     out.append(data[0]) # always will have first node in tree CLUELESS
                         # fuck accounting for empty trees if you are sharing this and it doesnt work its YOUR fault
 
     # recursively traverse the tree, adding abilities according to the bitstring
-    def traverse(head: Dict[Any, Any], visited: Dict[int, bool], out: List[Any]) -> None:
+    def traverse(head, visited, out):
         nonlocal i
         nonlocal j
         flag = False # flag is set to true if a blocker for an ability has been added
@@ -262,7 +304,7 @@ def decodeAtree(idx: int, bitstring: str, cl: str) -> List[Dict[Any, Any]]:
                 continue
             else:
                 visited[child] = True
-            
+
             # checking if a blocker for an ability has been added, if true, set flag
             try:
                 # print(data[child]['blockers'])
@@ -296,6 +338,6 @@ def decodeAtree(idx: int, bitstring: str, cl: str) -> List[Dict[Any, Any]]:
     return out
 
 
-a = decodeHash(string2)
-#print(a)
-#print(len(a))
+a = decodeHash(hero)
+print(a)
+print(len(a))
