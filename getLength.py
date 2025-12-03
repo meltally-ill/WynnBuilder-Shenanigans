@@ -1,5 +1,5 @@
 from custombase64 import Base64
-from typing import DefaultDict
+from typing import DefaultDict, List, Dict, Any
 import json
 
 # for whoever is going to use this
@@ -65,7 +65,9 @@ def decodeEquipment(idx: int, bitstring: str) -> int:
         idx += 2
         if equipment_kind == "00":
             # EQUIPMENT_KIND = NORMAL
+            equipment_id = bitstring[idx:idx+13][::-1] # dude i hate this
             idx += 13
+            print(int(equipment_id, 2) - 1)
         elif equipment_kind == "01":
             # decodeCrafted
             idx = decodeCrafted(idx, bitstring, i)
@@ -85,6 +87,7 @@ def decodeEquipment(idx: int, bitstring: str) -> int:
 
 # decodes a crafted item
 # fuck actual documentation formatting
+# iamgoingtoshootmyself is for determining if the item is a weapon or not (i = 8)
 def decodeCrafted(idx: int, bitstring: str, iamgoingtoshootmyself: int) -> int:
     startIdx = idx
     # legacy bit
@@ -238,7 +241,7 @@ def decodeAspects(idx: int, bitstring: str) -> int:
     return idx
 
 # decodes the ability tree, given a specific class
-def decodeAtree(idx: int, bitstring: str, cl: str):
+def decodeAtree(idx: int, bitstring: str, cl: str) -> List[Dict[Any, Any]]:
     COUNTER = bitstring[idx:].count('1') # sanity check for the number of abilities to output
     i, j = 0, 0
     with open(f"{cl}Tree.json", 'r') as f:
@@ -248,7 +251,7 @@ def decodeAtree(idx: int, bitstring: str, cl: str):
                         # fuck accounting for empty trees if you are sharing this and it doesnt work its YOUR fault
 
     # recursively traverse the tree, adding abilities according to the bitstring
-    def traverse(head, visited, out):
+    def traverse(head: Dict[Any, Any], visited: Dict[int, bool], out: List[Any]) -> None:
         nonlocal i
         nonlocal j
         flag = False # flag is set to true if a blocker for an ability has been added
@@ -292,6 +295,6 @@ def decodeAtree(idx: int, bitstring: str, cl: str):
     return out
 
 
-# a = decodeHash(string3)
-# print(a)
-# print(len(a))
+a = decodeHash(string2)
+#print(a)
+#print(len(a))
