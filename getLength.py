@@ -1,6 +1,7 @@
 from custombase64 import Base64
 from typing import DefaultDict
 import json
+import requests
 
 from processAtree import add_children
 
@@ -20,7 +21,16 @@ classType = "warrior"
 # figuring this out would take significant time and effort honestly and i do not want to be doing allat
 # there is an items.json on their github: https://github.com/wynnbuilder/wynnbuilder.github.io/blob/master/data/2.1.6.0/items.json
 # someone else can figure that out but everything else is #done and #finished
-import requests
+
+string = "CN000000000000000000000We6I0"
+string_1 = "CN000000000000000000000GF7I-00"
+string_2 = "CN000000000000000000000GF7I-G0"
+string2 = "CN0e1wMziGvQw7169F9OC79j7j7i9I0urix4GXAC0bZBCegPKVfzu0"
+string3 = "CN0G741PCv8Y6c6MCY6d9I0IdWJDY0s4s4saEcEcE6u4982OJOJOJwOwOwOWJaW8WDXDXDfZfZfZnCH2Y0s4s4saEcEcEcu490HUBSKB0qVRuxkFN0"
+string4 = "CN0e10-CHW7Z7J0ZUoTYU2RY482yOyO2OqJkJqJ8Ja0H0R2R2RI73RI73SY441i9i9i9TCi9TCm9IG4mcmcmcqnmcqnOc81H0R2R2RI73RI7JSY4WgcHEt2o50QFlt5h06LF"
+hero = "CN0ytmd6qI2X7GoD6eG15OyGhcnCpBl7NQ6sy4s3"
+crafted_wep = "CNG4OayaWnOQ8QOnec81ZEQD6TIdCwSgPqZ0s4s4saEcEcE6u4982OJOJOJwOwOwOWJaW80k0k0k0kWDXDnCH2WDO4WqaRiaaRWqaRuc890ZwBjtBulzGt1"
+
 
 def fetch_versions():
     url = "https://api.github.com/repos/wynnbuilder/wynnbuilder.github.io/contents/data"
@@ -32,6 +42,7 @@ def fetch_versions():
 
 VERSION_MAP = fetch_versions()
 
+# loads the list of items for the current version
 def load_items(version: str):
     url = f"https://raw.githubusercontent.com/wynnbuilder/wynnbuilder.github.io/master/data/{version}/items.json"
     map = {}
@@ -41,21 +52,29 @@ def load_items(version: str):
     map["-1"] = {"name": "! Unknown Item"}
     return map
 
-string = "CN000000000000000000000We6I0"
-string_1 = "CN000000000000000000000GF7I-00"
-string_2 = "CN000000000000000000000GF7I-G0"
-string2 = "CN0e1wMziGvQw7169F9OC79j7j7i9I0urix4GXAC0bZBCegPKVfzu0"
-string3 = "CN0G741PCv8Y6c6MCY6d9I0IdWJDY0s4s4saEcEcE6u4982OJOJOJwOwOwOWJaW8WDXDXDfZfZfZnCH2Y0s4s4saEcEcEcu490HUBSKB0qVRuxkFN0"
-string4 = "CN0e10-CHW7Z7J0ZUoTYU2RY482yOyO2OqJkJqJ8Ja0H0R2R2RI73RI73SY441i9i9i9TCi9TCm9IG4mcmcmcqnmcqnOc81H0R2R2RI73RI7JSY4WgcHEt2o50QFlt5h06LF"
-hero = "CN0ytmd6qI2X7GoD6eG15OyGhcnCpBl7NQ6sy4s3"
+# same but recipes
+def load_recipes(version: str):
+    url = f"https://raw.githubusercontent.com/wynnbuilder/wynnbuilder.github.io/master/data/{version}/recipes.json"
+    map = {}
+    data = requests.get(url).json()
+    for item in data["recipes"]:
+        map[str(item["id"])] = item
+    return map
 
-# converts a wynnbuilder hash into the underlying bytestring
+# you can definitely tell who wrote which code
+def get_version_id(idx: int, bitstring: str) -> int:
+    # start = 6 # definitely can't assuemj this but i will leave as is for now actulaly no fuck that im just gonna fix it up
+    # end = start + 10
+    version_bits = bitstring[idx:idx+10][::-1]
+    return int(version_bits, 2)
+
+# converts a wynnbuilder hash into the underlying bitstring
 def convert_to_bits(string: str) -> str:
     string = string[::-1] # reverses the string for some god damn reason
     return bin(Base64.to_int(string))[::-1][:-2] # reverses it again for some fucking reason (remove last two chars "b0")
 
-# returns the beginning index of the atree for now
-def decodeHash(string: str) -> int:
+# returns a list(dict?) with all the abilities active on the current ability tree 
+def decodeHash(string: str):
     bitstring = convert_to_bits(string)
     print(bitstring)
     idx = 0
@@ -63,20 +82,32 @@ def decodeHash(string: str) -> int:
     # decodeHeader
     idx += 6
     # VERSION_ID
-    version = get_version_id(bitstring)
-    version = VERSION_MAP[version]
+    version = get_version_id(idx, bitstring) # now me personally i probably should rewrite this either to return the index or move the idx+=10 to the actual function itself buttttttttt
+    version = VERSION_MAP[version]           # what the fuck is consistent code amirite
     print("Version:", version)
     idx += 10
 
     item_map = load_items(version)
+    recipe_map = load_recipes(version)
+    stupid_chungus_map = {"BOW": "archer", "SPEAR": "warrior", "WAND": "mage", "DAGGER": "assassin", "RELIK": "shaman"} # converts between weapon type and the class
     #decodeEquipment
     idx, equipments = decodeEquipment(idx, bitstring)
+
     print("equipment ids:", equipments)
+    # positive equipment id indicates a normal item, negative equipment indicates a crafted item
     for equipment in equipments:
-        print(item_map[str(equipment)]["name"])
-    item = item_map[str(equipments[8])]
-    print("weapon:", item["name"])
-    cls = item["classReq"]
+        if equipment > 0:
+            print(item_map[str(equipment)]["name"])
+        else:
+            print(recipe_map[str(-equipment)]["name"]) # yup lgtm :fire:
+
+    if equipments[8] > 0: # definitely more elegant way to handle this
+        item = item_map[str(equipments[8])]
+        cls = item["classReq"]
+    elif equipments[8] < 0: # negative id for recipe id because i am # lazy
+        item = recipe_map[str(-equipments[8])]
+        cls = stupid_chungus_map[item["type"]]
+
     #decodeTomes
     idx = decodeTomes(idx, bitstring)
     #decodeSp
@@ -87,12 +118,6 @@ def decodeHash(string: str) -> int:
     idx = decodeAspects(idx, bitstring)
     # should have idx here
     return decodeAtree(idx, bitstring, cls, version)
-
-def get_version_id(bitstring: str) -> int:
-    start = 6
-    end = start + 10
-    version_bits = bitstring[start:end][::-1]
-    return int(version_bits, 2)
 
 # decodes a piece of equipment
 def decodeEquipment(idx: int, bitstring: str) -> int:
@@ -110,8 +135,8 @@ def decodeEquipment(idx: int, bitstring: str) -> int:
             equipments.append(equipment_id)
         elif equipment_kind == "01":
             # decodeCrafted
-            idx = decodeCrafted(idx, bitstring, i)
-            equipments.append(-1)
+            idx, recipe_id = decodeCrafted(idx, bitstring, i)
+            equipments.append(-recipe_id)
         elif equipment_kind == "10":
             # customs, shouldn't reach
             equipments.append(-1)
@@ -129,7 +154,7 @@ def decodeEquipment(idx: int, bitstring: str) -> int:
 
 # decodes a crafted item
 # fuck actual documentation formatting
-def decodeCrafted(idx: int, bitstring: str, iamgoingtoshootmyself: int) -> int:
+def decodeCrafted(idx: int, bitstring: str, iamgoingtoshootmyself: int): # should be int, str for recipe name
     startIdx = idx
     # legacy bit
     idx += 1
@@ -140,8 +165,10 @@ def decodeCrafted(idx: int, bitstring: str, iamgoingtoshootmyself: int) -> int:
     for i in range(6):
         idx += 12
 
-    # recipe
+    # RECIPE_ID
+    recipe_id = int(bitstring[idx:idx+12][::-1], 2)
     idx += 12
+    print("recipe_id:", recipe_id)
 
     # NUM_MATS loop
     # same as the last loop
@@ -154,7 +181,7 @@ def decodeCrafted(idx: int, bitstring: str, iamgoingtoshootmyself: int) -> int:
 
     # skipping padding
     idx += (6 - (idx - startIdx) % 6)
-    return idx
+    return idx, recipe_id
 
 # decodes the powders off an item
 def decodePowders(idx: int, bitstring: str) -> int:
@@ -331,13 +358,13 @@ def decodeAtree(idx: int, bitstring: str, cl: str, version: str):
             except Exception as e:
                 # handling the cases where the ability isn't in the tree, and the ability bitstring isn't completely full
                 # theres probably a more elegant way to go about this but idgaf anymore its whatever
-                print(e)
+                # print(e)
                 i += 1
                 break
     traverse(data[0], DefaultDict(bool), out)
     return out
 
 
-a = decodeHash(hero)
-print(a)
-print(len(a))
+a = decodeHash(crafted_wep)
+# print(a)
+# print(len(a))
